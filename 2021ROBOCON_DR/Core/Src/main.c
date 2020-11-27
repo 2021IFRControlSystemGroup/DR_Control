@@ -47,20 +47,19 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+extern ROBO_BASE Robo_Base;
 extern uint8_t Rx_buffer[RX_LENGTH];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-extern ROBO_BASE Robo_Base;
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint32_t SYSCLOCK=0;
 /* USER CODE END 0 */
 
 /**
@@ -86,7 +85,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+	SYSCLOCK=HAL_RCC_GetSysClockFreq();
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -96,20 +95,16 @@ int main(void)
   MX_USART2_UART_Init();
   MX_CAN1_Init();
   MX_CAN2_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim3);
-  __HAL_UART_ENABLE_IT(&huart2,UART_IT_IDLE);
-  HAL_UART_Receive_DMA(&huart2,(uint8_t*)Rx_buffer,RX_LENGTH);
-  
-  CAN_Filter_Init(&hcan1);
-  HAL_CAN_Start(&hcan1);
-  HAL_CAN_ActivateNotification(&hcan1,CAN_IT_RX_FIFO0_MSG_PENDING);
-  
-  CAN_Filter_Init(&hcan2);
-  HAL_CAN_Start(&hcan2);
-  HAL_CAN_ActivateNotification(&hcan2,CAN_IT_RX_FIFO0_MSG_PENDING);
+	Usart_All_Init();
+	CAN_Start_IT(&hcan1);
+	CAN_Start_IT(&hcan2);
   
   BASE_Init(&Robo_Base);
+	
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */

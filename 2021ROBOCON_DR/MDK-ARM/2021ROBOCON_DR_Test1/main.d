@@ -38,4 +38,6 @@
 2021robocon_dr_test1\main.o: ../Core/Inc/usart.h
 2021robocon_dr_test1\main.o: ../Core/Inc/gpio.h
 2021robocon_dr_test1\main.o: ../Core/Inc/robo_base.h
+2021robocon_dr_test1\main.o: ../Core/Inc/motor_system.h
 2021robocon_dr_test1\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+2021robocon_dr_test1\main.o: ../Core/Inc/uart_communicate.h

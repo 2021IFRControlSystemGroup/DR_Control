@@ -194,12 +194,12 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 }
 
 /* USER CODE BEGIN 1 */
-void CAN_Filter_Init(CAN_HandleTypeDef *hcan)
+void CAN_Start_IT(CAN_HandleTypeDef *hcan)
 {
   CAN_FilterTypeDef CAN_Filter;
 	
   if(hcan==&hcan1)
-    CAN_Filter.FilterBank=0,CAN_Filter.SlaveStartFilterBank=0;
+    CAN_Filter.FilterBank=0,CAN_Filter.SlaveStartFilterBank=14;
   else 
 	CAN_Filter.FilterBank=14,CAN_Filter.SlaveStartFilterBank=14;
   
@@ -213,6 +213,9 @@ void CAN_Filter_Init(CAN_HandleTypeDef *hcan)
   CAN_Filter.FilterScale=CAN_FILTERSCALE_32BIT;
   
   HAL_CAN_ConfigFilter(hcan,&CAN_Filter);
+	
+  HAL_CAN_Start(hcan);
+  HAL_CAN_ActivateNotification(hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
 }
 
 /* USER CODE END 1 */

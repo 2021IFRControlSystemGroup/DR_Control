@@ -33,4 +33,3 @@
 2021robocon_dr_test1\usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 2021robocon_dr_test1\usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 2021robocon_dr_test1\usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-2021robocon_dr_test1\usart.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdio.h

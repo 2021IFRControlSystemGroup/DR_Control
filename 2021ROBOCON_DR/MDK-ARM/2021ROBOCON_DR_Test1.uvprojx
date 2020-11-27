@@ -364,7 +364,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F405xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;    ../Drivers/STM32F4xx_HAL_Driver/Inc;    ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;    ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;    ../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;       ../Drivers/STM32F4xx_HAL_Driver/Inc;       ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;       ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;       ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -421,6 +421,21 @@
           <GroupName>Application/User/Core</GroupName>
           <Files>
             <File>
+              <FileName>move.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\move.c</FilePath>
+            </File>
+            <File>
+              <FileName>robo_base.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\robo_base.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor_system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\motor_system.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/main.c</FilePath>
@@ -461,14 +476,9 @@
               <FilePath>../Core/Src/stm32f4xx_hal_msp.c</FilePath>
             </File>
             <File>
-              <FileName>move.c</FileName>
+              <FileName>uart_communication.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Core\Src\move.c</FilePath>
-            </File>
-            <File>
-              <FileName>robo_base.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\robo_base.c</FilePath>
+              <FilePath>..\Core\Src\uart_communication.c</FilePath>
             </File>
           </Files>
         </Group>

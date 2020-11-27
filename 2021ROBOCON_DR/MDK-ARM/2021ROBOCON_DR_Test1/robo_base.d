@@ -1,5 +1,6 @@
 2021robocon_dr_test1\robo_base.o: ..\Core\Src\robo_base.c
 2021robocon_dr_test1\robo_base.o: ../Core/Inc/robo_base.h
+2021robocon_dr_test1\robo_base.o: ../Core/Inc/motor_system.h
 2021robocon_dr_test1\robo_base.o: ../Core/Inc/main.h
 2021robocon_dr_test1\robo_base.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 2021robocon_dr_test1\robo_base.o: ../Core/Inc/stm32f4xx_hal_conf.h
@@ -35,3 +36,5 @@
 2021robocon_dr_test1\robo_base.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 2021robocon_dr_test1\robo_base.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
 2021robocon_dr_test1\robo_base.o: ../Core/Inc/can.h
+2021robocon_dr_test1\robo_base.o: ../Core/Inc/uart_communicate.h
+2021robocon_dr_test1\robo_base.o: ../Core/Inc/usart.h

@@ -35,5 +35,8 @@
 2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/stm32f4xx_it.h
 2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/usart.h
 2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/robo_base.h
+2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/motor_system.h
 2021robocon_dr_test1\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/can.h
+2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/uart_communicate.h
 2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/move.h

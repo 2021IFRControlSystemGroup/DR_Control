@@ -62,8 +62,10 @@
 extern CAN_HandleTypeDef hcan1;
 extern CAN_HandleTypeDef hcan2;
 extern TIM_HandleTypeDef htim3;
+extern DMA_HandleTypeDef hdma_usart1_rx;
 extern DMA_HandleTypeDef hdma_usart2_rx;
 extern DMA_HandleTypeDef hdma_usart2_tx;
+extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
 /* USER CODE BEGIN EV */
 extern uint8_t Rx_buffer[RX_LENGTH];
@@ -245,8 +247,8 @@ void CAN1_RX0_IRQHandler(void)
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
-  HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg,Robo_Base.Rx_CAN1);
-  Motor_Speed_Analysis(&Robo_Base,Robo_Base.Rx_CAN1,RxMeg.StdId);
+  HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg,Robo_Base.Can1.Rx);
+  Motor_Speed_Analysis(&Robo_Base,Robo_Base.Can1.Rx,RxMeg.StdId);
   /* USER CODE END CAN1_RX0_IRQn 1 */
 }
 
@@ -256,13 +258,30 @@ void CAN1_RX0_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
-
+	uint8_t Data[8]="12345\r\n";
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
+  Counting_Time(&Robo_Base);
   Move_Analysis(&Robo_Base);
   PID_Send(&Robo_Base);
+	uart_sendData_DMA(&huart2,Data,8);
   /* USER CODE END TIM3_IRQn 1 */
+}
+
+/**
+  * @brief This function handles USART1 global interrupt.
+  */
+void USART1_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART1_IRQn 0 */
+	extern UART_RX_BUFFER Uart1_Rx;
+	Uart_DMA_Process(&huart1,&hdma_usart1_rx,&Uart1_Rx,NULL);
+  /* USER CODE END USART1_IRQn 0 */
+  HAL_UART_IRQHandler(&huart1);
+  /* USER CODE BEGIN USART1_IRQn 1 */
+
+  /* USER CODE END USART1_IRQn 1 */
 }
 
 /**
@@ -285,8 +304,22 @@ void USART2_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles DMA2 stream2 global interrupt.
+  */
+void DMA2_Stream2_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
+
+  /* USER CODE END DMA2_Stream2_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_usart1_rx);
+  /* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
+
+  /* USER CODE END DMA2_Stream2_IRQn 1 */
+}
+
+/**
   * @brief This function handles CAN2 RX0 interrupts.
-  */  
+  */
 void CAN2_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN2_RX0_IRQn 0 */
@@ -295,8 +328,8 @@ void CAN2_RX0_IRQHandler(void)
   /* USER CODE END CAN2_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan2);
   /* USER CODE BEGIN CAN2_RX0_IRQn 1 */
-  HAL_CAN_GetRxMessage(&hcan2,CAN_RX_FIFO0,&RxMeg,Robo_Base.Rx_CAN2);
-  Motor_Pos_Analysis(&Robo_Base,Robo_Base.Rx_CAN2,RxMeg.StdId);
+  HAL_CAN_GetRxMessage(&hcan2,CAN_RX_FIFO0,&RxMeg,Robo_Base.Can2.Rx);
+  Motor_Pos_Analysis(&Robo_Base,Robo_Base.Can2.Rx,RxMeg.StdId);
   /* USER CODE END CAN2_RX0_IRQn 1 */
 }
 
