@@ -145,7 +145,7 @@
           <Type>0</Type>
           <LineNumber>248</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134220728</Address>
+          <Address>134220764</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -161,7 +161,7 @@
           <Type>0</Type>
           <LineNumber>251</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134220748</Address>
+          <Address>134220784</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -188,6 +188,11 @@
           <count>2</count>
           <WinNumber>1</WinNumber>
           <ItemText>Uart1_Rx</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Uart2_Tx</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -417,8 +422,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Core\Src\uart_communication.c</PathWithFileName>
-      <FilenameWithoutPath>uart_communication.c</FilenameWithoutPath>
+      <PathWithFileName>..\Core\Src\uart_communicate.c</PathWithFileName>
+      <FilenameWithoutPath>uart_communicate.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -26,6 +26,7 @@
 #include "usart.h"
 #include "robo_base.h"
 #include "move.h"
+#include "odrive_can.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -70,6 +71,8 @@ extern UART_HandleTypeDef huart2;
 /* USER CODE BEGIN EV */
 extern uint8_t Rx_buffer[RX_LENGTH];
 extern ROBO_BASE Robo_Base;
+CAN_RxHeaderTypeDef RxMeg1;
+CAN_RxHeaderTypeDef RxMeg2;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -239,25 +242,30 @@ void DMA1_Stream6_IRQHandler(void)
 /**
   * @brief This function handles CAN1 RX0 interrupts.
   */
+
 void CAN1_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
   extern ROBO_BASE Robo_Base;
-  CAN_RxHeaderTypeDef RxMeg;
+	extern ODrive ODrive1;
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
-  HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg,Robo_Base.Can1.Rx);
-  Motor_Speed_Analysis(&Robo_Base,Robo_Base.Can1.Rx,RxMeg.StdId);
+//  HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg1,Robo_Base.Can1.Rx);
+//  Motor_Speed_Analysis(&Robo_Base,Robo_Base.Can1.Rx,RxMeg1.StdId);
+	HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg1,ODrive1.To_Master);
+	ODrive_Recevice(&ODrive1,RxMeg1.StdId,ODrive1.To_Master);
   /* USER CODE END CAN1_RX0_IRQn 1 */
 }
 
 /**
   * @brief This function handles TIM3 global interrupt.
   */
+uint8_t flag=0;
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
+	extern ODrive ODrive1;
 	uint8_t Data[8]="12345\r\n";
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
@@ -266,6 +274,7 @@ void TIM3_IRQHandler(void)
   Move_Analysis(&Robo_Base);
   PID_Send(&Robo_Base);
 	uart_sendData_DMA(&huart2,Data,8);
+	if(flag)ODrive_Send(&hcan1,&ODrive1.Axis0,0x07),flag=0;
   /* USER CODE END TIM3_IRQn 1 */
 }
 
@@ -324,12 +333,11 @@ void CAN2_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN2_RX0_IRQn 0 */
   extern ROBO_BASE Robo_Base;
-  CAN_RxHeaderTypeDef RxMeg;
   /* USER CODE END CAN2_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan2);
   /* USER CODE BEGIN CAN2_RX0_IRQn 1 */
-  HAL_CAN_GetRxMessage(&hcan2,CAN_RX_FIFO0,&RxMeg,Robo_Base.Can2.Rx);
-  Motor_Pos_Analysis(&Robo_Base,Robo_Base.Can2.Rx,RxMeg.StdId);
+  HAL_CAN_GetRxMessage(&hcan2,CAN_RX_FIFO0,&RxMeg2,Robo_Base.Can2.Rx);
+  Motor_Pos_Analysis(&Robo_Base,Robo_Base.Can2.Rx,RxMeg2.StdId);
   /* USER CODE END CAN2_RX0_IRQn 1 */
 }
 

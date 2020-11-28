@@ -40,3 +40,4 @@
 2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/can.h
 2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/uart_communicate.h
 2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/move.h
+2021robocon_dr_test1\stm32f4xx_it.o: ../Core/Inc/odrive_can.h
