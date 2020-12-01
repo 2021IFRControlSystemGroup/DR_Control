@@ -1,10 +1,9 @@
 Dependencies for Project '2021ROBOCON_DR_Test1', Target '2021ROBOCON_DR_Test1': (DO NOT MODIFY !)
-F (startup_stm32f405xx.s)(0x5FC0A1FB)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include--list startup_stm32f405xx.lst --xref -o 2021robocon_dr_test1\startup_stm32f405xx.o --depend 2021robocon_dr_test1\startup_stm32f405xx.d)
-F (..\Core\Src\move.c)(0x5FAE2889)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\move.o --omf_browse 2021robocon_dr_test1\move.crf --depend 2021robocon_dr_test1\move.d)
-I (../Core/Inc/move.h)(0x5FAE2797)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+F (startup_stm32f405xx.s)(0x5FC5993E)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include--list startup_stm32f405xx.lst --xref -o 2021robocon_dr_test1\startup_stm32f405xx.o --depend 2021robocon_dr_test1\startup_stm32f405xx.d)
+F (../Core/Src/main.c)(0x5FC5993C)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\main.o --omf_browse 2021robocon_dr_test1\main.crf --depend 2021robocon_dr_test1\main.d)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -34,134 +33,20 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-I (../Core/Inc/robo_base.h)(0x5FBF2F08)
-I (../Core/Inc/motor_system.h)(0x5FBF2502)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
-I (../Core/Inc/can.h)(0x5FC0A2FE)
-I (../Core/Inc/uart_communicate.h)(0x5FC101F7)
-I (../Core/Inc/usart.h)(0x5FC0A1F8)
-F (..\Core\Src\robo_base.c)(0x5FC0A5C0)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\robo_base.o --omf_browse 2021robocon_dr_test1\robo_base.crf --depend 2021robocon_dr_test1\robo_base.d)
-I (../Core/Inc/robo_base.h)(0x5FBF2F08)
-I (../Core/Inc/motor_system.h)(0x5FBF2502)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h)(0x5FA9E679)
-I (../Drivers/CMSIS/Include/core_cm4.h)(0x5FA9E67B)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x5FA9E679)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x5FA9E695)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x53463A44)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
-I (../Core/Inc/can.h)(0x5FC0A2FE)
-I (../Core/Inc/uart_communicate.h)(0x5FC101F7)
-I (../Core/Inc/usart.h)(0x5FC0A1F8)
-F (..\Core\Src\motor_system.c)(0x5FC0A770)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\motor_system.o --omf_browse 2021robocon_dr_test1\motor_system.crf --depend 2021robocon_dr_test1\motor_system.d)
-I (../Core/Inc/motor_system.h)(0x5FBF2502)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h)(0x5FA9E679)
-I (../Drivers/CMSIS/Include/core_cm4.h)(0x5FA9E67B)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x5FA9E679)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x5FA9E695)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x53463A44)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
-I (../Core/Inc/can.h)(0x5FC0A2FE)
-F (../Core/Src/main.c)(0x5FC20D67)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\main.o --omf_browse 2021robocon_dr_test1\main.crf --depend 2021robocon_dr_test1\main.d)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h)(0x5FA9E679)
-I (../Drivers/CMSIS/Include/core_cm4.h)(0x5FA9E67B)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x5FA9E67B)
-I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x5FA9E679)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x5FA9E695)
-I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x53463A44)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
-I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-I (../Core/Inc/can.h)(0x5FC0A2FE)
-I (../Core/Inc/dma.h)(0x5FC0A1F8)
-I (../Core/Inc/tim.h)(0x5FC0A1F8)
-I (../Core/Inc/usart.h)(0x5FC0A1F8)
-I (../Core/Inc/gpio.h)(0x5FC0A1F7)
+I (../Core/Inc/can.h)(0x5FC5993A)
+I (../Core/Inc/dma.h)(0x5FC5993B)
+I (../Core/Inc/tim.h)(0x5FC5993B)
+I (../Core/Inc/usart.h)(0x5FC5993B)
+I (../Core/Inc/gpio.h)(0x5FC5993A)
 I (../Core/Inc/robo_base.h)(0x5FBF2F08)
 I (../Core/Inc/motor_system.h)(0x5FBF2502)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
 I (../Core/Inc/uart_communicate.h)(0x5FC101F7)
-F (../Core/Src/gpio.c)(0x5FC0A1F7)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\gpio.o --omf_browse 2021robocon_dr_test1\gpio.crf --depend 2021robocon_dr_test1\gpio.d)
-I (../Core/Inc/gpio.h)(0x5FC0A1F7)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+F (../Core/Src/gpio.c)(0x5FC5993A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\gpio.o --omf_browse 2021robocon_dr_test1\gpio.crf --depend 2021robocon_dr_test1\gpio.d)
+I (../Core/Inc/gpio.h)(0x5FC5993A)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -191,11 +76,11 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Core/Src/can.c)(0x5FC0A2FE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\can.o --omf_browse 2021robocon_dr_test1\can.crf --depend 2021robocon_dr_test1\can.d)
-I (../Core/Inc/can.h)(0x5FC0A2FE)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+F (../Core/Src/can.c)(0x5FC5993A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\can.o --omf_browse 2021robocon_dr_test1\can.crf --depend 2021robocon_dr_test1\can.d)
+I (../Core/Inc/can.h)(0x5FC5993A)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -225,11 +110,11 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Core/Src/dma.c)(0x5FC0A1F8)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\dma.o --omf_browse 2021robocon_dr_test1\dma.crf --depend 2021robocon_dr_test1\dma.d)
-I (../Core/Inc/dma.h)(0x5FC0A1F8)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+F (../Core/Src/dma.c)(0x5FC5993B)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\dma.o --omf_browse 2021robocon_dr_test1\dma.crf --depend 2021robocon_dr_test1\dma.d)
+I (../Core/Inc/dma.h)(0x5FC5993B)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -259,11 +144,11 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Core/Src/tim.c)(0x5FC0A1F8)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\tim.o --omf_browse 2021robocon_dr_test1\tim.crf --depend 2021robocon_dr_test1\tim.d)
-I (../Core/Inc/tim.h)(0x5FC0A1F8)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+F (../Core/Src/tim.c)(0x5FC5993B)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\tim.o --omf_browse 2021robocon_dr_test1\tim.crf --depend 2021robocon_dr_test1\tim.d)
+I (../Core/Inc/tim.h)(0x5FC5993B)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -293,11 +178,11 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Core/Src/usart.c)(0x5FC0A318)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\usart.o --omf_browse 2021robocon_dr_test1\usart.crf --depend 2021robocon_dr_test1\usart.d)
-I (../Core/Inc/usart.h)(0x5FC0A1F8)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+F (../Core/Src/usart.c)(0x5FC5993B)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\usart.o --omf_browse 2021robocon_dr_test1\usart.crf --depend 2021robocon_dr_test1\usart.d)
+I (../Core/Inc/usart.h)(0x5FC5993B)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -327,10 +212,10 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Core/Src/stm32f4xx_it.c)(0x5FC4FE15)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_it.o --omf_browse 2021robocon_dr_test1\stm32f4xx_it.crf --depend 2021robocon_dr_test1\stm32f4xx_it.d)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+F (../Core/Src/stm32f4xx_it.c)(0x5FC599F4)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_it.o --omf_browse 2021robocon_dr_test1\stm32f4xx_it.crf --depend 2021robocon_dr_test1\stm32f4xx_it.d)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -360,19 +245,19 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_it.h)(0x5FC0A1F8)
-I (../Core/Inc/usart.h)(0x5FC0A1F8)
+I (../Core/Inc/stm32f4xx_it.h)(0x5FC5993B)
+I (../Core/Inc/usart.h)(0x5FC5993B)
 I (../Core/Inc/robo_base.h)(0x5FBF2F08)
 I (../Core/Inc/motor_system.h)(0x5FBF2502)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
-I (../Core/Inc/can.h)(0x5FC0A2FE)
+I (../Core/Inc/can.h)(0x5FC5993A)
 I (../Core/Inc/uart_communicate.h)(0x5FC101F7)
 I (../Core/Inc/move.h)(0x5FAE2797)
-I (../Core/Inc/odrive_can.h)(0x5FC5910E)
-F (../Core/Src/stm32f4xx_hal_msp.c)(0x5FC0A1F8)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_msp.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_msp.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_msp.d)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+I (../Core/Inc/odrive_can.h)(0x5FC5AF59)
+F (../Core/Src/stm32f4xx_hal_msp.c)(0x5FC5993B)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_msp.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_msp.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_msp.d)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -402,11 +287,86 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (..\Core\Src\uart_communicate.c)(0x5FC0AC05)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\uart_communicate.o --omf_browse 2021robocon_dr_test1\uart_communicate.crf --depend 2021robocon_dr_test1\uart_communicate.d)
+F (..\Core\Src\motor_system.c)(0x5FC0A770)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\motor_system.o --omf_browse 2021robocon_dr_test1\motor_system.crf --depend 2021robocon_dr_test1\motor_system.d)
+I (../Core/Inc/motor_system.h)(0x5FBF2502)
+I (../Core/Inc/main.h)(0x5FC5993B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h)(0x5FA9E679)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x5FA9E67B)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x5FA9E679)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x5FA9E695)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x53463A44)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
+I (../Core/Inc/can.h)(0x5FC5993A)
+F (..\Core\Src\robo_base.c)(0x5FC0A5C0)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\robo_base.o --omf_browse 2021robocon_dr_test1\robo_base.crf --depend 2021robocon_dr_test1\robo_base.d)
+I (../Core/Inc/robo_base.h)(0x5FBF2F08)
+I (../Core/Inc/motor_system.h)(0x5FBF2502)
+I (../Core/Inc/main.h)(0x5FC5993B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h)(0x5FA9E679)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x5FA9E67B)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x5FA9E679)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x5FA9E695)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x53463A44)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
+I (../Core/Inc/can.h)(0x5FC5993A)
 I (../Core/Inc/uart_communicate.h)(0x5FC101F7)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+I (../Core/Inc/usart.h)(0x5FC5993B)
+F (..\Core\Src\odrive_can.c)(0x5FC5C688)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\odrive_can.o --omf_browse 2021robocon_dr_test1\odrive_can.crf --depend 2021robocon_dr_test1\odrive_can.d)
+I (../Core/Inc/odrive_can.h)(0x5FC5AF59)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -436,15 +396,49 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-I (../Core/Inc/usart.h)(0x5FC0A1F8)
+F (..\Core\Src\uart_communicate.c)(0x5FC0AC05)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\uart_communicate.o --omf_browse 2021robocon_dr_test1\uart_communicate.crf --depend 2021robocon_dr_test1\uart_communicate.d)
+I (../Core/Inc/uart_communicate.h)(0x5FC101F7)
+I (../Core/Inc/main.h)(0x5FC5993B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h)(0x5FA9E679)
+I (../Drivers/CMSIS/Include/core_cm4.h)(0x5FA9E67B)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53463A44)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x5FA9E67B)
+I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x5FA9E679)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x5FA9E695)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x53463A44)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
+I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
+I (../Core/Inc/usart.h)(0x5FC5993B)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x53463A44)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x53463A44)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x53463A44)
-F (..\Core\Src\odrive_can.c)(0x5FC59261)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\odrive_can.o --omf_browse 2021robocon_dr_test1\odrive_can.crf --depend 2021robocon_dr_test1\odrive_can.d)
-I (../Core/Inc/odrive_can.h)(0x5FC5910E)
-I (../Core/Inc/main.h)(0x5FC0A1F9)
+F (..\Core\Src\move.c)(0x5FAE2889)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\move.o --omf_browse 2021robocon_dr_test1\move.crf --depend 2021robocon_dr_test1\move.d)
+I (../Core/Inc/move.h)(0x5FAE2797)
+I (../Core/Inc/main.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -474,9 +468,15 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_can.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_can.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_can.d)
+I (../Core/Inc/robo_base.h)(0x5FBF2F08)
+I (../Core/Inc/motor_system.h)(0x5FBF2502)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
+I (../Core/Inc/can.h)(0x5FC5993A)
+I (../Core/Inc/uart_communicate.h)(0x5FC101F7)
+I (../Core/Inc/usart.h)(0x5FC5993B)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_can.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_can.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_can.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -506,9 +506,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_rcc.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_rcc.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_rcc.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_rcc.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_rcc.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_rcc.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -538,9 +538,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_rcc_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_rcc_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_rcc_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_rcc_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_rcc_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_rcc_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -570,9 +570,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_flash.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_flash.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_flash.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_flash.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_flash.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_flash.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -602,9 +602,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_flash_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_flash_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_flash_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_flash_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_flash_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_flash_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -634,9 +634,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_flash_ramfunc.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_flash_ramfunc.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_flash_ramfunc.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_flash_ramfunc.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_flash_ramfunc.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_flash_ramfunc.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -666,9 +666,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_gpio.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_gpio.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_gpio.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_gpio.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_gpio.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_gpio.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -698,9 +698,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_dma_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_dma_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_dma_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_dma_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_dma_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_dma_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -730,9 +730,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_dma.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_dma.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_dma.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_dma.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_dma.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_dma.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -762,9 +762,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_pwr.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_pwr.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_pwr.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_pwr.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_pwr.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_pwr.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -794,9 +794,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_pwr_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_pwr_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_pwr_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_pwr_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_pwr_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_pwr_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -826,9 +826,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_cortex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_cortex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_cortex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_cortex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_cortex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_cortex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -858,9 +858,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal.crf --depend 2021robocon_dr_test1\stm32f4xx_hal.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal.crf --depend 2021robocon_dr_test1\stm32f4xx_hal.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -890,9 +890,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_exti.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_exti.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_exti.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_exti.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_exti.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_exti.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -922,9 +922,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_tim.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_tim.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_tim.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_tim.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_tim.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_tim.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -954,9 +954,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_tim_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_tim_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_tim_ex.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_tim_ex.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_tim_ex.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_tim_ex.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -986,9 +986,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c)(0x5FA9E695)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_uart.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_uart.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_uart.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c)(0x5FA9E695)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\stm32f4xx_hal_uart.o --omf_browse 2021robocon_dr_test1\stm32f4xx_hal_uart.crf --depend 2021robocon_dr_test1\stm32f4xx_hal_uart.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
@@ -1018,7 +1018,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Core/Src/system_stm32f4xx.c)(0x5FA9E679)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include-I E:\Source_Code\Github\DR_Control\2021ROBOCON_DR\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-D_RTE_ -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\system_stm32f4xx.o --omf_browse 2021robocon_dr_test1\system_stm32f4xx.crf --depend 2021robocon_dr_test1\system_stm32f4xx.d)
+F (../Core/Src/system_stm32f4xx.c)(0x5FA9E679)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O2 --apcs=interwork --split_sections -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o 2021robocon_dr_test1\system_stm32f4xx.o --omf_browse 2021robocon_dr_test1\system_stm32f4xx.crf --depend 2021robocon_dr_test1\system_stm32f4xx.d)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x5FA9E679)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h)(0x5FA9E679)
 I (../Drivers/CMSIS/Include/core_cm4.h)(0x5FA9E67B)
@@ -1029,7 +1029,7 @@ I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x5FA9E67B)
 I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x5FA9E67B)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h)(0x5FA9E679)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
-I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC0A1F9)
+I (../Core/Inc/stm32f4xx_hal_conf.h)(0x5FC5993B)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x5FA9E695)

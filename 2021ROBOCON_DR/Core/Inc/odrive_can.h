@@ -51,7 +51,7 @@ void Send_To_ODrive(CAN_HandleTypeDef *hcan,uint16_t StdID,uint8_t* Data,uint8_t
 
 void Set_Axis_Node_ID(Axis* _Axis,uint16_t StdID,uint16_t ID);
 void Set_Axis_Requested_State(Axis* _Axis,uint16_t StdID,uint16_t State);
-void Set_Input_Vel(Axis* _Axis,uint16_t StdID,float Vel);
+void Set_Input_Vel(Axis* _Axis,uint16_t StdID,int32_t* Vel);
 void Set_Input_Pos(Axis* _Axis,uint16_t StdID,float Pos);
 void Set_Controller_Modes(Axis* _Axis,uint16_t StdID,int32_t Mode);
 #endif

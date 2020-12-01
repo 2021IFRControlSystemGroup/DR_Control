@@ -242,7 +242,6 @@ void DMA1_Stream6_IRQHandler(void)
 /**
   * @brief This function handles CAN1 RX0 interrupts.
   */
-
 void CAN1_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
@@ -261,7 +260,7 @@ void CAN1_RX0_IRQHandler(void)
 /**
   * @brief This function handles TIM3 global interrupt.
   */
-uint8_t CMD=0;
+uint16_t CMD;
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */

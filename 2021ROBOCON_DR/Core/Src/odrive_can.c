@@ -23,11 +23,10 @@ void ODrive_Recevice(uint16_t StdID,uint8_t* Data)
 	}
 }
 
-uint16_t StdID=0;
 uint16_t ID=0;
-uint32_t State=0;
+uint32_t State=3;
 int32_t Mode=0x1;
-float Vel=0;
+int32_t Vel=0;
 float Pos=0;
 void ODrive_Send(Axis* _Axis,uint16_t CMD)
 {
@@ -42,10 +41,10 @@ void ODrive_Send(Axis* _Axis,uint16_t CMD)
 	{
 		case 0x6:Set_Axis_Node_ID(_Axis,StdID,ID);break;
 		case 0x7:Set_Axis_Requested_State(_Axis,StdID,State);break;
-		case 0x8:Send_To_ODrive(&hcan1,StdID,Data8,4,0);break;
 		case 0xB:Set_Controller_Modes(_Axis,StdID,Mode);break;
-		case 0xC:Set_Input_Pos(_Axis,StdID,Pos);break;
-		case 0xD:Set_Input_Vel(_Axis,StdID,Vel);break;
+		case 0xC:Set_Input_Vel(_Axis,StdID,&Vel);break;
+//		case 0xC:Set_Input_Pos(_Axis,StdID,Pos);break;
+		case 0xD:Set_Input_Vel(_Axis,StdID,&Vel);break;
 		default:break;
 	}
 }
@@ -77,23 +76,27 @@ void Set_Controller_Modes(Axis* _Axis,uint16_t StdID,int32_t Mode)
 	Send_To_ODrive(&hcan1,StdID,Data,8,0);
 }
 
-void Set_Input_Vel(Axis* _Axis,uint16_t StdID,float Vel)
+void Set_Input_Vel(Axis* _Axis,uint16_t StdID,int32_t* Vel)
 {
-	if(_Axis->Current_State!=8) return ;
-	uint8_t Data[8]={0};
-	_Axis->Input_Vel=Vel;
-	Data[0]=*((uint8_t*)&Vel);
-	Data[1]=*((uint8_t*)&Vel+1);
-	Data[2]=*((uint8_t*)&Vel+2);
-	Data[3]=*((uint8_t*)&Vel+3);
-	Send_To_ODrive(&hcan1,StdID,Data,8,0);
+//	if(_Axis->Current_State!=8) return ;
+	uint8_t* Data=NULL;
+	_Axis->Input_Vel=*Vel;
+	Data=(uint8_t*)Vel;
+	Data123[0]=Data[0];
+	Data123[1]=Data[1];
+	Data123[2]=Data[2];
+	Data123[3]=Data[3];
+	Data123[4]=0;
+	Data123[5]=0;
+	Data123[6]=0;
+	Data123[7]=0;
+	Send_To_ODrive(&hcan1,StdID,Data123,8,0);
 }
 
 void Set_Input_Pos(Axis* _Axis,uint16_t StdID,float Pos)
 {
 	if(_Axis->Current_State!=8) return ;
 	uint8_t Data[8]={0};
-	_Axis->Input_Vel=Vel;
 	Data123[0]=*((uint8_t*)&Pos);
 	Data123[1]=*((uint8_t*)&Pos+1);
 	Data123[2]=*((uint8_t*)&Pos+2);
