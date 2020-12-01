@@ -28,6 +28,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "robo_base.h"
+#include "odrive_can.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,6 +50,7 @@
 /* USER CODE BEGIN PV */
 extern ROBO_BASE Robo_Base;
 extern uint8_t Rx_buffer[RX_LENGTH];
+extern ODrive ODrive1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -103,7 +105,7 @@ int main(void)
 	CAN_Start_IT(&hcan2);
   
   BASE_Init(&Robo_Base);
-	
+	ODrive_Init(&ODrive1);
 	
   /* USER CODE END 2 */
 

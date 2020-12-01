@@ -3,9 +3,9 @@
 
 #include "main.h"
 
-#define ODRIVE1_AXIS0 0x20
-#define ODRIVE1_AXIS1 0x40
-#define TEST 0X61
+#define RX_NODE_ID (StdID&(0x3f<<5))
+#define ODRIVE1_AXIS0 ODrive1.Axis0.Node_ID
+#define ODRIVE1_AXIS1 ODrive1.Axis1.Node_ID
 
 #define HEARTBEAT_ANALYSIS 	P_Axis->Error=*((uint32_t*)Data); P_Axis->Current_State=*((uint32_t*)(Data+4));
 #define MOTOR_ERROR_ANALYSIS 	P_Axis->Motor_Error=*((uint32_t*)Data);
@@ -30,6 +30,7 @@ typedef struct Axis
 	float Encoder_Pos_Estimate;
 	float Encoder_Vel_Estimate;
 	float Input_Vel;
+	float Input_Pos;
 	float Iq_Setpoint;
 	float Iq_Measured;
 	float Sensorless_Pos_Estimate;
@@ -41,18 +42,18 @@ typedef struct ODrive
 {
 	Axis Axis0;
 	Axis Axis1;
-	uint8_t To_Master[8];
-	uint8_t From_Master[8];
 }ODrive;
 
+void ODrive_Init(ODrive* _ODrive);
 void ODrive_Recevice(uint16_t StdID,uint8_t* Data);
 void ODrive_Send(Axis* _Axis,uint16_t CMD);
 void Send_To_ODrive(CAN_HandleTypeDef *hcan,uint16_t StdID,uint8_t* Data,uint8_t len,uint8_t RTR);
 
 void Set_Axis_Node_ID(Axis* _Axis,uint16_t StdID,uint16_t ID);
 void Set_Axis_Requested_State(Axis* _Axis,uint16_t StdID,uint16_t State);
-void Set_Input_Vel(Axis* _Axis,uint16_t StdID,int32_t* Vel);
-void Set_Input_Pos(Axis* _Axis,uint16_t StdID,float Pos);
+void Set_Input_Vel(Axis* _Axis,uint16_t StdID);
+void Set_Input_Pos(Axis* _Axis,uint16_t StdID);
+void Reboot_ODrive(uint16_t StdID);
 void Set_Controller_Modes(Axis* _Axis,uint16_t StdID,int32_t Mode);
 #endif
 

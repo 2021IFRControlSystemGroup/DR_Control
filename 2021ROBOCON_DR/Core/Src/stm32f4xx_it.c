@@ -260,7 +260,7 @@ void CAN1_RX0_IRQHandler(void)
 /**
   * @brief This function handles TIM3 global interrupt.
   */
-uint16_t CMD;
+uint16_t CMD=0;
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
