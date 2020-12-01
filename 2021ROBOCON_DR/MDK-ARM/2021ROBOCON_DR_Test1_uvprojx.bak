@@ -480,6 +480,11 @@
               <FileType>1</FileType>
               <FilePath>..\Core\Src\uart_communicate.c</FilePath>
             </File>
+            <File>
+              <FileName>odrive_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\odrive_can.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -247,21 +247,21 @@ void CAN1_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
   extern ROBO_BASE Robo_Base;
-	extern ODrive ODrive1;
+	uint8_t Rx_Buffer[8]={0};
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
 //  HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg1,Robo_Base.Can1.Rx);
 //  Motor_Speed_Analysis(&Robo_Base,Robo_Base.Can1.Rx,RxMeg1.StdId);
-	HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg1,ODrive1.To_Master);
-	ODrive_Recevice(&ODrive1,RxMeg1.StdId,ODrive1.To_Master);
+	HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg1,Rx_Buffer);
+	ODrive_Recevice(RxMeg1.StdId,Rx_Buffer);
   /* USER CODE END CAN1_RX0_IRQn 1 */
 }
 
 /**
   * @brief This function handles TIM3 global interrupt.
   */
-uint8_t flag=0;
+uint8_t CMD=0;
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
@@ -274,7 +274,8 @@ void TIM3_IRQHandler(void)
   Move_Analysis(&Robo_Base);
   PID_Send(&Robo_Base);
 	uart_sendData_DMA(&huart2,Data,8);
-	if(flag)ODrive_Send(&hcan1,&ODrive1.Axis0,0x07),flag=0;
+	if(CMD) ODrive_Send(&ODrive1.Axis1,CMD),CMD=0;
+	//if(flag)ODrive_Send(&hcan1,&ODrive1.Axis0,0x07),flag=0;
   /* USER CODE END TIM3_IRQn 1 */
 }
 
