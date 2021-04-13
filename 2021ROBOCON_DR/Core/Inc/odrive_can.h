@@ -49,6 +49,9 @@ void ODrive_Recevice(uint16_t StdID,uint8_t* Data);
 void ODrive_Send(Axis* _Axis,uint16_t CMD);
 void Send_To_ODrive(CAN_HandleTypeDef *hcan,uint16_t StdID,uint8_t* Data,uint8_t len,uint8_t RTR);
 
+
+void Get_Motor_Error(Axis* _Axis,uint16_t StdID,uint16_t ID);				//0x3√¸¡Ó
+
 void Set_Axis_Node_ID(Axis* _Axis,uint16_t StdID,uint16_t ID);
 void Set_Axis_Requested_State(Axis* _Axis,uint16_t StdID,uint16_t State);
 void Set_Input_Vel(Axis* _Axis,uint16_t StdID);

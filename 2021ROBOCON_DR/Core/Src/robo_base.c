@@ -234,7 +234,7 @@ void PID_Send(ROBO_BASE* Robo)
   P_Speed=&Robo->Speed_MotorRB; PID_Speed_Cal(P_Speed,Robo->Can1.Tx);
   P_Speed=&Robo->Speed_MotorLF; PID_Speed_Cal(P_Speed,Robo->Can1.Tx);
   P_Speed=&Robo->Speed_MotorRF; PID_Speed_Cal(P_Speed,Robo->Can1.Tx);
-  Send_To_Motor(&hcan1,Robo->Can2.Tx);
+  Send_To_Motor(&hcan1,Robo->Can1.Tx);
 }
 
 //--------------------------------------------------------------------------------------------------//

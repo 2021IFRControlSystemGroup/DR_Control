@@ -1,8 +1,15 @@
 #include "odrive_can.h"
 
+
+extern CAN_HandleTypeDef hcan1;
+
+
 ODrive ODrive0;
 ODrive ODrive1;
-extern CAN_HandleTypeDef hcan1;
+
+uint16_t ID=0;
+uint32_t State=3;
+int32_t Mode=0x1;
 
 void ODrive_Init(ODrive* _ODrive)
 {
@@ -37,9 +44,7 @@ void ODrive_Recevice(uint16_t StdID,uint8_t* Data)
 	}
 }
 
-uint16_t ID=0;
-uint32_t State=3;
-int32_t Mode=0x1;
+
 void ODrive_Send(Axis* _Axis,uint16_t CMD)
 {
 	uint16_t StdID=0;
@@ -50,6 +55,7 @@ void ODrive_Send(Axis* _Axis,uint16_t CMD)
 	
 	switch(CMD)
 	{
+		case 0x3:Get_Motor_Error();break;
 		case 0x6:Set_Axis_Node_ID(_Axis,StdID,ID);break;
 		case 0x7:Set_Axis_Requested_State(_Axis,StdID,State);break;
 		case 0xB:Set_Controller_Modes(_Axis,StdID,Mode);break;
@@ -59,6 +65,14 @@ void ODrive_Send(Axis* _Axis,uint16_t CMD)
 		default:break;
 	}
 }
+
+void Get_Motor_Error(Axis* _Axis,uint16_t StdID,uint16_t ID)
+{
+	
+	//Send_To_ODrive();
+
+}
+
 uint8_t Data123[8]={0};
 void Set_Axis_Node_ID(Axis* _Axis,uint16_t StdID,uint16_t ID)
 {

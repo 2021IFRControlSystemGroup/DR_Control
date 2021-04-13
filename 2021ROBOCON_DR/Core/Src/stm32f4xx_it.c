@@ -273,7 +273,7 @@ void TIM3_IRQHandler(void)
   Move_Analysis(&Robo_Base);
   PID_Send(&Robo_Base);
 	uart_sendData_DMA(&huart2,Data,8);
-	if(CMD) ODrive_Send(&ODrive1.Axis1,CMD),CMD=0;
+	if(CMD) ODrive_Send(&ODrive1.Axis0,CMD),CMD=0;
 	//if(flag)ODrive_Send(&hcan1,&ODrive1.Axis0,0x07),flag=0;
   /* USER CODE END TIM3_IRQn 1 */
 }
