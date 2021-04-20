@@ -100,9 +100,9 @@ sysclock=HAL_RCC_GetSysClockFreq();
   MX_USART3_UART_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
-	HAL_TIM_Base_Start_IT(&htim2);
 	CAN_Start_IT(&hcan1);
 	CAN_Start_IT(&hcan2);
+	HAL_TIM_Base_Start_IT(&htim2);
 	Usart_All_Init();
 	BASE_Init();
 	ODrive_Init();

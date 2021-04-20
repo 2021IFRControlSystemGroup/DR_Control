@@ -93,8 +93,9 @@ void Get_Encoder_Count(Axis* _Axis)								//0xA
 
 void Set_Input_Vel(Axis* _Axis)										//0xD
 {
+	if(_Axis->Error!=0) return ;
 	uint8_t data[8]={0};
-	int32_t Tar_Vel=_Axis->Input_Vel*100;
+	float Tar_Vel=_Axis->Input_Vel;
 	data[0]=*((uint8_t*)&Tar_Vel);
 	data[1]=*((uint8_t*)&Tar_Vel+1);
 	data[2]=*((uint8_t*)&Tar_Vel+2);
@@ -131,18 +132,22 @@ void ODrive_Init(void)
 	
 	Axis_Init(&ODrive1.Axis0,2);
 	Axis_Init(&ODrive1.Axis1,3);
-	
-	//Motor_Init(&ODrive0.Axis0);
 }
 
 void Motor_Init(Axis* _Axis)
 {
-	_Axis->Requested_State=3;
-	ODrive_Transmit(_Axis,0x7);
-	while(_Axis->Current_State!=0x4);
-	while(_Axis->Current_State!=0x7);
-	while(_Axis->Current_State!=0x1);
-	if(_Axis->Error==0) _Axis->Requested_State=8,ODrive_Transmit(_Axis,0x7);
+	static uint8_t num[4]={0};
+	uint8_t* P_num=&num[_Axis->Node_ID];
+	
+	if(_Axis->Current_State==0) return ;
+	if(*P_num==0){
+		_Axis->Requested_State=3;
+		ODrive_Transmit(_Axis,0x7);
+		(*P_num)++;
+	}if(*P_num==1&&_Axis->Current_State==4) *P_num=2;
+	if(*P_num==2&&_Axis->Current_State==7) *P_num=3;
+	if(*P_num==3&&_Axis->Current_State==1) *P_num=4;
+	if(*P_num==4) _Axis->Requested_State=8,ODrive_Transmit(_Axis,0x7);
 }
 
 void Axis_Init(Axis* _Axis,uint8_t NodeID)

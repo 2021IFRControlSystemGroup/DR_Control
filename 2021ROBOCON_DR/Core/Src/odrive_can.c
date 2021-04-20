@@ -55,7 +55,7 @@ void ODrive_Send(Axis* _Axis,uint16_t CMD)
 	
 	switch(CMD)
 	{
-		case 0x3:Get_Motor_Error();break;
+//		case 0x3:Get_Motor_Error();break;
 		case 0x6:Set_Axis_Node_ID(_Axis,StdID,ID);break;
 		case 0x7:Set_Axis_Requested_State(_Axis,StdID,State);break;
 		case 0xB:Set_Controller_Modes(_Axis,StdID,Mode);break;

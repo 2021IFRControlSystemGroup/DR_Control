@@ -18,7 +18,7 @@ volatile	uint32_t Current_State;
 	
 	float Encoder_Pos_Estimate;
 	float Encoder_Vel_Estimate;
-	int32_t Input_Vel;
+	float Input_Vel;
 	float Vbus_Voltage;
 	
 	uint8_t CMD;

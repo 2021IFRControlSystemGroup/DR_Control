@@ -23,8 +23,7 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "odrive_can.h"
-#include "robo_base.h"
+#include "move.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,8 +73,11 @@ extern UART_HandleTypeDef huart3;
 extern UART_HandleTypeDef huart6;
 /* USER CODE BEGIN EV */
 extern ODrive ODrive0;
+extern ODrive ODrive1;
+
 CAN_RxHeaderTypeDef RxMeg1;
 CAN_RxHeaderTypeDef RxMeg2;
+
 uint8_t Rx_Buffer[8];
 /* USER CODE END EV */
 
@@ -225,7 +227,7 @@ void EXTI0_IRQHandler(void)
   /* USER CODE END EXTI0_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0);
   /* USER CODE BEGIN EXTI0_IRQn 1 */
-	ODrive_Transmit(&ODrive0.Axis0,0x16);
+	ODrive_Transmit(&ODrive1.Axis0,0x16);
   /* USER CODE END EXTI0_IRQn 1 */
 }
 
@@ -309,7 +311,7 @@ void TIM2_IRQHandler(void)
 //extern ODrive ODrive0;
   /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);
-  /* USER CODE BEGIN TIM2_IRQn 1 */
+  /* USER CODE BEGIN TIM2_IRQn 1 */\
 	Control_Task();
   /* USER CODE END TIM2_IRQn 1 */
 }
@@ -390,12 +392,12 @@ void DMA2_Stream2_IRQHandler(void)
 void CAN2_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN2_RX0_IRQn 0 */
-		uint8_t Rx_Buffer[8]={0};
+  extern ROBO_BASE Robo_Base;
   /* USER CODE END CAN2_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan2);
   /* USER CODE BEGIN CAN2_RX0_IRQn 1 */
-	HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg2,Rx_Buffer);
-	ODrive_Recevice(RxMeg2.StdId,Rx_Buffer);
+  HAL_CAN_GetRxMessage(&hcan2,CAN_RX_FIFO0,&RxMeg2,Robo_Base.Can2.Rx);
+  Motor_Pos_Analysis(&Robo_Base,Robo_Base.Can2.Rx,RxMeg2.StdId);
   /* USER CODE END CAN2_RX0_IRQn 1 */
 }
 
@@ -431,14 +433,24 @@ extern UART_RX_BUFFER Uart6_Rx;
 uint8_t State=0;
 void Control_Task(void)
 {
-//	ODrive_Transmit(&ODrive0.Axis0,0x0D);
+	static uint8_t flag=-1;
+	if(flag>3) flag=0;
+	else flag++;
 	switch(State)
 	{
 		case 0:
-			if(ODrive0.Axis0.Current_State==8&&ODrive0.Axis0.Error==0) State=1;
+			if(flag==0) Motor_Init(&ODrive0.Axis0);
+			//if(flag==1) Motor_Init(&ODrive0.Axis1);
+			if(flag==2) Motor_Init(&ODrive1.Axis0);
+			//if(flag==3) Motor_Init(&ODrive1.Axis1);
+			if(ODrive1.Axis0.Current_State==8&&ODrive1.Axis0.Error==0&&ODrive0.Axis0.Current_State==8&&ODrive0.Axis0.Error==0) State=1;
 			break;
 		case 1:
-			ODrive_Transmit(&ODrive0.Axis0,0x0D);
+			Motor_Speed();
+			if(flag==0) ODrive_Transmit(&ODrive0.Axis1,0x0D);
+			if(flag==1) ODrive_Transmit(&ODrive0.Axis0,0x0D);
+			if(flag==2) ODrive_Transmit(&ODrive1.Axis0,0x0D);
+			if(flag==3) ODrive_Transmit(&ODrive1.Axis1,0x0D);
 			break;
 		default:break;
 	}

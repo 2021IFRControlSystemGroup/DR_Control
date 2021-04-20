@@ -13,6 +13,7 @@
 "new_dr_base\robo_base.o"
 "new_dr_base\uart_communicate.o"
 "new_dr_base\analysis.o"
+"new_dr_base\move.o"
 "new_dr_base\stm32f4xx_hal_can.o"
 "new_dr_base\stm32f4xx_hal_rcc.o"
 "new_dr_base\stm32f4xx_hal_rcc_ex.o"

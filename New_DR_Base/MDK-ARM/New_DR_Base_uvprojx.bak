@@ -485,6 +485,11 @@
               <FileType>1</FileType>
               <FilePath>..\Src\analysis.c</FilePath>
             </File>
+            <File>
+              <FileName>move.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\move.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -191,6 +191,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>Uart1_Rx</ItemText>
         </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>CAN_START</ItemText>
+        </Ww>
       </WatchWindow1>
       <MemoryWindow1>
         <Mm>

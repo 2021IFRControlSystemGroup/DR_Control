@@ -9,6 +9,7 @@
 
 //---------#define部分-------------//
 #define PI (2*acos(0))																	//PI圆周率的宏定义
+#define HALF_PI (PI/2)
 #define ToDegree(a) (a/PI*180)													//弧度转化成角度的宏定义
 #define ToRadian(a) (a/180*PI)													//角度转化成弧度的宏定义
 
@@ -82,6 +83,8 @@ typedef struct Pos_System										//位置环系统
   PID Speed_PID;														//速度环PID参数
   float Tar_Pos;														//目标位置
   uint8_t Motor_Num;												//电机号码
+	float Position;
+	float Angle;
   Protect_System Protect; 
 }Pos_System;
 
