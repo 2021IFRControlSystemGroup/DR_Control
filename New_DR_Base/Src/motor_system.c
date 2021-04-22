@@ -63,9 +63,8 @@ void Pos_Info_Analysis(Motor_Pos_Info* Motor,uint8_t* RX_Data)
     else if (Error > 4096)  Motor->Abs_Angle -= 8192;
   }Motor->Last_Angle=Motor->Angle;
 
-  //相对角度计算, 默认范围0-360
-  if(Motor->Abs_Angle>=0) Motor->Relative_Angle=(Motor->Abs_Angle%ONE_CIRCLE)*360.0/ONE_CIRCLE;
-  else Motor->Relative_Angle=360-((-Motor->Abs_Angle)%ONE_CIRCLE)*360.0/ONE_CIRCLE;
+  Motor->Circle_Num=Motor->Abs_Angle/(GEAR_RATIO*ROTOR_ANGLE);
+	Motor->Relative_Angle=Motor->Abs_Angle-Motor->Circle_Num*GEAR_RATIO*ROTOR_ANGLE;
 }
 //--------------------------------------------------------------------------------------------------//
 //函数名称:

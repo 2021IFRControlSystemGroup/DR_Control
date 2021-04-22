@@ -9,7 +9,7 @@
 
 
 void Motor_Speed(void);
-void Motor_Angle(Pos_System* Motor,int32_t* Wheel_Tar,uint16_t dA_Tar);
+void Motor_Angle(Pos_System* P_Pos,float* ODrive_Tar,double dA_Tar);
 
 #endif
 

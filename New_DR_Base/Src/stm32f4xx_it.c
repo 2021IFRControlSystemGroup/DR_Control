@@ -74,7 +74,8 @@ extern UART_HandleTypeDef huart6;
 /* USER CODE BEGIN EV */
 extern ODrive ODrive0;
 extern ODrive ODrive1;
-
+extern ROBO_BASE Robo_Base;
+	
 CAN_RxHeaderTypeDef RxMeg1;
 CAN_RxHeaderTypeDef RxMeg2;
 
@@ -392,7 +393,7 @@ void DMA2_Stream2_IRQHandler(void)
 void CAN2_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN2_RX0_IRQn 0 */
-  extern ROBO_BASE Robo_Base;
+
   /* USER CODE END CAN2_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan2);
   /* USER CODE BEGIN CAN2_RX0_IRQn 1 */
@@ -430,12 +431,15 @@ extern UART_RX_BUFFER Uart6_Rx;
 }
 
 /* USER CODE BEGIN 1 */
-uint8_t State=0;
+uint8_t State=1;
 void Control_Task(void)
 {
-	static uint8_t flag=-1;
+	static int8_t flag=-1;
 	if(flag>3) flag=0;
 	else flag++;
+	
+	PID_Pos_Cal(&Robo_Base.Pos_MotorLF,Robo_Base.Can2.Tx);
+	PID_Send(&Robo_Base);
 	switch(State)
 	{
 		case 0:

@@ -3,73 +3,111 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-E:\Source_Code\Github\DR_Control\New_DR_Base\MDK-ARM\New_DR_Base.uvprojx
+E:\Source_Code\Github\DR_Control\New_DR_Base\MDK-ARM\New_DR_Base.uvproj
 Project File Date:  04/13/2021
 
 <h2>Output:</h2>
 Build target 'New_DR_Base'
-assembling startup_stm32f405xx.s...
-compiling main.c...
-compiling gpio.c...
-compiling can.c...
-compiling dma.c...
-compiling tim.c...
-compiling usart.c...
-compiling stm32f4xx_it.c...
-../Src/stm32f4xx_it.c(436): warning:  #68-D: integer conversion resulted in a change of sign
-        static uint8_t flag=-1;
-../Src/stm32f4xx_it.c: 1 warning, 0 errors
-compiling stm32f4xx_hal_msp.c...
-compiling motor_system.c...
-compiling odrive_can.c...
-compiling robo_base.c...
-compiling uart_communicate.c...
-compiling analysis.c...
 compiling move.c...
-..\Src\move.c(15): warning:  #550-D: variable "dA_Tar" was set but never used
-    double dA_Tar=0;
-..\Src\move.c(33): warning:  #223-D: function "abs" declared implicitly
-    double Angle_Temp=abs(P_Pos->Position);
-..\Src\move.c: 2 warnings, 0 errors
-compiling stm32f4xx_hal_can.c...
-compiling stm32f4xx_hal_rcc.c...
-compiling stm32f4xx_hal_rcc_ex.c...
-compiling stm32f4xx_hal_flash.c...
-compiling stm32f4xx_hal_flash_ex.c...
-compiling stm32f4xx_hal_flash_ramfunc.c...
-compiling stm32f4xx_hal_gpio.c...
-compiling stm32f4xx_hal_dma_ex.c...
-compiling stm32f4xx_hal_dma.c...
-compiling stm32f4xx_hal_pwr.c...
-compiling stm32f4xx_hal_pwr_ex.c...
-compiling stm32f4xx_hal_cortex.c...
-compiling stm32f4xx_hal.c...
-compiling stm32f4xx_hal_exti.c...
-compiling stm32f4xx_hal_tim.c...
-compiling stm32f4xx_hal_tim_ex.c...
-compiling stm32f4xx_hal_uart.c...
-compiling system_stm32f4xx.c...
+..\Src\move.c(34): warning:  #223-D: function "abs" declared implicitly
+    double Angle_Temp=abs(P_Pos->Info.Relative_Angle);
+..\Src\move.c: 1 warning, 0 errors
 linking...
-Program Size: Code=16970 RO-data=702 RW-data=76 ZI-data=3900  
+Program Size: Code=23646 RO-data=698 RW-data=88 ZI-data=3880  
 FromELF: creating hex file...
-"New_DR_Base\New_DR_Base.axf" - 0 Error(s), 3 Warning(s).
-
-<h2>Software Packages used:</h2>
-
-Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.4.1.1.pack
-                ARM::CMSIS:CORE:3.30.0
-                CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: CORE Version: 3.30.0
-
-<h2>Collection of Component include folders:</h2>
-  E:\Source_Code\Github\DR_Control\New_DR_Base\MDK-ARM\RTE
-  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include
-
-<h2>Collection of Component Files used:</h2>
-
-   * Component: ARM::CMSIS:CORE:3.30.0
-      Source file:   CMSIS\UserCodeTemplates\ARM\ITM_Retarget.c
+"New_DR_Base\New_DR_Base.axf" - 0 Error(s), 1 Warning(s).
 </pre>
 </body>
 </html>
+Base.axf" 
+Set JLink Project File to "E:\Source_Code\Github\DR_Control\New_DR_Base\MDK-ARM\JLinkSettings.ini"
+* JLink Info: Device "STM32F405RG" selected.
+ 
+JLink info:
+------------
+DLL: V6.12 , compiled Nov 25 2016 18:08:26
+Firmware: J-Link OB-STM32F072-CortexM compiled Jan  7 2019 14:09:37
+Hardware: V1.00
+Feature(s) : GDB, RDI, FlashBP, FlashDL, JFlash, RDDI 
+ 
+* JLink Info: Found SWD-DP with ID 0x2BA01477
+* JLink Info: Found SWD-DP with ID 0x2BA01477
+* JLink Info: AP-IDR: 0x24770011, Type: AHB-AP
+* JLink Info: Found Cortex-M4 r0p1, Little endian.
+* JLink Info: FPUnit: 6 code (BP) slots and 2 literal slots
+* JLink Info: CoreSight components:
+* JLink Info: ROMTbl 0 @ E00FF000
+* JLink Info: ROMTbl 0 [0]: FFF0F000, CID: B105E00D, PID: 000BB00C SCS
+* JLink Info: ROMTbl 0 [1]: FFF02000, CID: B105E00D, PID: 003BB002 DWT
+* JLink Info: ROMTbl 0 [2]: FFF03000, CID: B105E00D, PID: 002BB003 FPB
+* JLink Info: ROMTbl 0 [3]: FFF01000, CID: B105E00D, PID: 003BB001 ITM
+* JLink Info: ROMTbl 0 [4]: FFF41000, CID: B105900D, PID: 000BB9A1 TPIU
+* JLink Info: ROMTbl 0 [5]: FFF42000, CID: B105900D, PID: 000BB925 ETM
+ROMTableAddr = 0xE00FF003
+ 
+Target info:
+------------
+Device: STM32F405RG
+VTarget = 3.300V
+State of Pins: 
+TCK: 0, TDI: 0, TDO: 1, TMS: 1, TRES: 1, TRST: 1
+Hardware-Breakpoints: 6
+Software-Breakpoints: 8192
+Watchpoints:          4
+JTAG speed: 2000 kHz
+ 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+        4
+JTAG speed: 2000 kHz
+ 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+s and 2 literal slots
+* JLink Info: CoreSight components:
+* JLink Info: ROMTbl 0 @ E00FF000
+* JLink Info: ROMTbl 0 [0]: FFF0F000, CID: B105E00D, PID: 000BB00C SCS
+* JLink Info: ROMTbl 0 [1]: FFF02000, CID: B105E00D, PID: 003BB002 DWT
+* JLink Info: ROMTbl 0 [2]: FFF03000, CID: B105E00D, PID: 002BB003 FPB
+* JLink Info: ROMTbl 0 [3]: FFF01000, CID: B105E00D, PID: 003BB001 ITM
+* JLink Info: ROMTbl 0 [4]: FFF41000, CID: B105900D, PID: 000BB9A1 TPIU
+* JLink Info: ROMTbl 0 [5]: FFF42000, CID: B105900D, PID: 000BB925 ETM
+ROMTableAddr = 0xE00FF003
+ 
+Target info:
+------------
+Device: STM32F405RG
+VTarget = 3.300V
+State of Pins: 
+TCK: 0, TDI: 0, TDO: 1, TMS: 1, TRES: 1, TRST: 1
+Hardware-Breakpoints: 6
+Software-Breakpoints: 8192
+Watchpoints:          4
+JTAG speed: 2000 kHz
+ 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+25 ETM
+ROMTableAddr = 0xE00FF003
+ 
+Target info:
+------------
+Device: STM32F405RG
+VTarget = 3.300V
+State of Pins: 
+TCK: 0, TDI: 0, TDO: 1, TMS: 1, TRES: 1, TRST: 1
+Hardware-Breakpoints: 6
+Software-Breakpoints: 8192
+Watchpoints:          4
+JTAG speed: 2000 kHz
+ 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...

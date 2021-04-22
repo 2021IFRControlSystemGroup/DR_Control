@@ -14,8 +14,12 @@
 #define ToRadian(a) (a/180*PI)													//角度转化成弧度的宏定义
 
 #define ROTOR_ANGLE 8192																//转子机械角度
-#define GEAR_RATIO 36																		//电机减速比
+//#define GEAR_RATIO 19																	//电机减速比(3508)
+#define GEAR_RATIO 36																		//电机减速比(2006)
 #define ONE_CIRCLE (ROTOR_ANGLE*GEAR_RATIO)							//电机转动一圈的总机械角度
+
+#define HALF_PI_ANGLE (GEAR_RATIO*ROTOR_ANGLE/4)
+#define PI_ANGLE (GEAR_RATIO*ROTOR_ANGLE/2)
 
 #define WATCHDOG_TIME_MAX 300														//看门狗总时长
 #define RUNNING_TIME_MAX 500000													//系统运行时间最大值
@@ -42,7 +46,8 @@ typedef struct Motor_Pos_Info								//进行位置环控制的电机信息
   int16_t Speed;														//电机速度				单位(rad/min 转/每分钟)
   uint16_t Angle;														//转子机械角度
   int32_t Abs_Angle;												//转子绝对机械角度
-  float Relative_Angle;											//电机相对坐标角度		单位(° 度)
+  int32_t Relative_Angle;											//电机相对坐标角度		单位(° 度)
+	int Circle_Num;
   uint8_t Temperature;											//电机温度				单位(℃ 摄氏度)
   int16_t Electric;													//电流					单位(mA 毫安)
   uint16_t Last_Angle;											//上一次的转子绝对角度
@@ -83,8 +88,6 @@ typedef struct Pos_System										//位置环系统
   PID Speed_PID;														//速度环PID参数
   float Tar_Pos;														//目标位置
   uint8_t Motor_Num;												//电机号码
-	float Position;
-	float Angle;
   Protect_System Protect; 
 }Pos_System;
 
