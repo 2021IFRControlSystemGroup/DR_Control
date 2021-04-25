@@ -39,7 +39,7 @@ I (../Inc/tim.h)(0x6075831E)
 I (../Inc/usart.h)(0x6075831E)
 I (../Inc/gpio.h)(0x6075831B)
 I (../Inc/robo_base.h)(0x606E99BE)
-I (../Inc/motor_system.h)(0x608116DC)
+I (../Inc/motor_system.h)(0x608183C2)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
 I (../Inc/uart_communicate.h)(0x6073DE3E)
 I (../Inc/analysis.h)(0x6073E020)
@@ -252,7 +252,7 @@ I (../Inc/move.h)(0x60811090)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
 I (../Inc/odrive_can.h)(0x607A6CC2)
 I (../Inc/robo_base.h)(0x606E99BE)
-I (../Inc/motor_system.h)(0x608116DC)
+I (../Inc/motor_system.h)(0x608183C2)
 I (../Inc/can.h)(0x6075831D)
 I (../Inc/uart_communicate.h)(0x6073DE3E)
 I (../Inc/usart.h)(0x6075831E)
@@ -325,7 +325,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
 F (..\Src\motor_system.c)(0x6081120B)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_dr_base\motor_system.o --omf_browse new_dr_base\motor_system.crf --depend new_dr_base\motor_system.d)
-I (../Inc/motor_system.h)(0x608116DC)
+I (../Inc/motor_system.h)(0x608183C2)
 I (../Inc/main.h)(0x6075831F)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
 I (../Inc/stm32f4xx_hal_conf.h)(0x6075831F)
@@ -397,7 +397,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53463A44)
 I (../Inc/odrive_can.h)(0x607A6CC2)
 I (../Inc/robo_base.h)(0x606E99BE)
-I (../Inc/motor_system.h)(0x608116DC)
+I (../Inc/motor_system.h)(0x608183C2)
 I (../Inc/can.h)(0x6075831D)
 I (../Inc/uart_communicate.h)(0x6073DE3E)
 I (../Inc/usart.h)(0x6075831E)
@@ -436,9 +436,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (..\Src\robo_base.c)(0x606E99BE)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_dr_base\robo_base.o --omf_browse new_dr_base\robo_base.crf --depend new_dr_base\robo_base.d)
+F (..\Src\robo_base.c)(0x60818455)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include --C99-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-DSTM32F40_41xxx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_dr_base\robo_base.o --omf_browse new_dr_base\robo_base.crf --depend new_dr_base\robo_base.d)
 I (../Inc/robo_base.h)(0x606E99BE)
-I (../Inc/motor_system.h)(0x608116DC)
+I (../Inc/motor_system.h)(0x608183C2)
 I (../Inc/main.h)(0x6075831F)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
 I (../Inc/stm32f4xx_hal_conf.h)(0x6075831F)

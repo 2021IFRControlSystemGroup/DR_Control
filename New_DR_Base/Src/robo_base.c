@@ -180,8 +180,8 @@ void SystemIO_Usart_ToString(ROBO_BASE* Robo,int32_t System_Out,int32_t System_I
 void BASE_Init(void)
 {
   Pos_System* P_Pos=NULL;
-  P_Pos=&Robo_Base.Pos_MotorLF; PID_Init(&P_Pos->Pos_PID,			0.3,	0,	0,	5000,	0,	0,	7000);
-  P_Pos->Motor_Num=0;		PID_Init(&P_Pos->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
+  P_Pos=&Robo_Base.Pos_MotorLF; PID_Init(&P_Pos->Pos_PID,			0.3,	0,	0,	10000,	0,	0,	10000);
+  P_Pos->Motor_Num=0;		PID_Init(&P_Pos->Speed_PID,			5,	0,	0,	10000,	0,	0,	8000); 
   P_Pos->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Pos->Protect,MISSING);
   P_Pos=&Robo_Base.Pos_MotorRF; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
   P_Pos->Motor_Num=1;		PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
