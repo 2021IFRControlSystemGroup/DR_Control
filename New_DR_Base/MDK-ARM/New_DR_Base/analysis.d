@@ -33,3 +33,10 @@ new_dr_base\analysis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex
 new_dr_base\analysis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 new_dr_base\analysis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 new_dr_base\analysis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+new_dr_base\analysis.o: ../Inc/robo_base.h
+new_dr_base\analysis.o: ../Inc/motor_system.h
+new_dr_base\analysis.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+new_dr_base\analysis.o: ../Inc/can.h
+new_dr_base\analysis.o: ../Inc/odrive_can.h
+new_dr_base\analysis.o: ../Inc/uart_communicate.h
+new_dr_base\analysis.o: ../Inc/usart.h

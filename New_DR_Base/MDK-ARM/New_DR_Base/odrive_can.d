@@ -1,6 +1,5 @@
 new_dr_base\odrive_can.o: ..\Src\odrive_can.c
 new_dr_base\odrive_can.o: ../Inc/odrive_can.h
-new_dr_base\odrive_can.o: ../Inc/main.h
 new_dr_base\odrive_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 new_dr_base\odrive_can.o: ../Inc/stm32f4xx_hal_conf.h
 new_dr_base\odrive_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
@@ -33,3 +32,7 @@ new_dr_base\odrive_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_
 new_dr_base\odrive_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 new_dr_base\odrive_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 new_dr_base\odrive_can.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+new_dr_base\odrive_can.o: ../Inc/motor_system.h
+new_dr_base\odrive_can.o: ../Inc/main.h
+new_dr_base\odrive_can.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+new_dr_base\odrive_can.o: ../Inc/can.h

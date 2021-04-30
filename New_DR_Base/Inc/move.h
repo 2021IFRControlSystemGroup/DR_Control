@@ -3,13 +3,11 @@
 
 #include "main.h"
 #include "math.h"
-#include "odrive_can.h"
 #include "robo_base.h"
 #include "analysis.h"
 
-
-void Motor_Speed(void);
-void Motor_Angle(Pos_System* P_Pos,float* ODrive_Tar,double dA_Tar);
+void Move_Analysis(void);
+void Motor_Angle(Motor_Group* P_Motor,double dA_Tar);
 
 #endif
 

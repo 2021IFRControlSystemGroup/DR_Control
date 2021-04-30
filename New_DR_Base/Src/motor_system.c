@@ -359,6 +359,7 @@ void SystemState_Set(Protect_System* Dogs,SystemState State)
 void Feed_WatchDog(Protect_System* Dogs)
 {
   Dogs->Count_Time=0;
+	SystemState_Set(Dogs,WORKING);
 }
 
 //--------------------------------------------------------------------------------------------------//

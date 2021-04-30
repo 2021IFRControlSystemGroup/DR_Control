@@ -28,8 +28,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "robo_base.h"
 #include "odrive_can.h"
+#include "robo_base.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -99,13 +99,14 @@ sysclock=HAL_RCC_GetSysClockFreq();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
   MX_USART6_UART_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 	CAN_Start_IT(&hcan1);
 	CAN_Start_IT(&hcan2);
 	HAL_TIM_Base_Start_IT(&htim2);
-	Usart_All_Init();
-	BASE_Init();
-	ODrive_Init();
+	//HAL_TIM_Base_Start_IT(&htim3);
+	Usart_All_Init();									//DMA串口初始化
+	BASE_Init();											//舵轮底盘初始化
   /* USER CODE END 2 */
 
   /* Infinite loop */

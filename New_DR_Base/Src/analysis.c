@@ -1,5 +1,7 @@
 #include "analysis.h"
+#include "robo_base.h"
 
+extern ROBO_BASE Robo_Base;
 VISION_DATA Vision_Data = VISION_DATA_DEFAULT;
 RC_Ctl_t RC_Ctl=RC_DATA_DEFAULT;
 
@@ -31,6 +33,16 @@ void RemoteData_analysis(uint8_t *sbus_rx_buffer)
 	RC_Ctl.key.v_h = sbus_rx_buffer[15];
 	
 
+}
+
+void MiniPCData_Analysis(uint8_t *pData)
+{
+	if(pData==NULL) return ;
+	
+	Robo_Base.Speed_X=(pData[0]|(pData[1]<<8))&0x07ff;
+	Robo_Base.Speed_Y=(pData[2]|(pData[3]<<8))&0x07ff;
+	
+	
 }
 
 

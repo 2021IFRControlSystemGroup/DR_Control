@@ -37,9 +37,9 @@ new_dr_base\main.o: ../Inc/dma.h
 new_dr_base\main.o: ../Inc/tim.h
 new_dr_base\main.o: ../Inc/usart.h
 new_dr_base\main.o: ../Inc/gpio.h
-new_dr_base\main.o: ../Inc/robo_base.h
+new_dr_base\main.o: ../Inc/odrive_can.h
 new_dr_base\main.o: ../Inc/motor_system.h
 new_dr_base\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+new_dr_base\main.o: ../Inc/robo_base.h
 new_dr_base\main.o: ../Inc/uart_communicate.h
 new_dr_base\main.o: ../Inc/analysis.h
-new_dr_base\main.o: ../Inc/odrive_can.h

@@ -36,6 +36,7 @@ new_dr_base\robo_base.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_e
 new_dr_base\robo_base.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 new_dr_base\robo_base.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
 new_dr_base\robo_base.o: ../Inc/can.h
+new_dr_base\robo_base.o: ../Inc/odrive_can.h
 new_dr_base\robo_base.o: ../Inc/uart_communicate.h
 new_dr_base\robo_base.o: ../Inc/usart.h
 new_dr_base\robo_base.o: ../Inc/analysis.h

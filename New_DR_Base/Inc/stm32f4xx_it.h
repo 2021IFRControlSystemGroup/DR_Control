@@ -28,7 +28,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "main.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -56,13 +56,15 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
-void EXTI0_IRQHandler(void);
+void EXTI3_IRQHandler(void);
+void EXTI4_IRQHandler(void);
 void DMA1_Stream1_IRQHandler(void);
 void DMA1_Stream3_IRQHandler(void);
 void DMA1_Stream5_IRQHandler(void);
 void DMA1_Stream6_IRQHandler(void);
 void CAN1_RX0_IRQHandler(void);
 void TIM2_IRQHandler(void);
+void TIM3_IRQHandler(void);
 void USART1_IRQHandler(void);
 void USART2_IRQHandler(void);
 void USART3_IRQHandler(void);
@@ -73,6 +75,11 @@ void DMA2_Stream6_IRQHandler(void);
 void USART6_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 void Control_Task(void);
+void Check_Task(void);
+void Error_Task(void);
+void LED_Task(void);
+void Green_Quick(uint32_t Running_Time);
+void Green_Always(void);
 /* USER CODE END EFP */
 
 #ifdef __cplusplus

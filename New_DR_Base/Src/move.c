@@ -4,33 +4,35 @@
 #define MAX_SPEED 10.0
 
 extern ROBO_BASE Robo_Base;
-extern ODrive ODrive0;
-extern ODrive ODrive1;
 extern RC_Ctl_t RC_Ctl;
 
 double dA_Tar=0;
-void Motor_Speed(void)
+void Move_Analysis(void)
 {
-	double Xbox_Angle=0;
-	double Xbox_Speed=0;
+	static float Xbox_Angle=0;
+	static float Xbox_Speed=0;
 
-	
 	float speed_x=(RC_Ctl.rc.ch0-1024)*1.0/660;
 	float speed_y=(RC_Ctl.rc.ch1-1024)*1.0/660;
-  Xbox_Angle=atan2(speed_x,speed_y);
-  Xbox_Speed=sqrt((speed_x*speed_x)+(speed_y*speed_y))*MAX_SPEED;
+	if(speed_x!=0||speed_y!=0) Xbox_Angle=atan2(speed_x,speed_y);
+	Xbox_Speed=sqrt((speed_x*speed_x)+(speed_y*speed_y))*MAX_SPEED;
   if(Xbox_Angle>=0) dA_Tar=Xbox_Angle/TWO_PI*ROTOR_ANGLE*GEAR_RATIO;
   else dA_Tar=(Xbox_Angle+TWO_PI)/TWO_PI*ROTOR_ANGLE*GEAR_RATIO;
 	
-	ODrive0.Axis0.Input_Vel=Xbox_Speed;
-	ODrive0.Axis1.Input_Vel=Xbox_Speed;
-	ODrive1.Axis0.Input_Vel=Xbox_Speed;
-	ODrive1.Axis1.Input_Vel=Xbox_Speed;
-	Motor_Angle(&Robo_Base.Pos_MotorLF,&ODrive0.Axis0.Input_Vel,dA_Tar);
+	Robo_Base.LF._Axis->Input_Vel=Xbox_Speed;
+	Robo_Base.LB._Axis->Input_Vel=Xbox_Speed;
+	Robo_Base.RF._Axis->Input_Vel=Xbox_Speed;
+	Robo_Base.RB._Axis->Input_Vel=Xbox_Speed;
+	Motor_Angle(&Robo_Base.LF,dA_Tar);
+	Motor_Angle(&Robo_Base.LB,dA_Tar);
+	Motor_Angle(&Robo_Base.RF,dA_Tar);
+	Motor_Angle(&Robo_Base.RB,dA_Tar);
 }
 
-void Motor_Angle(Pos_System* P_Pos,float* ODrive_Tar,double dA_Tar)
+void Motor_Angle(Motor_Group* P_Motor,double dA_Tar)
 {
+	Pos_System* P_Pos=&P_Motor->_Pos;
+	float* ODrive_Tar=&P_Motor->_Axis->Input_Vel;
   double Angle_Temp=abs(P_Pos->Info.Relative_Angle);
     if(P_Pos->Info.Relative_Angle<0) P_Pos->Info.Relative_Angle+=2*PI_ANGLE;
 		if(P_Pos->Info.Relative_Angle>HALF_PI_ANGLE&&P_Pos->Info.Relative_Angle<HALF_PI_ANGLE+PI_ANGLE) //?????????????????
