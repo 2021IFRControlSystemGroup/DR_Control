@@ -105,8 +105,8 @@ sysclock=HAL_RCC_GetSysClockFreq();
   /* USER CODE BEGIN 2 */
 	CAN_Start_IT(&hcan1);
 	CAN_Start_IT(&hcan2);
-	HAL_TIM_Base_Start_IT(&htim2);
-	//HAL_TIM_Base_Start_IT(&htim3);
+	//HAL_TIM_Base_Start_IT(&htim2);
+	HAL_TIM_Base_Start_IT(&htim3);
 	Usart_All_Init();									//DMA串口初始化
 	BASE_Init();											//舵轮底盘初始化
   /* USER CODE END 2 */

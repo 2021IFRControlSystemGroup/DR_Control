@@ -41,6 +41,13 @@ typedef struct Protect_System								//系统看门狗结构体
   int16_t Count_Time;												//看门狗时间
 }Protect_System;
 
+typedef struct Can_TxMessageTypeDef
+{
+	CAN_TxHeaderTypeDef Header;
+	uint8_t Data[8];
+	uint8_t Update;
+}Can_TxMessageTypeDef;
+
 typedef struct Motor_Pos_Info								//进行位置环控制的电机信息
 {
   int16_t Speed;														//电机速度				单位(rad/min 转/每分钟)
@@ -89,6 +96,7 @@ typedef struct Pos_System										//位置环系统
   float Tar_Pos;														//目标位置
   uint8_t Motor_Num;												//电机号码
   Protect_System Protect; 
+	Can_TxMessageTypeDef* TxMessage;
 }Pos_System;
 
 typedef struct Speed_System									//速度环系统
@@ -99,6 +107,9 @@ typedef struct Speed_System									//速度环系统
   uint8_t Motor_Num;												//电机号码
   Protect_System Protect; 
 }Speed_System;
+
+
+
 //---------------------------------//
 
 //-------------函数声明------------//
@@ -106,11 +117,12 @@ void Speed_Info_Analysis(Motor_Speed_Info* Motor,uint8_t* RX_Data);									//速
 void Pos_Info_Analysis(Motor_Pos_Info* Motor,uint8_t* RX_Data);											//位置环电机数据分析的操作函数
 
 void PID_Init(PID *pid, float Kp, float Ki, float Kd, float error_max, float dead_line, float intergral_max, float output_max);		//PID参数初始化函数
+void Motor_Init(Pos_System* P_Pos,uint8_t ID);
 void PID_General_Cal(PID *pid, float fdbV, float tarV,uint8_t moto_num,uint8_t *Tx_msg);					//PID计算函数----为了向下兼容
 void PID_Speed_Cal(Speed_System* Speed_Motor,uint8_t *Tx_msg);																		//速度环系统PID计算函数
-void PID_Pos_Cal(Pos_System* Pos_Motor,uint8_t *Tx_msg);																					//位置环系统PID计算函数
+void PID_Pos_Cal(Pos_System* Pos_Motor);																					//位置环系统PID计算函数
 void Send_To_Motor(CAN_HandleTypeDef *hcan,uint8_t* Tx_Data);								//CAN通信发送函数
-
+void Can_Send(CAN_HandleTypeDef *hcan,Can_TxMessageTypeDef* TxMessage);
 void Feed_WatchDog(Protect_System* Dogs);																		//看门狗喂狗函数
 void SystemState_Set(Protect_System* Dogs,SystemState State);								//系统状态切换函数
 uint8_t System_Check(Protect_System* Dogs);																	//系统状态检测函数

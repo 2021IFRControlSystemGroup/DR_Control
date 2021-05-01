@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include "move.h"
 #include "led.h"
+#include "freertos.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -320,10 +321,11 @@ void TIM3_IRQHandler(void)
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
+	Robo_Base.Running_Time++;
 	//if(ODrive_num==0) ODrive_Transmit(Robo_Base.LF._Axis,0x9);
 	//if(ODrive_num==1) ODrive_Transmit(Robo_Base.LB._Axis,0x9);
 	//if(ODrive_num==2) ODrive_Transmit(Robo_Base.RF._Axis,0x9);
-	if(ODrive_num==3) ODrive_Transmit(Robo_Base.RB._Axis,0x9);
+//	if(ODrive_num==3) ODrive_Transmit(Robo_Base.RB._Axis,0x9);
   /* USER CODE END TIM3_IRQn 1 */
 }
 
@@ -449,7 +451,7 @@ void Control_Task(void)
 	else ODrive_num++;
 	
 	//Check_Task();
-	LED_Task();
+	//LED_Task();
 	switch(Control_State)
 	{
 		case 0:
@@ -465,11 +467,11 @@ void Control_Task(void)
 				//if(ODrive_num==0) Motor_Init(Robo_Base.LF._Axis);
 				//if(ODrive_num==1) Motor_Init(Robo_Base.LB._Axis);
 				//if(ODrive_num==2) Motor_Init(Robo_Base.RF._Axis);
-				if(ODrive_num==3) Motor_Init(Robo_Base.RB._Axis);
+				if(ODrive_num==3) Axis_CloseLoop_Init(Robo_Base.RB._Axis);
 			}break;
 		case 2:
 			Move_Analysis();
-			PID_Send(ODrive_num);
+			//PID_Send(ODrive_num);
 			break;
 		default:break;
 	}
@@ -498,6 +500,7 @@ void LED_Task(void)
 		default:break;
 	}
 }
+
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

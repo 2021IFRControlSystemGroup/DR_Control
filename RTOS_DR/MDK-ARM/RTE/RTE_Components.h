@@ -3,8 +3,8 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'New_DR_Base' 
- * Target:  'New_DR_Base' 
+ * Project: 'RTOS_DR' 
+ * Target:  'RTOS_DR' 
  */
 
 #ifndef RTE_COMPONENTS_H

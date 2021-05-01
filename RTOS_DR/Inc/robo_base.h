@@ -76,7 +76,7 @@ void SystemIO_Usart_ToString(ROBO_BASE* Robo,int32_t System_Out,int32_t System_I
 void BASE_Init(void);																									//底盘PID参数初始化的接口函数
 
 void PID_Send(uint8_t ODrive_num);																							//PID发送函数
-
+void Can_TxMessageCal(void);
 void Counting_Time(ROBO_BASE* Robo);
 void LED_WARNING(ROBO_BASE* Robo);
 uint8_t Base_WatchDog(void);														//底盘看门狗接口函数

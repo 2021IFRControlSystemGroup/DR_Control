@@ -31,8 +31,6 @@ void RemoteData_analysis(uint8_t *sbus_rx_buffer)
 	RC_Ctl.mouse.press_r = sbus_rx_buffer[13]; //!< Mouse Right Is Press ?
 	RC_Ctl.key.v_l = sbus_rx_buffer[14]; //!< KeyBoard value
 	RC_Ctl.key.v_h = sbus_rx_buffer[15];
-	
-
 }
 
 void MiniPCData_Analysis(uint8_t *pData)

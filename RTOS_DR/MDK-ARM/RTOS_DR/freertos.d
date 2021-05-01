@@ -46,3 +46,12 @@ rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+rtos_dr\freertos.o: ../Inc/move.h
+rtos_dr\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+rtos_dr\freertos.o: ../Inc/robo_base.h
+rtos_dr\freertos.o: ../Inc/motor_system.h
+rtos_dr\freertos.o: ../Inc/can.h
+rtos_dr\freertos.o: ../Inc/odrive_can.h
+rtos_dr\freertos.o: ../Inc/uart_communicate.h
+rtos_dr\freertos.o: ../Inc/usart.h
+rtos_dr\freertos.o: ../Inc/analysis.h

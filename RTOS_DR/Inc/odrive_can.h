@@ -22,6 +22,7 @@ typedef struct Axis
 	uint16_t StdID;
 	
 	Protect_System Protect;
+	Can_TxMessageTypeDef* TxMessage;
 }Axis;
 
 typedef struct ODrive
@@ -31,13 +32,14 @@ typedef struct ODrive
 }ODrive;
 
 void Axis_Init(Axis* _Axis,uint8_t NodeID);
-void Motor_Init(Axis* _Axis);
+void Axis_CloseLoop_Init(Axis* _Axis);
 void ODrive_Init(void);
 
 
 void ODrive_Transmit(Axis* _Axis,uint16_t CMD);
 void ODrive_Recevice(uint16_t StdID,uint8_t* Data);
-void Send_To_ODrive(CAN_HandleTypeDef *hcan,uint16_t StdID,uint8_t* Data,uint8_t len,uint8_t RTR);
+void Send_To_ODrive(Can_TxMessageTypeDef* TxMessage,uint16_t StdID,uint8_t* Data,uint8_t len,uint8_t RTR);
+void Can_DataTypeSet(CAN_TxHeaderTypeDef* TxHeader);
 
 void Get_Motor_Error(Axis* _Axis);
 void Get_Encoder_Error(Axis* _Axis);

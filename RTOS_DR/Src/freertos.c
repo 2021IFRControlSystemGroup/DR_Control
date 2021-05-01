@@ -26,21 +26,17 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
-
+#include "move.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-typedef struct Can_TxMessageTypeDef
-{
-	CAN_TxHeaderTypeDef Header;
-	uint8_t Data[8];
-}Can_TxMessageTypeDef;
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define CAN_TXMESSAGEINDEXMAX 5
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -50,11 +46,15 @@ typedef struct Can_TxMessageTypeDef
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+Can_TxMessageTypeDef CanTxMessageList[8]={0};
+uint8_t CanTxMessageIndex=0;
+extern ROBO_BASE Robo_Base;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId moveTaskHandle;
-osThreadId canSendHandle;
+osThreadId canSendTaskHandle;
+osThreadId errorCheckTaskHandle;
+osThreadId initTaskHandle;
 osMessageQId Can_TxMessageQueueHandle;
 osSemaphoreId CAN_TxStateHandle;
 
@@ -65,7 +65,9 @@ osSemaphoreId CAN_TxStateHandle;
 
 void StartDefaultTask(void const * argument);
 void MoveTask(void const * argument);
-void CanSend(void const * argument);
+void CanSendTask(void const * argument);
+void ErrorCheckTask(void const * argument);
+void InitTask(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -130,12 +132,27 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(moveTask, MoveTask, osPriorityNormal, 0, 128);
   moveTaskHandle = osThreadCreate(osThread(moveTask), NULL);
 
-  /* definition and creation of canSend */
-  osThreadDef(canSend, CanSend, osPriorityAboveNormal, 0, 128);
-  canSendHandle = osThreadCreate(osThread(canSend), NULL);
+  /* definition and creation of canSendTask */
+  osThreadDef(canSendTask, CanSendTask, osPriorityAboveNormal, 0, 128);
+  canSendTaskHandle = osThreadCreate(osThread(canSendTask), NULL);
+
+  /* definition and creation of errorCheckTask */
+  osThreadDef(errorCheckTask, ErrorCheckTask, osPriorityHigh, 0, 128);
+  errorCheckTaskHandle = osThreadCreate(osThread(errorCheckTask), NULL);
+
+  /* definition and creation of initTask */
+  osThreadDef(initTask, InitTask, osPriorityNormal, 0, 128);
+  initTaskHandle = osThreadCreate(osThread(initTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+	vTaskSuspend(moveTaskHandle);
+	vTaskSuspend(defaultTaskHandle);
+	CanTxMessageList[0].Header.RTR = 0;
+	CanTxMessageList[0].Header.IDE = 0;            
+	CanTxMessageList[0].Header.StdId=0x200;
+	CanTxMessageList[0].Header.TransmitGlobalTime = DISABLE;
+	CanTxMessageList[0].Header.DLC = 8;
   /* USER CODE END RTOS_THREADS */
 
 }
@@ -153,6 +170,7 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+		LED_WARNING(&Robo_Base);
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
@@ -164,39 +182,114 @@ void StartDefaultTask(void const * argument)
 * @param argument: Not used
 * @retval None
 */
+
 /* USER CODE END Header_MoveTask */
 void MoveTask(void const * argument)
 {
   /* USER CODE BEGIN MoveTask */
+
   /* Infinite loop */
   for(;;)
   {
+		Move_Analysis();
+		Can_TxMessageCal();
+		for(;CanTxMessageIndex<CAN_TXMESSAGEINDEXMAX;CanTxMessageIndex++) if(xQueueSend(Can_TxMessageQueueHandle,&CanTxMessageList[CanTxMessageIndex],10)!=pdPASS) break;
+		if(CanTxMessageIndex==CAN_TXMESSAGEINDEXMAX) CanTxMessageIndex=0;
+		if(HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_LISTENING||HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_READY) vTaskResume(canSendTaskHandle);
     osDelay(1);
   }
   /* USER CODE END MoveTask */
 }
 
-/* USER CODE BEGIN Header_CanSend */
+/* USER CODE BEGIN Header_CanSendTask */
 /**
-* @brief Function implementing the canSend thread.
+* @brief Function implementing the canSendTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_CanSend */
-void CanSend(void const * argument)
+/* USER CODE END Header_CanSendTask */
+void CanSendTask(void const * argument)
 {
-  /* USER CODE BEGIN CanSend */
+  /* USER CODE BEGIN CanSendTask */
+	Can_TxMessageTypeDef TxMessage;
   /* Infinite loop */
   for(;;)
   {
+		if(xQueueReceive(Can_TxMessageQueueHandle,&TxMessage,100)==pdPASS) Can_Send(&hcan1,&TxMessage);
+		vTaskSuspend(canSendTaskHandle);
     osDelay(1);
   }
-  /* USER CODE END CanSend */
+  /* USER CODE END CanSendTask */
+}
+
+/* USER CODE BEGIN Header_ErrorCheckTask */
+/**
+* @brief Function implementing the errorCheckTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_ErrorCheckTask */
+void ErrorCheckTask(void const * argument)
+{
+  /* USER CODE BEGIN ErrorCheckTask */
+  /* Infinite loop */
+  for(;;)
+  {
+//		if(Base_WatchDog())
+//		{
+//			vTaskSuspend(canSendTaskHandle);
+//			vTaskSuspend(moveTaskHandle);
+//		}
+		osDelay(50);
+  }
+  /* USER CODE END ErrorCheckTask */
+}
+
+/* USER CODE BEGIN Header_InitTask */
+/**
+* @brief Function implementing the iniTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_InitTask */
+void InitTask(void const * argument)
+{
+  /* USER CODE BEGIN InitTask */
+  /* Infinite loop */
+  for(;;)
+  {
+		if(
+//			//Robo_Base.LF._Axis->Current_State==8&&Robo_Base.LF._Axis->Error==0&&
+//			//Robo_Base.LB._Axis->Current_State==8&&Robo_Base.LB._Axis->Error==0
+//			//Robo_Base.RF._Axis->Current_State==8&&Robo_Base.RF._Axis->Error==0&&
+			Robo_Base.RB._Axis->Current_State==8&&Robo_Base.RB._Axis->Error==0	
+		){
+			vTaskResume(moveTaskHandle);
+			vTaskSuspend(initTaskHandle);
+		}else{
+			Robo_Base.LF._Axis->Current_State=1;
+			Robo_Base.LB._Axis->Current_State=1;
+			Robo_Base.RF._Axis->Current_State=1;
+			Robo_Base.RB._Axis->Current_State=1;
+			Axis_CloseLoop_Init(Robo_Base.LF._Axis);
+			Axis_CloseLoop_Init(Robo_Base.LB._Axis);
+			Axis_CloseLoop_Init(Robo_Base.RF._Axis);
+			Axis_CloseLoop_Init(Robo_Base.RB._Axis);
+		for(;CanTxMessageIndex<CAN_TXMESSAGEINDEXMAX;CanTxMessageIndex++)
+			if(CanTxMessageList[CanTxMessageIndex].Update!=0)
+				if(xQueueSend(Can_TxMessageQueueHandle,&CanTxMessageList[CanTxMessageIndex],10)!=pdPASS) break;
+				else CanTxMessageList[CanTxMessageIndex].Update=0;
+		if(CanTxMessageIndex==CAN_TXMESSAGEINDEXMAX) CanTxMessageIndex=0;
+		if(HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_LISTENING||HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_READY) vTaskResume(canSendTaskHandle);
+		}
+	osDelay(1);
+  }
+  /* USER CODE END InitTask */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-     
+
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

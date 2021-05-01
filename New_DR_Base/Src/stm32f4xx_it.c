@@ -79,7 +79,7 @@ extern ROBO_BASE Robo_Base;
 CAN_RxHeaderTypeDef RxMeg1;
 CAN_RxHeaderTypeDef RxMeg2;
 
-uint8_t Control_State=1;
+uint8_t Control_State=2;
 int8_t ODrive_num=-1;
 /* USER CODE END EV */
 
@@ -345,7 +345,7 @@ void TIM3_IRQHandler(void)
 	//if(ODrive_num==0) ODrive_Transmit(Robo_Base.LF._Axis,0x9);
 	//if(ODrive_num==1) ODrive_Transmit(Robo_Base.LB._Axis,0x9);
 	//if(ODrive_num==2) ODrive_Transmit(Robo_Base.RF._Axis,0x9);
-	if(ODrive_num==3) ODrive_Transmit(Robo_Base.RB._Axis,0x9);
+	//if(ODrive_num==3) ODrive_Transmit(Robo_Base.RB._Axis,0x9);
   /* USER CODE END TIM3_IRQn 1 */
 }
 

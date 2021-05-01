@@ -3,6 +3,7 @@
 ODrive ODrive0;
 ODrive ODrive1;
 extern CAN_HandleTypeDef hcan1;
+extern Can_TxMessageTypeDef CanTxMessageList[8];
 
 uint8_t data[4]={0};
 uint8_t test_data=0;
@@ -60,73 +61,76 @@ void ODrive_Transmit(Axis* _Axis,uint16_t CMD)
 		case 0x16:Reboot_ODrive(_Axis);break;
 		default:break;
 	}	_Axis->StdID=_Axis->Node_ID<<5;
-	
 }
 
 void Get_Motor_Error(Axis* _Axis)									//0x3
 {
-	Send_To_ODrive(&hcan1,_Axis->StdID,NULL,4,2);
+	Send_To_ODrive(_Axis->TxMessage,_Axis->StdID,NULL,4,2);
 }
 
 void Get_Encoder_Error(Axis* _Axis)								//0x4
 {
-	Send_To_ODrive(&hcan1,_Axis->StdID,&test_data,4,2);
+	Send_To_ODrive(_Axis->TxMessage,_Axis->StdID,&test_data,4,2);
 }
 
 
 void Set_Axis_Requested_State(Axis* _Axis)				//0x7
 {
-	data[0]=*((uint8_t*)&_Axis->Requested_State);
-	data[1]=*((uint8_t*)&_Axis->Requested_State+1);
-	Send_To_ODrive(&hcan1,_Axis->StdID,data,4,0);
+	_Axis->TxMessage->Data[0]=*((uint8_t*)&_Axis->Requested_State);
+	_Axis->TxMessage->Data[1]=*((uint8_t*)&_Axis->Requested_State+1);
+	_Axis->TxMessage->Header.StdId=_Axis->StdID;
+	_Axis->TxMessage->Update=1;
+	Can_DataTypeSet(&_Axis->TxMessage->Header);
+	
+	Send_To_ODrive(_Axis->TxMessage,_Axis->StdID,data,4,0);
 }
 
 void Get_Encoder_Estimates(Axis* _Axis)						//0x9
 {
-	Send_To_ODrive(&hcan1,_Axis->StdID,NULL,8,2);
+	Send_To_ODrive(_Axis->TxMessage,_Axis->StdID,NULL,8,2);
 }
 
 void Get_Encoder_Count(Axis* _Axis)								//0xA
 {
-	Send_To_ODrive(&hcan1,_Axis->StdID,&test_data,8,2);
+	Send_To_ODrive(_Axis->TxMessage,_Axis->StdID,&test_data,8,2);
 }
 
 void Set_Input_Vel(Axis* _Axis)										//0xD
 {
 	if(_Axis->Error!=0) return ;
-	uint8_t data[8]={0};
 	float Tar_Vel=_Axis->Input_Vel;
-	data[0]=*((uint8_t*)&Tar_Vel);
-	data[1]=*((uint8_t*)&Tar_Vel+1);
-	data[2]=*((uint8_t*)&Tar_Vel+2);
-	data[3]=*((uint8_t*)&Tar_Vel+3);
-	Send_To_ODrive(&hcan1,_Axis->StdID,data,8,0);
+	_Axis->TxMessage->Data[0]=*((uint8_t*)&Tar_Vel);
+	_Axis->TxMessage->Data[1]=*((uint8_t*)&Tar_Vel+1);
+	_Axis->TxMessage->Data[2]=*((uint8_t*)&Tar_Vel+2);
+	_Axis->TxMessage->Data[3]=*((uint8_t*)&Tar_Vel+3);
+	_Axis->TxMessage->Header.StdId=_Axis->StdID;
+	_Axis->TxMessage->Update=1;
+	Can_DataTypeSet(&_Axis->TxMessage->Header);
+
+}
+
+void Can_DataTypeSet(CAN_TxHeaderTypeDef* TxHeader)
+{
+	TxHeader->RTR = 0;
+  TxHeader->IDE = 0;            
+	TxHeader->TransmitGlobalTime = DISABLE;
+  TxHeader->DLC = 8;
 }
 
 void Reboot_ODrive(Axis* _Axis)
 {
-	Send_To_ODrive(&hcan1,_Axis->StdID,&test_data,0,0);
+	Send_To_ODrive(_Axis->TxMessage,_Axis->StdID,&test_data,0,0);
 }
 
 uint8_t flag=0;
 
-void Send_To_ODrive(CAN_HandleTypeDef *hcan,uint16_t StdID,uint8_t* Data,uint8_t len,uint8_t RTR)
+void Send_To_ODrive(Can_TxMessageTypeDef* TxMessage,uint16_t StdID,uint8_t* Data,uint8_t len,uint8_t RTR)
 {
-	CAN_TxHeaderTypeDef TxHeader;
-	uint32_t TxMailbox;
-	
-  TxHeader.RTR = RTR;
-  TxHeader.IDE = 0;            
-  TxHeader.StdId=StdID;
-  TxHeader.TransmitGlobalTime = DISABLE;
-  TxHeader.DLC = len;
-
-	if (HAL_CAN_AddTxMessage(hcan, &TxHeader, Data, &TxMailbox) != HAL_OK)
-	{
-	/* Transmission request Error */
-		Error_Handler();
-	}
-
+  TxMessage->Header.RTR = RTR;
+  TxMessage->Header.IDE = 0;            
+  TxMessage->Header.StdId=StdID;
+  TxMessage->Header.TransmitGlobalTime = DISABLE;
+  TxMessage->Header.DLC = len;
 }
 
 void ODrive_Init(void)
@@ -138,7 +142,9 @@ void ODrive_Init(void)
 	Axis_Init(&ODrive1.Axis1,3);
 }
 
-void Motor_Init(Axis* _Axis)
+
+
+void Axis_CloseLoop_Init(Axis* _Axis)
 {
 	static uint8_t num[4]={0};
 	uint8_t* P_num=&num[_Axis->Node_ID];
@@ -155,7 +161,7 @@ void Motor_Init(Axis* _Axis)
 		_Axis->Requested_State=8;
 		ODrive_Transmit(_Axis,0x7);
 		_Axis->Requested_State=0;
-		*P_num++;
+		*P_num=5;
 	}
 }
 
@@ -172,6 +178,9 @@ void Axis_Init(Axis* _Axis,uint8_t NodeID)
 	_Axis->Requested_State=0;
 	_Axis->StdID=NodeID<<5;
 	_Axis->Vbus_Voltage=0;
+	
+	_Axis->TxMessage=&CanTxMessageList[NodeID+1];
+	_Axis->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&_Axis->Protect,MISSING);
 }
 	
 

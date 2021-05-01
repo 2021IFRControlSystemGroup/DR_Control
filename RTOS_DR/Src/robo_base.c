@@ -98,27 +98,20 @@ void BASE_Init(void)
 	
   Pos_System* P_Pos=NULL;																																								//转向电机初始化
 	P_Pos=&Robo_Base.LF._Pos; PID_Init(&P_Pos->Pos_PID,			0.3,	0,	0,	10000,	0,	0,	10000);
-  P_Pos->Motor_Num=0;		PID_Init(&P_Pos->Speed_PID,			5,	0,	0,	10000,	0,	0,	8000); 
-  P_Pos->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Pos->Protect,MISSING);
+	Motor_Init(P_Pos,0);			PID_Init(&P_Pos->Speed_PID,			5,	0,	0,	10000,	0,	0,	8000);
   P_Pos=&Robo_Base.LB._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
-  P_Pos->Motor_Num=1;		PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
-  P_Pos->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Pos->Protect,MISSING);
+  Motor_Init(P_Pos,1);			PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
   P_Pos=&Robo_Base.RF._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
-  P_Pos->Motor_Num=2;		PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
-  P_Pos->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Pos->Protect,MISSING);
+  Motor_Init(P_Pos,2);			PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
   P_Pos=&Robo_Base.RB._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
-  P_Pos->Motor_Num=3;		PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
-  P_Pos->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Pos->Protect,MISSING);
-	
+  Motor_Init(P_Pos,3);			PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
+
 	Axis* P_Axis=NULL;																																										//驱动电机初始化
 	P_Axis=Robo_Base.LF._Axis=&ODrive0.Axis0; Axis_Init(P_Axis,0);
-	P_Axis->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Axis->Protect,MISSING);
 	P_Axis=Robo_Base.LB._Axis=&ODrive0.Axis1; Axis_Init(P_Axis,1);
-	P_Axis->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Axis->Protect,MISSING);
 	P_Axis=Robo_Base.RF._Axis=&ODrive1.Axis0; Axis_Init(P_Axis,2);
-	P_Axis->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Axis->Protect,MISSING);
 	P_Axis=Robo_Base.RB._Axis=&ODrive1.Axis1; Axis_Init(P_Axis,3);
-	P_Axis->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Axis->Protect,MISSING);
+	
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -135,20 +128,17 @@ void BASE_Init(void)
 //		有需要啥环的控制就让指针指向这个系统, 然后调用对应的PID计算函数进行处理
 //
 //--------------------------------------------------------------------------------------------------//
-void PID_Send(uint8_t ODrive_num)
+void Can_TxMessageCal()
 {
-  Pos_System* P_Pos=NULL;
-  P_Pos=&Robo_Base.LF._Pos; PID_Pos_Cal(P_Pos,Robo_Base.Can2.Tx);
-  P_Pos=&Robo_Base.LB._Pos; PID_Pos_Cal(P_Pos,Robo_Base.Can2.Tx);
-  P_Pos=&Robo_Base.RF._Pos; PID_Pos_Cal(P_Pos,Robo_Base.Can2.Tx);
-  P_Pos=&Robo_Base.RB._Pos; PID_Pos_Cal(P_Pos,Robo_Base.Can2.Tx);
-  Send_To_Motor(&hcan2,Robo_Base.Can2.Tx);
+	PID_Pos_Cal(&Robo_Base.LF._Pos);
+	PID_Pos_Cal(&Robo_Base.LB._Pos);
+	PID_Pos_Cal(&Robo_Base.RF._Pos);
+	PID_Pos_Cal(&Robo_Base.RB._Pos);
 	
-	//if(ODrive_num==0) ODrive_Transmit(Robo_Base.LF._Axis,0x0D);
-	//if(ODrive_num==1) ODrive_Transmit(Robo_Base.LB._Axis,0x0D);
-	//if(ODrive_num==2) ODrive_Transmit(Robo_Base.RF._Axis,0x0D);
-	if(ODrive_num==3) ODrive_Transmit(Robo_Base.RB._Axis,0x0D);
-	if(ODrive_num==4) ODrive_Transmit(Robo_Base.RB._Axis,0x9);
+	ODrive_Transmit(Robo_Base.LF._Axis,0x0D);
+	ODrive_Transmit(Robo_Base.LB._Axis,0x0D);
+	ODrive_Transmit(Robo_Base.RF._Axis,0x0D);
+	ODrive_Transmit(Robo_Base.RB._Axis,0x0D);
 }
 
 //--------------------------------------------------------------------------------------------------//

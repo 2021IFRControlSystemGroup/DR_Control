@@ -192,7 +192,7 @@ void PID_General_Cal(PID *pid, float fdbV, float tarV,uint8_t moto_num,uint8_t *
 //		uint8_t* 发送数据的数组
 //
 //--------------------------------------------------------------------------------------------------//
-void PID_Pos_Cal(Pos_System* Pos_Motor,uint8_t *Tx_msg)
+void PID_Pos_Cal(Pos_System* Pos_Motor)
 {
 	if(Pos_Motor->Protect.State!=WORKING) return ;
 	Pos_Motor->Pos_PID.error =  Pos_Motor->Tar_Pos - Pos_Motor->Info.Abs_Angle;
@@ -247,8 +247,8 @@ void PID_Pos_Cal(Pos_System* Pos_Motor,uint8_t *Tx_msg)
 	if(Pos_Motor->Speed_PID.output < -Pos_Motor->Speed_PID.output_max)
 		Pos_Motor->Speed_PID.output = -Pos_Motor->Speed_PID.output_max;
 	
-	
-	Tx_msg[Pos_Motor->Motor_Num*2]=((int16_t)Pos_Motor->Speed_PID.output)>>8;Tx_msg[Pos_Motor->Motor_Num*2+1]=(int16_t)Pos_Motor->Speed_PID.output;
+	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2]=((int16_t)Pos_Motor->Speed_PID.output)>>8;
+	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2+1]=((int16_t)Pos_Motor->Speed_PID.output);
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -320,7 +320,7 @@ void Send_To_Motor(CAN_HandleTypeDef *hcan,uint8_t* Tx_Data)
   TxHeader.StdId=0x200;
   TxHeader.TransmitGlobalTime = DISABLE;
   TxHeader.DLC = 8;
-        
+  
   if (HAL_CAN_AddTxMessage(hcan, &TxHeader, Tx_Data, &TxMailbox) != HAL_OK)
   {
    /* Transmission request Error */
@@ -328,6 +328,17 @@ void Send_To_Motor(CAN_HandleTypeDef *hcan,uint8_t* Tx_Data)
   }
 }
 
+void Can_Send(CAN_HandleTypeDef *hcan,Can_TxMessageTypeDef* TxMessage)
+{
+  uint32_t TxMailbox; 
+  
+	TxMessage->Update=1;
+  if (HAL_CAN_AddTxMessage(hcan, &TxMessage->Header, TxMessage->Data, &TxMailbox) != HAL_OK)
+  {
+   /* Transmission request Error */
+     Error_Handler();
+  }
+}
 //--------------------------------------------------------------------------------------------------//
 //函数名称:
 //		系统状态切换函数
@@ -382,4 +393,13 @@ uint8_t System_Check(Protect_System* Dogs)
 		return 0;
   }else SystemState_Set(Dogs,MISSING);
   return 1;
+}
+
+void Motor_Init(Pos_System* P_Pos,uint8_t ID)
+{
+	extern Can_TxMessageTypeDef CanTxMessageList[8];
+	
+  P_Pos->Motor_Num=ID;
+	P_Pos->TxMessage=&CanTxMessageList[0];
+  P_Pos->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&P_Pos->Protect,MISSING);
 }
