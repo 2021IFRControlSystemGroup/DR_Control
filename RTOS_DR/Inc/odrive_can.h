@@ -33,7 +33,7 @@ typedef struct ODrive
 
 void Axis_Init(Axis* _Axis,uint8_t NodeID);
 void Axis_CloseLoop_Init(Axis* _Axis);
-void ODrive_Init(void);
+void ODrive_Init(ODrive* _ODrive);
 
 
 void ODrive_Transmit(Axis* _Axis,uint16_t CMD);

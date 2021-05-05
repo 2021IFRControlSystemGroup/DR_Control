@@ -111,7 +111,7 @@ void BASE_Init(void)
 	P_Axis=Robo_Base.LB._Axis=&ODrive0.Axis1; Axis_Init(P_Axis,1);
 	P_Axis=Robo_Base.RF._Axis=&ODrive1.Axis0; Axis_Init(P_Axis,2);
 	P_Axis=Robo_Base.RB._Axis=&ODrive1.Axis1; Axis_Init(P_Axis,3);
-	
+	Robo_Base.Working_State=1;
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -135,6 +135,7 @@ void Can_TxMessageCal()
 	PID_Pos_Cal(&Robo_Base.RF._Pos);
 	PID_Pos_Cal(&Robo_Base.RB._Pos);
 	
+	
 	ODrive_Transmit(Robo_Base.LF._Axis,0x0D);
 	ODrive_Transmit(Robo_Base.LB._Axis,0x0D);
 	ODrive_Transmit(Robo_Base.RF._Axis,0x0D);
@@ -155,33 +156,30 @@ void Can_TxMessageCal()
 //		需要添加或删除位置环系统就直接添加
 //
 //--------------------------------------------------------------------------------------------------//
-uint8_t Base_WatchDog(void)
+void Base_WatchDog(void)
 {
-  uint8_t Error_State=0;
+  uint32_t Error_State=0;
   Pos_System* P_Pos=NULL;
   P_Pos=&Robo_Base.LF._Pos;
-	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num));
+	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num+1));
   P_Pos=&Robo_Base.LB._Pos;
-	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num));
+	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num+1));
   P_Pos=&Robo_Base.RF._Pos;
-	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num));
+	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num+1));
   P_Pos=&Robo_Base.RB._Pos;
-	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num));
+	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num+1));
 	
 	Axis* P_Axis=NULL;
 	P_Axis=Robo_Base.LF._Axis;
-	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+4));
+	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+5));
 	P_Axis=Robo_Base.LB._Axis;
-	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+4));
+	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+5));
 	P_Axis=Robo_Base.RF._Axis;
-	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+4));
+	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+5));
 	P_Axis=Robo_Base.RB._Axis;
-	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+4));
+	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+5));
   
-	
-	Robo_Base.Working_State=Error_State;
-  if(Error_State!=0) return 1;
-	return 0;
+	if(Error_State) Robo_Base.Working_State=Error_State;
 }
 
 //--------------------------------------------------------------------------------------------------//

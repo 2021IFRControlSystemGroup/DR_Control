@@ -84,13 +84,6 @@ void Usart_All_Init(void)
 	Uart6_Rx.Length_Max=USART6_RX_LEN_MAX;
 	HAL_UART_Receive_DMA(&huart6, Uart6_Rx.Buffer[0], USART6_RX_LEN_MAX);
 	
-	Uart3_Rx.Buffer[0]=(uint8_t*)malloc(sizeof(uint8_t)*USART3_RX_LEN_MAX);
-	Uart3_Rx.Buffer[1]=(uint8_t*)malloc(sizeof(uint8_t)*USART3_RX_LEN_MAX);
-	__HAL_UART_ENABLE_IT(&huart3, UART_IT_IDLE);
-	Uart3_Rx.Buffer_Num = 0;
-	Uart3_Rx.Length_Max=USART3_RX_LEN_MAX;
-	HAL_UART_Receive_DMA(&huart3, Uart3_Rx.Buffer[0], USART3_RX_LEN_MAX);
-	
 	Uart2_Rx.Buffer[0]=(uint8_t*)malloc(sizeof(uint8_t)*USART2_RX_LEN_MAX);
 	Uart2_Rx.Buffer[1]=(uint8_t*)malloc(sizeof(uint8_t)*USART2_RX_LEN_MAX);
 	__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);

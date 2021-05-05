@@ -79,13 +79,8 @@ extern UART_HandleTypeDef huart6;
 extern TIM_HandleTypeDef htim1;
 
 /* USER CODE BEGIN EV */
-extern ROBO_BASE Robo_Base;
-	
-CAN_RxHeaderTypeDef RxMeg1;
-CAN_RxHeaderTypeDef RxMeg2;
 
-uint8_t Control_State=1;
-int8_t ODrive_num=-1;
+
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -185,34 +180,6 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles EXTI line3 interrupt.
-  */
-void EXTI3_IRQHandler(void)
-{
-  /* USER CODE BEGIN EXTI3_IRQn 0 */
-
-  /* USER CODE END EXTI3_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
-  /* USER CODE BEGIN EXTI3_IRQn 1 */
-	ODrive_Transmit(Robo_Base.LF._Axis,0x16);							//PC3接地重启odrive0
-  /* USER CODE END EXTI3_IRQn 1 */
-}
-
-/**
-  * @brief This function handles EXTI line4 interrupt.
-  */
-void EXTI4_IRQHandler(void)
-{
-  /* USER CODE BEGIN EXTI4_IRQn 0 */
-
-  /* USER CODE END EXTI4_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
-  /* USER CODE BEGIN EXTI4_IRQn 1 */
-	ODrive_Transmit(Robo_Base.RF._Axis,0x16);							//PC4接地重启odrive1
-  /* USER CODE END EXTI4_IRQn 1 */
-}
-
-/**
   * @brief This function handles DMA1 stream1 global interrupt.
   */
 void DMA1_Stream1_IRQHandler(void)
@@ -269,31 +236,19 @@ void DMA1_Stream6_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles CAN1 TX interrupts.
-  */
-void CAN1_TX_IRQHandler(void)
-{
-  /* USER CODE BEGIN CAN1_TX_IRQn 0 */
-
-  /* USER CODE END CAN1_TX_IRQn 0 */
-  HAL_CAN_IRQHandler(&hcan1);
-  /* USER CODE BEGIN CAN1_TX_IRQn 1 */
-
-  /* USER CODE END CAN1_TX_IRQn 1 */
-}
-
-/**
   * @brief This function handles CAN1 RX0 interrupts.
   */
 void CAN1_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
-
+	extern ROBO_BASE Robo_Base;
+	CAN_RxHeaderTypeDef RxMeg1;
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
 	HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg1,Robo_Base.Can1.Rx);
-	ODrive_Recevice(RxMeg1.StdId,Robo_Base.Can1.Rx);
+	if(RxMeg1.StdId>0x0&&RxMeg1.StdId<=0x1ff) ODrive_Recevice(RxMeg1.StdId,Robo_Base.Can1.Rx);
+	if(RxMeg1.StdId>0x200&&RxMeg1.StdId<0x209) Motor_Pos_Analysis(Robo_Base.Can1.Rx,RxMeg1.StdId);
   /* USER CODE END CAN1_RX0_IRQn 1 */
 }
 
@@ -321,7 +276,7 @@ void TIM2_IRQHandler(void)
   /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);
   /* USER CODE BEGIN TIM2_IRQn 1 */
-	Control_Task();
+	
   /* USER CODE END TIM2_IRQn 1 */
 }
 
@@ -331,15 +286,46 @@ void TIM2_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
-
+	static uint32_t Reboot_ODrive0Time=0;
+	static uint32_t Reboot_ODrive1Time=0;
+	static uint8_t Reboot_ODrive0Flag=0;
+	static uint8_t Reboot_ODrive1Flag=0;
+	extern ROBO_BASE Robo_Base;
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
 	Robo_Base.Running_Time++;
-	//if(ODrive_num==0) ODrive_Transmit(Robo_Base.LF._Axis,0x9);
-	//if(ODrive_num==1) ODrive_Transmit(Robo_Base.LB._Axis,0x9);
-	//if(ODrive_num==2) ODrive_Transmit(Robo_Base.RF._Axis,0x9);
-//	if(ODrive_num==3) ODrive_Transmit(Robo_Base.RB._Axis,0x9);
+	
+	if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_9)==GPIO_PIN_RESET){
+		if(Reboot_ODrive0Time==0) Reboot_ODrive0Time=Robo_Base.Running_Time;
+		if(Robo_Base.Running_Time-Reboot_ODrive0Time>200){
+			if(Reboot_ODrive0Flag==0){
+				ODrive_Transmit(Robo_Base.LF._Axis,0x16);
+				Reboot_ODrive0Flag=1;
+				SystemState_Set(&Robo_Base.LF._Axis->Protect,REBOOT);
+				SystemState_Set(&Robo_Base.LB._Axis->Protect,REBOOT);
+				Axis_Init(Robo_Base.LF._Axis,0);
+				Axis_Init(Robo_Base.LB._Axis,1);
+			}if(Robo_Base.Running_Time-Reboot_ODrive0Time<300) HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
+			else HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+		}
+	}else Reboot_ODrive0Time=Reboot_ODrive0Flag=0;
+	
+	if(HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_11)==GPIO_PIN_RESET){
+		if(Reboot_ODrive1Time==0) Reboot_ODrive1Time=Robo_Base.Running_Time;
+		if(Robo_Base.Running_Time-Reboot_ODrive1Time>200){
+			if(Reboot_ODrive1Flag==0){
+				ODrive_Transmit(Robo_Base.RF._Axis,0x16);
+				Reboot_ODrive1Flag=1;
+				SystemState_Set(&Robo_Base.RF._Axis->Protect,REBOOT);
+				SystemState_Set(&Robo_Base.RB._Axis->Protect,REBOOT);
+				Axis_Init(Robo_Base.RF._Axis,2);
+				Axis_Init(Robo_Base.RB._Axis,3);
+			}
+			if(Robo_Base.Running_Time-Reboot_ODrive1Time<300) HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
+			else HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+		}
+	}else Reboot_ODrive1Flag=Reboot_ODrive1Flag=0;
   /* USER CODE END TIM3_IRQn 1 */
 }
 
@@ -423,8 +409,7 @@ void CAN2_RX0_IRQHandler(void)
   /* USER CODE END CAN2_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan2);
   /* USER CODE BEGIN CAN2_RX0_IRQn 1 */
-  HAL_CAN_GetRxMessage(&hcan2,CAN_RX_FIFO0,&RxMeg2,Robo_Base.Can2.Rx);
-  Motor_Pos_Analysis(Robo_Base.Can2.Rx,RxMeg2.StdId);
+	
   /* USER CODE END CAN2_RX0_IRQn 1 */
 }
 
@@ -448,7 +433,7 @@ void DMA2_Stream6_IRQHandler(void)
 void USART6_IRQHandler(void)
 {
   /* USER CODE BEGIN USART6_IRQn 0 */
-extern UART_RX_BUFFER Uart6_Rx;
+	extern UART_RX_BUFFER Uart6_Rx;
   /* USER CODE END USART6_IRQn 0 */
   HAL_UART_IRQHandler(&huart6);
   /* USER CODE BEGIN USART6_IRQn 1 */
@@ -457,64 +442,6 @@ extern UART_RX_BUFFER Uart6_Rx;
 }
 
 /* USER CODE BEGIN 1 */
-
-void Control_Task(void)
-{
-	Robo_Base.Running_Time++;
-	if(ODrive_num>4) ODrive_num=0;
-	else ODrive_num++;
-	
-	//Check_Task();
-	//LED_Task();
-	switch(Control_State)
-	{
-		case 0:
-			Error_Task();
-			break;
-		case 1:
-			if(	//Robo_Base.LF._Axis->Current_State==8&&Robo_Base.LF._Axis->Error==0&&
-					//Robo_Base.LB._Axis->Current_State==8&&Robo_Base.LB._Axis->Error==0
-					//Robo_Base.RF._Axis->Current_State==8&&Robo_Base.RF._Axis->Error==0&&
-					Robo_Base.RB._Axis->Current_State==8&&Robo_Base.RB._Axis->Error==0
-			)Control_State=2;
-			else{
-				//if(ODrive_num==0) Motor_Init(Robo_Base.LF._Axis);
-				//if(ODrive_num==1) Motor_Init(Robo_Base.LB._Axis);
-				//if(ODrive_num==2) Motor_Init(Robo_Base.RF._Axis);
-				if(ODrive_num==3) Axis_CloseLoop_Init(Robo_Base.RB._Axis);
-			}break;
-		case 2:
-			Move_Analysis();
-			//PID_Send(ODrive_num);
-			break;
-		default:break;
-	}
-}
-
-void Check_Task(void)
-{
-	if(Base_WatchDog()) Control_State=0;
-}
-
-void Error_Task(void)
-{
-	;
-}
-
-void LED_Task(void)
-{
-	switch(Control_State)
-	{
-		case 0:
-			LED_WARNING(&Robo_Base);break;
-		case 1:
-			Green_Quick(Robo_Base.Running_Time);break;
-		case 2:
-			Green_Always();break;
-		default:break;
-	}
-}
-
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

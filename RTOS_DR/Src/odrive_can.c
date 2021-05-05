@@ -134,13 +134,10 @@ void Send_To_ODrive(Can_TxMessageTypeDef* TxMessage,uint16_t StdID,uint8_t* Data
   TxMessage->Header.DLC = len;
 }
 
-void ODrive_Init(void)
+void ODrive_Init(ODrive* _ODrive)
 {
-	Axis_Init(&ODrive0.Axis0,0);
-	Axis_Init(&ODrive0.Axis1,1);
-	
-	Axis_Init(&ODrive1.Axis0,2);
-	Axis_Init(&ODrive1.Axis1,3);
+	Axis_Init(&_ODrive->Axis0,0);
+	Axis_Init(&_ODrive->Axis1,1);
 }
 
 
@@ -150,8 +147,8 @@ void Axis_CloseLoop_Init(Axis* _Axis)
 	static uint8_t num[4]={0};
 	uint8_t* P_num=&num[_Axis->Node_ID];
 	
-	if(_Axis->Current_State==0) return ;
-	if(*P_num==0){
+	if(_Axis->Error!=0||_Axis->Current_State==0||_Axis->Current_State==8) return ;
+	if(*P_num==0&&_Axis->Current_State==1){
 		_Axis->Requested_State=3;
 		ODrive_Transmit(_Axis,0x7);
 		(*P_num)++;
@@ -181,7 +178,7 @@ void Axis_Init(Axis* _Axis,uint8_t NodeID)
 	_Axis->Vbus_Voltage=0;
 	
 	_Axis->TxMessage=&CanTxMessageList[NodeID+1];
-	_Axis->Protect.Count_Time=WATCHDOG_TIME_MAX;	SystemState_Set(&_Axis->Protect,MISSING);
+	_Axis->Protect.Count_Time=0;	SystemState_Set(&_Axis->Protect,WORKING);
 }
 	
 

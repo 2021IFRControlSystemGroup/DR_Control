@@ -12,18 +12,20 @@
 //---------------------------------//
 
 //---------底盘结构体部分----------//
-typedef enum RoboBaseState									//底盘状态
-{
-	SYSTEM_WORKING=0,														//正常工作
-	LF_POS_ERROR=(1<<0),
-	LB_POS_ERROR=(1<<1),
-	RF_POS_ERROR=(1<<2),
-	RB_POS_ERROR=(1<<3),
-	LF_AXIS_ERROR=(1<<4),
-	LB_AXIS_ERROR=(1<<5),
-	RF_AXIS_ERROR=(1<<6),
-	RB_AXIS_ERROR=(1<<7),
-}RoboBaseState;
+
+//																底盘状态
+//	SYSTEM_WORKING	=	(1<<0)|1,														//正常工作
+//	INIT_STATE			=	(1<<1)|1,														//初始化模式
+//	MOVE_STATE			=	(1<<2)|1,														//移动模式
+//	LF_POS_ERROR		=	(1<<1),															//左前转向电机错误
+//	LB_POS_ERROR		=	(1<<2),															//左后转向电机错误
+//	RF_POS_ERROR		=	(1<<3),															//右前转向电机错误
+//	RB_POS_ERROR		=	(1<<4),															//右后转向电机错误
+//	LF_AXIS_ERROR		=	(1<<5),															//左前驱动电机错误
+//	LB_AXIS_ERROR		=	(1<<6),															//左后驱动电机错误
+//	RF_AXIS_ERROR		=	(1<<7),															//右前驱动电机错误
+//	RB_AXIS_ERROR		=	(1<<8),															//右后驱动电机错误
+
 
 typedef struct CAN_BUFFER										//CAN通信结构体
 {
@@ -48,7 +50,7 @@ typedef struct Robo_Base										//底盘结构体
 	int32_t Speed_Y;													//底盘Y方向上目标速度
 	float Angle;															//底盘运动的相对方向
 
-	uint8_t Working_State;											//底盘状态
+	uint32_t Working_State;										//底盘状态
 	
 	CAN_BUFFER Can1;													//CAN1通信发送数据
 	CAN_BUFFER Can2;													//CAN2通信发送数据
@@ -64,7 +66,7 @@ void Motor_Pos_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);					//位置环电机数
 void Motor_Speed_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);				//速度环电机数据分析的接口函数
 void Can_TxMessageCal(void);																					//计算更新底盘的Can发送数据函数
 void Counting_Time(void);																							//记录底盘运行时间函数
-uint8_t Base_WatchDog(void);																					//底盘看门狗接口函数
+void Base_WatchDog(void);																					//底盘看门狗接口函数
 //---------------------------------//
 #endif
 

@@ -56,3 +56,4 @@ rtos_dr\freertos.o: ../Inc/odrive_can.h
 rtos_dr\freertos.o: ../Inc/uart_communicate.h
 rtos_dr\freertos.o: ../Inc/usart.h
 rtos_dr\freertos.o: ../Inc/analysis.h
+rtos_dr\freertos.o: ../Inc/led.h

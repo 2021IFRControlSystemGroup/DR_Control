@@ -21,7 +21,7 @@
 #define HALF_PI_ANGLE (GEAR_RATIO*ROTOR_ANGLE/4)
 #define PI_ANGLE (GEAR_RATIO*ROTOR_ANGLE/2)
 
-#define WATCHDOG_TIME_MAX 300														//看门狗总时长
+#define WATCHDOG_TIME_MAX 500														//看门狗总时长
 #define POS_SYSTEM_CHECK if(System_Check(&P_Pos->Protect)) Error_State=(RoboBaseState)(P_Pos->Motor_Num+1);						//位置环看门狗检测
 #define SPEED_SYSTEM_CHECK if(System_Check(&P_Speed->Protect)) Error_State=(RoboBaseState)(P_Speed->Motor_Num+5);			//速度环看门狗检测
 //---------------------------------//
@@ -31,7 +31,8 @@ typedef enum SystemState										//系统状态
 {
 	WORKING,																	//正常工作
 	MISSING,																	//丢失
-	SUSPENDING																//挂起
+	SUSPENDING,																//挂起
+	REBOOT
 }SystemState;
 
 typedef struct Protect_System								//系统看门狗结构体
