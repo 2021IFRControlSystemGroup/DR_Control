@@ -14,4 +14,3 @@ rtos_dr\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 rtos_dr\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 rtos_dr\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 rtos_dr\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h
-rtos_dr\tasks.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdio.h

@@ -249,6 +249,7 @@ void PID_Pos_Cal(Pos_System* Pos_Motor)
 	
 	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2]=((int16_t)Pos_Motor->Speed_PID.output)>>8;
 	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2+1]=((int16_t)Pos_Motor->Speed_PID.output);
+	Pos_Motor->TxMessage->Update=1;
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -310,29 +311,11 @@ void PID_Speed_Cal(Speed_System* Speed_Motor,uint8_t *Tx_msg)
 //		根据要求修改标识符就行
 
 //--------------------------------------------------------------------------------------------------//
-void Send_To_Motor(CAN_HandleTypeDef *hcan,uint8_t* Tx_Data)
-{
-  CAN_TxHeaderTypeDef TxHeader;
-  uint32_t TxMailbox; 
-
-  TxHeader.RTR = 0;
-  TxHeader.IDE = 0;            
-  TxHeader.StdId=0x200;
-  TxHeader.TransmitGlobalTime = DISABLE;
-  TxHeader.DLC = 8;
-  
-  if (HAL_CAN_AddTxMessage(hcan, &TxHeader, Tx_Data, &TxMailbox) != HAL_OK)
-  {
-   /* Transmission request Error */
-     Error_Handler();
-  }
-}
-
+uint32_t TxMailbox;
 void Can_Send(CAN_HandleTypeDef *hcan,Can_TxMessageTypeDef* TxMessage)
 {
-  uint32_t TxMailbox; 
+  TxMailbox=HAL_CAN_GetTxMailboxesFreeLevel(hcan); 
   
-	TxMessage->Update=1;
   if (HAL_CAN_AddTxMessage(hcan, &TxMessage->Header, TxMessage->Data, &TxMailbox) != HAL_OK)
   {
    /* Transmission request Error */

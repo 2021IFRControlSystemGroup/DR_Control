@@ -44,6 +44,7 @@ rtos_dr\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.
 rtos_dr\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 rtos_dr\stm32f4xx_it.o: ../Inc/move.h
 rtos_dr\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+rtos_dr\stm32f4xx_it.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdlib.h
 rtos_dr\stm32f4xx_it.o: ../Inc/robo_base.h
 rtos_dr\stm32f4xx_it.o: ../Inc/motor_system.h
 rtos_dr\stm32f4xx_it.o: ../Inc/can.h

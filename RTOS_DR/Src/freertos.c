@@ -170,7 +170,12 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-		LED_WARNING(&Robo_Base);
+//		if(Base_WatchDog())
+//		{
+//			vTaskSuspend(canSendTaskHandle);
+//			vTaskSuspend(moveTaskHandle);
+//			LED_WARNING(&Robo_Base);
+//		}
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
@@ -193,9 +198,12 @@ void MoveTask(void const * argument)
   {
 		Move_Analysis();
 		Can_TxMessageCal();
-		for(;CanTxMessageIndex<CAN_TXMESSAGEINDEXMAX;CanTxMessageIndex++) if(xQueueSend(Can_TxMessageQueueHandle,&CanTxMessageList[CanTxMessageIndex],10)!=pdPASS) break;
+		for(;CanTxMessageIndex<CAN_TXMESSAGEINDEXMAX;CanTxMessageIndex++)
+			if(CanTxMessageList[CanTxMessageIndex].Update!=0)
+				if(xQueueSend(Can_TxMessageQueueHandle,&CanTxMessageList[CanTxMessageIndex],10)!=pdPASS) break;
+				else CanTxMessageList[CanTxMessageIndex].Update=0;
 		if(CanTxMessageIndex==CAN_TXMESSAGEINDEXMAX) CanTxMessageIndex=0;
-		if(HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_LISTENING||HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_READY) vTaskResume(canSendTaskHandle);
+		//if(HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_LISTENING||HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_READY) vTaskResume(canSendTaskHandle);
     osDelay(1);
   }
   /* USER CODE END MoveTask */
@@ -215,9 +223,13 @@ void CanSendTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-		if(xQueueReceive(Can_TxMessageQueueHandle,&TxMessage,100)==pdPASS) Can_Send(&hcan1,&TxMessage);
-		vTaskSuspend(canSendTaskHandle);
-    osDelay(1);
+ 		if(xQueueReceive(Can_TxMessageQueueHandle,&TxMessage,10)==pdPASS){
+			Can_Send(&hcan1,&TxMessage);
+			ulTaskNotifyTake(pdFALSE,portMAX_DELAY);
+		}else osDelay(1);
+		//osSemaphoreWait(CAN_TxStateHandle,osWaitForever);
+		
+		//vTaskSuspend(canSendTaskHandle);
   }
   /* USER CODE END CanSendTask */
 }
@@ -280,16 +292,29 @@ void InitTask(void const * argument)
 				if(xQueueSend(Can_TxMessageQueueHandle,&CanTxMessageList[CanTxMessageIndex],10)!=pdPASS) break;
 				else CanTxMessageList[CanTxMessageIndex].Update=0;
 		if(CanTxMessageIndex==CAN_TXMESSAGEINDEXMAX) CanTxMessageIndex=0;
-		if(HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_LISTENING||HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_READY) vTaskResume(canSendTaskHandle);
-		}
-	osDelay(1);
+		//if(HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_LISTENING||HAL_CAN_GetState(&hcan1)==HAL_CAN_STATE_READY) vTaskResume(canSendTaskHandle);
+		}osDelay(1);
   }
   /* USER CODE END InitTask */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-
+void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef *hcan)
+{
+	vTaskNotifyGiveFromISR(canSendTaskHandle,(BaseType_t*)pdTRUE);
+	//printf("callback0!\r\n");
+}
+void HAL_CAN_TxMailbox1CompleteCallback(CAN_HandleTypeDef *hcan)
+{
+	vTaskNotifyGiveFromISR(canSendTaskHandle,(BaseType_t*)pdTRUE);
+	//printf("callback1!\r\n");
+}
+void HAL_CAN_TxMailbox2CompleteCallback(CAN_HandleTypeDef *hcan)
+{
+	vTaskNotifyGiveFromISR(canSendTaskHandle,(BaseType_t*)pdTRUE);
+	//printf("callback2!\r\n");
+}
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

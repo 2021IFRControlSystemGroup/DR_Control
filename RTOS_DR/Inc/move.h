@@ -3,6 +3,7 @@
 
 #include "main.h"
 #include "math.h"
+#include <stdlib.h>
 #include "robo_base.h"
 #include "analysis.h"
 

@@ -22,7 +22,6 @@
 #define PI_ANGLE (GEAR_RATIO*ROTOR_ANGLE/2)
 
 #define WATCHDOG_TIME_MAX 300														//看门狗总时长
-#define RUNNING_TIME_MAX 500000													//系统运行时间最大值
 #define POS_SYSTEM_CHECK if(System_Check(&P_Pos->Protect)) Error_State=(RoboBaseState)(P_Pos->Motor_Num+1);						//位置环看门狗检测
 #define SPEED_SYSTEM_CHECK if(System_Check(&P_Speed->Protect)) Error_State=(RoboBaseState)(P_Speed->Motor_Num+5);			//速度环看门狗检测
 //---------------------------------//

@@ -192,12 +192,12 @@ uint8_t Base_WatchDog(void)
 //		记录底盘运行时间
 //
 //参数类型:
-//		ROBO_BASE* 底盘结构体指针
+//		无
 //
 //--------------------------------------------------------------------------------------------------//
-void Counting_Time(ROBO_BASE* Robo)
+void Counting_Time(void)
 {
-  Robo->Running_Time++;
-  if(Robo->Running_Time>RUNNING_TIME_MAX) Robo->Running_Time=0;
+  Robo_Base.Running_Time++;
+  if(Robo_Base.Running_Time>RUNNING_TIME_MAX) Robo_Base.Running_Time=0;
 }
 

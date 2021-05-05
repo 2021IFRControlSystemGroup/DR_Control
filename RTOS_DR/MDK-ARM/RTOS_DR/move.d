@@ -34,6 +34,7 @@ rtos_dr\move.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 rtos_dr\move.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 rtos_dr\move.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 rtos_dr\move.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+rtos_dr\move.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdlib.h
 rtos_dr\move.o: ../Inc/robo_base.h
 rtos_dr\move.o: ../Inc/motor_system.h
 rtos_dr\move.o: ../Inc/can.h

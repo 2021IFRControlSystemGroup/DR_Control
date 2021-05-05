@@ -8,8 +8,7 @@
 //---------------------------------//
 
 //---------#define部分-------------//
-#define UART2_TX_LENGTH 20															//UART2发送通信字符总长度
-#define UART2_RX_LENGTH 20															//UART2接收通信字符总长度
+#define RUNNING_TIME_MAX 500000													//系统运行时间最大值
 //---------------------------------//
 
 //---------底盘结构体部分----------//
@@ -26,24 +25,16 @@ typedef enum RoboBaseState									//底盘状态
 	RB_AXIS_ERROR=(1<<7),
 }RoboBaseState;
 
-typedef struct UART_BUFFER									//UART通信结构体
-{
-	uint8_t Tx_buffer[UART2_TX_LENGTH];				//发送数据
-	uint8_t Tx_length;												//发送数据长度
-	uint8_t Rx_buffer[UART2_RX_LENGTH];				//发送数据
-	uint8_t Rx_length;												//发送数据长度	
-}UART_BUFFER;
-
 typedef struct CAN_BUFFER										//CAN通信结构体
 {
 	uint8_t Tx[8];														//发送数据帧
 	uint8_t Rx[8];														//接收数据帧
 }CAN_BUFFER;
 
-typedef struct Motor_Group
+typedef struct Motor_Group									//舵轮组结构体
 {
-	Pos_System _Pos;
-	Axis* _Axis;
+	Pos_System _Pos;													//位置环系统结构体
+	Axis* _Axis;															//ODrive的Axis结构体
 }Motor_Group;
 
 typedef struct Robo_Base										//底盘结构体
@@ -68,18 +59,12 @@ typedef struct Robo_Base										//底盘结构体
 //---------------------------------//
 
 //-------------函数声明------------//
-void Motor_Pos_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);				//位置环电机数据分析的接口函数
+void BASE_Init(void);																									//底盘结构体成员初始化的接口函数
+void Motor_Pos_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);					//位置环电机数据分析的接口函数
 void Motor_Speed_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);				//速度环电机数据分析的接口函数
-
-void SystemIO_Usart_ToString(ROBO_BASE* Robo,int32_t System_Out,int32_t System_In);			//系统输入输入输出值转化成字符的函数
-
-void BASE_Init(void);																									//底盘PID参数初始化的接口函数
-
-void PID_Send(uint8_t ODrive_num);																							//PID发送函数
-void Can_TxMessageCal(void);
-void Counting_Time(ROBO_BASE* Robo);
-void LED_WARNING(ROBO_BASE* Robo);
-uint8_t Base_WatchDog(void);														//底盘看门狗接口函数
+void Can_TxMessageCal(void);																					//计算更新底盘的Can发送数据函数
+void Counting_Time(void);																							//记录底盘运行时间函数
+uint8_t Base_WatchDog(void);																					//底盘看门狗接口函数
 //---------------------------------//
 #endif
 

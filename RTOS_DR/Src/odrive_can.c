@@ -60,7 +60,8 @@ void ODrive_Transmit(Axis* _Axis,uint16_t CMD)
 		case 0xD:Set_Input_Vel(_Axis);break;
 		case 0x16:Reboot_ODrive(_Axis);break;
 		default:break;
-	}	_Axis->StdID=_Axis->Node_ID<<5;
+	}_Axis->TxMessage->Update=1;
+	_Axis->StdID=_Axis->Node_ID<<5;
 }
 
 void Get_Motor_Error(Axis* _Axis)									//0x3
