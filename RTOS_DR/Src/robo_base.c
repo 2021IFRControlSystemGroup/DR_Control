@@ -98,7 +98,7 @@ void BASE_Init(void)
 	
   Pos_System* P_Pos=NULL;																																								//转向电机初始化
 	P_Pos=&Robo_Base.LF._Pos; PID_Init(&P_Pos->Pos_PID,			0.3,	0,	0,	10000,	0,	0,	10000);
-	Motor_Init(P_Pos,0);			PID_Init(&P_Pos->Speed_PID,			5,	0,	0,	10000,	0,	0,	8000);
+	Motor_Init(P_Pos,0);			PID_Init(&P_Pos->Speed_PID,			5,	0,	0,	5000,	0,	0,	4000);
   P_Pos=&Robo_Base.LB._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
   Motor_Init(P_Pos,1);			PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
   P_Pos=&Robo_Base.RF._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
@@ -134,7 +134,6 @@ void Can_TxMessageCal()
 	PID_Pos_Cal(&Robo_Base.LB._Pos);
 	PID_Pos_Cal(&Robo_Base.RF._Pos);
 	PID_Pos_Cal(&Robo_Base.RB._Pos);
-	
 	
 	ODrive_Transmit(Robo_Base.LF._Axis,0x0D);
 	ODrive_Transmit(Robo_Base.LB._Axis,0x0D);
@@ -204,13 +203,13 @@ void Pos_CloseLoop_Init(Pos_System* P_Pos)
 	static uint8_t num[4]={0};
 	uint8_t* P_num=&num[P_Pos->Motor_Num];
 	
-	//if(P_Pos->Info.Temperature==0) return ;
-	if(*P_num==0) PID_Speed_Cal(P_Pos,300),*P_num=1;
-	else if(*P_num<100){
-		if(P_Pos==&Robo_Base.LF._Pos) if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7)==GPIO_PIN_RESET) (*P_num)++;
-		if(P_Pos==&Robo_Base.LB._Pos) if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7)==GPIO_PIN_RESET) (*P_num)++;
-		if(P_Pos==&Robo_Base.RF._Pos) if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7)==GPIO_PIN_RESET) (*P_num)++;
-		if(P_Pos==&Robo_Base.RB._Pos) if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7)==GPIO_PIN_RESET) (*P_num)++;
+	if(P_Pos->Info.Temperature==0) return ;
+	if(*P_num<150){
+		PID_Speed_Cal(P_Pos,300);
+		if(P_Pos==&Robo_Base.LF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH1_GPIO_Port,TIM3_CH1_Pin)==GPIO_PIN_RESET) (*P_num)++;
+		if(P_Pos==&Robo_Base.LB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH2_GPIO_Port,TIM3_CH2_Pin)==GPIO_PIN_RESET) (*P_num)++;
+		if(P_Pos==&Robo_Base.RF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH3_GPIO_Port,TIM3_CH3_Pin)==GPIO_PIN_RESET) (*P_num)++;
+		if(P_Pos==&Robo_Base.RB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH4_GPIO_Port,TIM3_CH4_Pin)==GPIO_PIN_RESET) (*P_num)++;
 	}else if(*P_num==100) P_Pos->Info.Abs_Angle=0,PID_Speed_Cal(P_Pos,0);
 }
 

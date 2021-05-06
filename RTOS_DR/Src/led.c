@@ -1,49 +1,70 @@
 #include "led.h"
 
-void LED_WARNING(ROBO_BASE* Robo)
+extern ROBO_BASE Robo_Base;
+
+void Led_Task(void)
 {
-	static int8_t P_Error=8;
-	static uint32_t P_Time=0;
-	
-	//HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
-	if(P_Time+800<=Robo->Running_Time) P_Time=Robo->Running_Time,P_Error--;
-	if(P_Error==-1){
-		P_Error=8;
-	}else if(P_Error==0){
-		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_RESET);
-	}else if(Robo->Working_State&(1<<P_Error)){
-		if(P_Time+600<=Robo->Running_Time){
-			HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_RESET);
-		}else{
-			HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_SET);
-		}
-	}else{
-		if(P_Time+600<=Robo->Running_Time){
-			HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
-			HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_RESET);
-		}else{
-			HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_RESET);
+	if((Robo_Base.Working_State&1)==0) LED_WARNING();
+	else {
+		switch(Robo_Base.Working_State){
+			case 1:ALL_Always();break;
+			case 3:Green_Quick();break;
+			case 5:Green_Always();break;
 		}
 	}
 }
 
-void Green_Quick(uint32_t Running_Time)
+void LED_WARNING(void)
 {
-	if(Running_Time%500>400){
-		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
-		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_RESET);
+	static int8_t P_Error=8;
+	static uint32_t P_Time=0;
+	
+	//HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+	if(P_Time+800<=Robo_Base.Running_Time) P_Time=Robo_Base.Running_Time,P_Error--;
+	if(P_Error==-1){
+		P_Error=8;
+	}else if(P_Error==0){
+		LED_RED_OFF;
+		LED_GRE_OFF;
+	}else if(Robo_Base.Working_State&(1<<P_Error)){
+		if(P_Time+600<=Robo_Base.Running_Time){
+			LED_RED_OFF;
+			LED_GRE_OFF;
+		}else{
+			LED_RED_ON;
+			LED_GRE_OFF;
+		}
 	}else{
-		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_RESET);
+		if(P_Time+600<=Robo_Base.Running_Time){
+			LED_RED_OFF;
+			LED_GRE_OFF;
+		}else{
+			LED_RED_OFF;
+			LED_GRE_ON;
+		}
+	}
+}
+
+void Green_Quick(void)
+{
+	if(Robo_Base.Running_Time%500>400){
+		LED_RED_OFF;
+		LED_GRE_OFF;
+	}else{
+		LED_RED_OFF;
+		LED_GRE_ON;
 	}
 }
 
 void Green_Always(void)
 {
-	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_0,GPIO_PIN_RESET);
+	LED_RED_OFF;
+	LED_GRE_ON;
 }
+
+void ALL_Always(void)
+{
+	LED_RED_ON;
+	LED_GRE_ON;
+}
+

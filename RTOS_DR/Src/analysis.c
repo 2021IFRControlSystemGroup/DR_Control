@@ -7,7 +7,7 @@ RC_Ctl_t RC_Ctl=RC_DATA_DEFAULT;
 
 void VisionData_analysis(uint8_t *pData)
 {
-	
+	;
 }
 
 void RemoteData_analysis(uint8_t *sbus_rx_buffer)

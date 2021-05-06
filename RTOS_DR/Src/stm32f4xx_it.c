@@ -296,7 +296,7 @@ void TIM3_IRQHandler(void)
   /* USER CODE BEGIN TIM3_IRQn 1 */
 	Robo_Base.Running_Time++;
 		
-	if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_4)==GPIO_PIN_RESET){
+	if(HAL_GPIO_ReadPin(REBOOT0_GPIO_Port,REBOOT0_Pin)==GPIO_PIN_RESET){
 		if(Reboot_ODrive0Time==0) Reboot_ODrive0Time=Robo_Base.Running_Time;
 		if(Robo_Base.Running_Time-Reboot_ODrive0Time>200){
 			if(Reboot_ODrive0Flag==0){
@@ -306,12 +306,12 @@ void TIM3_IRQHandler(void)
 				SystemState_Set(&Robo_Base.LB._Axis->Protect,REBOOT);
 				Axis_Init(Robo_Base.LF._Axis,0);
 				Axis_Init(Robo_Base.LB._Axis,1);
-			}if(Robo_Base.Running_Time-Reboot_ODrive0Time<230) HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
-			else HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+			}if(Robo_Base.Running_Time-Reboot_ODrive0Time<230) HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+			else HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
 		}
-	}else Reboot_ODrive0Time=Reboot_ODrive0Flag=0,HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+	}else Reboot_ODrive0Time=Reboot_ODrive0Flag=0,HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);;
 	
-	if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_3)==GPIO_PIN_RESET){
+	if(HAL_GPIO_ReadPin(REBOOT1_GPIO_Port,REBOOT1_Pin)==GPIO_PIN_RESET){
 		if(Reboot_ODrive1Time==0) Reboot_ODrive1Time=Robo_Base.Running_Time;
 		if(Robo_Base.Running_Time-Reboot_ODrive1Time>200){
 			if(Reboot_ODrive1Flag==0){
@@ -321,8 +321,8 @@ void TIM3_IRQHandler(void)
 				SystemState_Set(&Robo_Base.RB._Axis->Protect,REBOOT);
 				Axis_Init(Robo_Base.RF._Axis,2);
 				Axis_Init(Robo_Base.RB._Axis,3);
-			}if(Robo_Base.Running_Time-Reboot_ODrive1Time<230) HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
-			else HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
+			}if(Robo_Base.Running_Time-Reboot_ODrive1Time<230) HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+			else HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
 		}
 	}else Reboot_ODrive1Time=Reboot_ODrive1Flag=0;
   /* USER CODE END TIM3_IRQn 1 */
@@ -366,7 +366,7 @@ void USART3_IRQHandler(void)
   /* USER CODE END USART3_IRQn 0 */
   HAL_UART_IRQHandler(&huart3);
   /* USER CODE BEGIN USART3_IRQn 1 */
-	//Uart_DMA_Process(&huart3,&hdma_usart3_rx,&Uart3_Rx,VisionData_analysis);
+	
   /* USER CODE END USART3_IRQn 1 */
 }
 

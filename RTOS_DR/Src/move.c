@@ -4,7 +4,6 @@
 #define MAX_SPEED 10.0
 
 extern ROBO_BASE Robo_Base;
-extern RC_Ctl_t RC_Ctl;
 
 double dA_Tar=0;
 double dS_Tar=0;

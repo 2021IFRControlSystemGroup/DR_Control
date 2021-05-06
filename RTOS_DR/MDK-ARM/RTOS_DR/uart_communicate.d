@@ -28,6 +28,7 @@ rtos_dr\uart_communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_ca
 rtos_dr\uart_communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
 rtos_dr\uart_communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 rtos_dr\uart_communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
+rtos_dr\uart_communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h
 rtos_dr\uart_communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 rtos_dr\uart_communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 rtos_dr\uart_communicate.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h

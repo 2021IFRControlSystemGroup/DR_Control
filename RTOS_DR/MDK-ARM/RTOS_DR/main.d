@@ -27,6 +27,7 @@ rtos_dr\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h
 rtos_dr\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
 rtos_dr\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 rtos_dr\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
+rtos_dr\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_iwdg.h
 rtos_dr\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 rtos_dr\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 rtos_dr\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
@@ -48,12 +49,15 @@ rtos_dr\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 rtos_dr\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 rtos_dr\main.o: ../Inc/can.h
 rtos_dr\main.o: ../Inc/dma.h
+rtos_dr\main.o: ../Inc/iwdg.h
 rtos_dr\main.o: ../Inc/tim.h
 rtos_dr\main.o: ../Inc/usart.h
 rtos_dr\main.o: ../Inc/gpio.h
-rtos_dr\main.o: ../Inc/odrive_can.h
-rtos_dr\main.o: ../Inc/motor_system.h
+rtos_dr\main.o: ../Inc/move.h
 rtos_dr\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
+rtos_dr\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdlib.h
 rtos_dr\main.o: ../Inc/robo_base.h
+rtos_dr\main.o: ../Inc/motor_system.h
+rtos_dr\main.o: ../Inc/odrive_can.h
 rtos_dr\main.o: ../Inc/uart_communicate.h
 rtos_dr\main.o: ../Inc/analysis.h

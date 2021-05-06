@@ -264,7 +264,7 @@ void PID_Pos_Cal(Pos_System* Pos_Motor)
 //		uint8_t* 发送数据的数组
 //
 //--------------------------------------------------------------------------------------------------//
-void PID_Speed_Cal(Pos_System* Pos_Motor,uint32_t Tar_Speed)
+void PID_Speed_Cal(Pos_System* Pos_Motor,int32_t Tar_Speed)
 {
 //`	if(Speed_Motor->Protect.State!=WORKING) return ;
 	Pos_Motor->Speed_PID.error =  Tar_Speed - Pos_Motor->Info.Speed;

@@ -150,32 +150,25 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-	static uint8_t State=1;
+	extern IWDG_HandleTypeDef hiwdg;
+	static uint8_t Suspend_Flag=1;
 	
   /* Infinite loop */
   for(;;)
   {
+		HAL_IWDG_Refresh(&hiwdg);
 		//Base_WatchDog();
-		if((Robo_Base.Working_State&1)==0){
-			if(State){
-				vTaskSuspend(canSendTaskHandle);
-				vTaskSuspend(moveTaskHandle);
-				vTaskSuspend(initTaskHandle);
-				State=0;
-			}LED_WARNING(&Robo_Base);
-		}else{
-			if(State==0){
-				vTaskResume(canSendTaskHandle);
-				vTaskResume(moveTaskHandle);
-				vTaskResume(initTaskHandle);
-				State=1;
-			}else{
-				switch(Robo_Base.Working_State){
-					case 1:break;
-					case 3:Green_Quick(Robo_Base.Running_Time);break;
-					case 5:Green_Always();break;
-				}
-			}
+		Led_Task();
+		if(((Robo_Base.Working_State&1)==0)&&Suspend_Flag){
+			vTaskSuspend(canSendTaskHandle);
+			vTaskSuspend(moveTaskHandle);
+			vTaskSuspend(initTaskHandle);
+			Suspend_Flag=0;
+		}if(((Robo_Base.Working_State&1)==1)&&!Suspend_Flag){
+			vTaskResume(canSendTaskHandle);
+			vTaskResume(moveTaskHandle);
+			vTaskResume(initTaskHandle);
+			Suspend_Flag=1;
 		}osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
@@ -266,6 +259,9 @@ void InitTask(void const * argument)
 			vTaskSuspend(initTaskHandle);
 		}else{
 			Pos_CloseLoop_Init(&Robo_Base.LF._Pos);
+//			Pos_CloseLoop_Init(&Robo_Base.LB._Pos);
+//			Pos_CloseLoop_Init(&Robo_Base.RF._Pos);
+//			Pos_CloseLoop_Init(&Robo_Base.RB._Pos);
 			Axis_CloseLoop_Init(Robo_Base.LF._Axis);
 //			Axis_CloseLoop_Init(Robo_Base.LB._Axis);
 //			Axis_CloseLoop_Init(Robo_Base.RF._Axis);
