@@ -166,7 +166,7 @@ void Axis_CloseLoop_Init(Axis* _Axis)
 void Axis_Init(Axis* _Axis,uint8_t NodeID)
 {
 	_Axis->CMD=0;
-	_Axis->Current_State=0;
+	_Axis->Current_State=1;																//调试的时候为1, 实际情况下为0
 	_Axis->Encoder_Error=0;
 	_Axis->Encoder_Vel_Estimate=0;
 	_Axis->Error=0;

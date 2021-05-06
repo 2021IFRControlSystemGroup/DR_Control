@@ -264,36 +264,38 @@ void PID_Pos_Cal(Pos_System* Pos_Motor)
 //		uint8_t* 发送数据的数组
 //
 //--------------------------------------------------------------------------------------------------//
-void PID_Speed_Cal(Speed_System* Speed_Motor,uint8_t *Tx_msg)
+void PID_Speed_Cal(Pos_System* Pos_Motor,uint32_t Tar_Speed)
 {
 //`	if(Speed_Motor->Protect.State!=WORKING) return ;
-	Speed_Motor->Speed_PID.error =  Speed_Motor->Tar_Speed - Speed_Motor->Info.Speed;
-	if(Speed_Motor->Speed_PID.error > Speed_Motor->Speed_PID.error_max)
-		Speed_Motor->Speed_PID.error = Speed_Motor->Speed_PID.error_max;
-	if(Speed_Motor->Speed_PID.error < -Speed_Motor->Speed_PID.error_max)
-		Speed_Motor->Speed_PID.error = -Speed_Motor->Speed_PID.error_max;
-	if(Speed_Motor->Speed_PID.error > 0 && Speed_Motor->Speed_PID.error < Speed_Motor->Speed_PID.dead_line)
-		Speed_Motor->Speed_PID.error = 0;
-	if(Speed_Motor->Speed_PID.error < 0 && Speed_Motor->Speed_PID.error > Speed_Motor->Speed_PID.dead_line)
-		Speed_Motor->Speed_PID.error = 0;
+	Pos_Motor->Speed_PID.error =  Tar_Speed - Pos_Motor->Info.Speed;
+	if(Pos_Motor->Speed_PID.error > Pos_Motor->Speed_PID.error_max)
+		Pos_Motor->Speed_PID.error = Pos_Motor->Speed_PID.error_max;
+	if(Pos_Motor->Speed_PID.error < -Pos_Motor->Speed_PID.error_max)
+		Pos_Motor->Speed_PID.error = -Pos_Motor->Speed_PID.error_max;
+	if(Pos_Motor->Speed_PID.error > 0 && Pos_Motor->Speed_PID.error < Pos_Motor->Speed_PID.dead_line)
+		Pos_Motor->Speed_PID.error = 0;
+	if(Pos_Motor->Speed_PID.error < 0 && Pos_Motor->Speed_PID.error > Pos_Motor->Speed_PID.dead_line)
+		Pos_Motor->Speed_PID.error = 0;
 	
-	Speed_Motor->Speed_PID.intergral = Speed_Motor->Speed_PID.intergral + Speed_Motor->Speed_PID.error;
-	if(Speed_Motor->Speed_PID.intergral > Speed_Motor->Speed_PID.intergral_max)
-		Speed_Motor->Speed_PID.intergral = Speed_Motor->Speed_PID.intergral_max;
-	if(Speed_Motor->Speed_PID.intergral < -Speed_Motor->Speed_PID.intergral_max)
-		Speed_Motor->Speed_PID.intergral = -Speed_Motor->Speed_PID.intergral_max;
+	Pos_Motor->Speed_PID.intergral = Pos_Motor->Speed_PID.intergral + Pos_Motor->Speed_PID.error;
+	if(Pos_Motor->Speed_PID.intergral > Pos_Motor->Speed_PID.intergral_max)
+		Pos_Motor->Speed_PID.intergral = Pos_Motor->Speed_PID.intergral_max;
+	if(Pos_Motor->Speed_PID.intergral < -Pos_Motor->Speed_PID.intergral_max)
+		Pos_Motor->Speed_PID.intergral = -Pos_Motor->Speed_PID.intergral_max;
 	
-	Speed_Motor->Speed_PID.derivative = Speed_Motor->Speed_PID.error - Speed_Motor->Speed_PID.error_last;
-	Speed_Motor->Speed_PID.error_last = Speed_Motor->Speed_PID.error;
+	Pos_Motor->Speed_PID.derivative = Pos_Motor->Speed_PID.error - Pos_Motor->Speed_PID.error_last;
+	Pos_Motor->Speed_PID.error_last = Pos_Motor->Speed_PID.error;
 	
-	Speed_Motor->Speed_PID.output = Speed_Motor->Speed_PID.Kp*Speed_Motor->Speed_PID.error + Speed_Motor->Speed_PID.Ki*Speed_Motor->Speed_PID.intergral + Speed_Motor->Speed_PID.Kd*Speed_Motor->Speed_PID.derivative;
+	Pos_Motor->Speed_PID.output = Pos_Motor->Speed_PID.Kp*Pos_Motor->Speed_PID.error + Pos_Motor->Speed_PID.Ki*Pos_Motor->Speed_PID.intergral + Pos_Motor->Speed_PID.Kd*Pos_Motor->Speed_PID.derivative;
 	
-	if(Speed_Motor->Speed_PID.output > Speed_Motor->Speed_PID.output_max)
-		Speed_Motor->Speed_PID.output = Speed_Motor->Speed_PID.output_max;
-	if(Speed_Motor->Speed_PID.output < -Speed_Motor->Speed_PID.output_max)
-		Speed_Motor->Speed_PID.output = -Speed_Motor->Speed_PID.output_max;
+	if(Pos_Motor->Speed_PID.output > Pos_Motor->Speed_PID.output_max)
+		Pos_Motor->Speed_PID.output = Pos_Motor->Speed_PID.output_max;
+	if(Pos_Motor->Speed_PID.output < -Pos_Motor->Speed_PID.output_max)
+		Pos_Motor->Speed_PID.output = -Pos_Motor->Speed_PID.output_max;
 	
-	Tx_msg[Speed_Motor->Motor_Num*2]=((int16_t)Speed_Motor->Speed_PID.output)>>8;Tx_msg[Speed_Motor->Motor_Num*2+1]=(int16_t)Speed_Motor->Speed_PID.output;
+	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2]=((int16_t)Pos_Motor->Speed_PID.output)>>8;
+	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2+1]=((int16_t)Pos_Motor->Speed_PID.output);
+	Pos_Motor->TxMessage->Update=1;
 }
 
 //--------------------------------------------------------------------------------------------------//

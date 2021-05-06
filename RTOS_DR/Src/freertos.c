@@ -113,7 +113,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityIdle, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of moveTask */
@@ -136,11 +136,6 @@ void MX_FREERTOS_Init(void) {
   /* add threads, ... */
 	vTaskSuspend(moveTaskHandle);
 	vTaskSuspend(errorCheckTaskHandle);
-//	CanTxMessageList[0].Header.RTR = 0;
-//	CanTxMessageList[0].Header.IDE = 0;            
-//	CanTxMessageList[0].Header.StdId=0x200;
-//	CanTxMessageList[0].Header.TransmitGlobalTime = DISABLE;
-//	CanTxMessageList[0].Header.DLC = 8;
   /* USER CODE END RTOS_THREADS */
 
 }
@@ -261,15 +256,16 @@ void InitTask(void const * argument)
   for(;;)
   {
 		if(
-			Robo_Base.LF._Axis->Current_State==8&&Robo_Base.LF._Axis->Error==0
+			Robo_Base.LF._Axis->Current_State==8&&Robo_Base.LF._Axis->Error==0&&Robo_Base.LF._Pos.Info.Abs_Angle==0
 //			Robo_Base.LB._Axis->Current_State==8&&Robo_Base.LB._Axis->Error==0
 //			Robo_Base.RF._Axis->Current_State==8&&Robo_Base.RF._Axis->Error==0&&
 //			Robo_Base.RB._Axis->Current_State==8&&Robo_Base.RB._Axis->Error==0	
+
 		){
 			vTaskResume(moveTaskHandle);
 			vTaskSuspend(initTaskHandle);
 		}else{
-			Robo_Base.LF._Axis->Current_State=1;
+			Pos_CloseLoop_Init(&Robo_Base.LF._Pos);
 			Axis_CloseLoop_Init(Robo_Base.LF._Axis);
 //			Axis_CloseLoop_Init(Robo_Base.LB._Axis);
 //			Axis_CloseLoop_Init(Robo_Base.RF._Axis);

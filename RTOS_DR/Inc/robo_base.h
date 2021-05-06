@@ -17,6 +17,7 @@
 //	SYSTEM_WORKING	=	(1<<0)|1,														//正常工作
 //	INIT_STATE			=	(1<<1)|1,														//初始化模式
 //	MOVE_STATE			=	(1<<2)|1,														//移动模式
+
 //	LF_POS_ERROR		=	(1<<1),															//左前转向电机错误
 //	LB_POS_ERROR		=	(1<<2),															//左后转向电机错误
 //	RF_POS_ERROR		=	(1<<3),															//右前转向电机错误
@@ -46,8 +47,8 @@ typedef struct Robo_Base										//底盘结构体
 	Motor_Group RF;														//舵轮组--右前轮
 	Motor_Group RB;														//舵轮组--右后轮
 
-	int32_t Speed_X;													//底盘X方向上目标速度
-	int32_t Speed_Y;													//底盘Y方向上目标速度
+	float Speed_X;													//底盘X方向上目标速度
+	float Speed_Y;													//底盘Y方向上目标速度
 	float Angle;															//底盘运动的相对方向
 
 	uint32_t Working_State;										//底盘状态
@@ -61,6 +62,7 @@ typedef struct Robo_Base										//底盘结构体
 //---------------------------------//
 
 //-------------函数声明------------//
+void Pos_CloseLoop_Init(Pos_System* P_Pos);
 void BASE_Init(void);																									//底盘结构体成员初始化的接口函数
 void Motor_Pos_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);					//位置环电机数据分析的接口函数
 void Motor_Speed_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);				//速度环电机数据分析的接口函数

@@ -31,6 +31,10 @@ void RemoteData_analysis(uint8_t *sbus_rx_buffer)
 	RC_Ctl.mouse.press_r = sbus_rx_buffer[13]; //!< Mouse Right Is Press ?
 	RC_Ctl.key.v_l = sbus_rx_buffer[14]; //!< KeyBoard value
 	RC_Ctl.key.v_h = sbus_rx_buffer[15];
+	
+	Robo_Base.Speed_X=(RC_Ctl.rc.ch0-1024)*1.0/660;
+	Robo_Base.Speed_Y=(RC_Ctl.rc.ch1-1024)*1.0/660;
+	if(Robo_Base.Speed_X!=0||Robo_Base.Speed_Y!=0) Robo_Base.Angle=atan2(Robo_Base.Speed_X,Robo_Base.Speed_Y);
 }
 
 void MiniPCData_Analysis(uint8_t *pData)

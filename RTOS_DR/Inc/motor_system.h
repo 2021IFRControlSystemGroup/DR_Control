@@ -119,7 +119,7 @@ void Pos_Info_Analysis(Motor_Pos_Info* Motor,uint8_t* RX_Data);											//位置
 void PID_Init(PID *pid, float Kp, float Ki, float Kd, float error_max, float dead_line, float intergral_max, float output_max);		//PID参数初始化函数
 void Motor_Init(Pos_System* P_Pos,uint8_t ID);
 void PID_General_Cal(PID *pid, float fdbV, float tarV,uint8_t moto_num,uint8_t *Tx_msg);					//PID计算函数----为了向下兼容
-void PID_Speed_Cal(Speed_System* Speed_Motor,uint8_t *Tx_msg);																		//速度环系统PID计算函数
+void PID_Speed_Cal(Pos_System* Pos_Motor,uint32_t Tar_Speed);											//速度环系统PID计算函数
 void PID_Pos_Cal(Pos_System* Pos_Motor);																					//位置环系统PID计算函数
 void Send_To_Motor(CAN_HandleTypeDef *hcan,uint8_t* Tx_Data);								//CAN通信发送函数
 void Can_Send(CAN_HandleTypeDef *hcan,Can_TxMessageTypeDef* TxMessage);

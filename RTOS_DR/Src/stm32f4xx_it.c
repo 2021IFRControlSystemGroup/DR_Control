@@ -295,8 +295,8 @@ void TIM3_IRQHandler(void)
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
 	Robo_Base.Running_Time++;
-	
-	if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_9)==GPIO_PIN_RESET){
+		
+	if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_4)==GPIO_PIN_RESET){
 		if(Reboot_ODrive0Time==0) Reboot_ODrive0Time=Robo_Base.Running_Time;
 		if(Robo_Base.Running_Time-Reboot_ODrive0Time>200){
 			if(Reboot_ODrive0Flag==0){
@@ -306,12 +306,12 @@ void TIM3_IRQHandler(void)
 				SystemState_Set(&Robo_Base.LB._Axis->Protect,REBOOT);
 				Axis_Init(Robo_Base.LF._Axis,0);
 				Axis_Init(Robo_Base.LB._Axis,1);
-			}if(Robo_Base.Running_Time-Reboot_ODrive0Time<300) HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
+			}if(Robo_Base.Running_Time-Reboot_ODrive0Time<230) HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
 			else HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
 		}
-	}else Reboot_ODrive0Time=Reboot_ODrive0Flag=0;
+	}else Reboot_ODrive0Time=Reboot_ODrive0Flag=0,HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
 	
-	if(HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_11)==GPIO_PIN_RESET){
+	if(HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_3)==GPIO_PIN_RESET){
 		if(Reboot_ODrive1Time==0) Reboot_ODrive1Time=Robo_Base.Running_Time;
 		if(Robo_Base.Running_Time-Reboot_ODrive1Time>200){
 			if(Reboot_ODrive1Flag==0){
@@ -321,11 +321,10 @@ void TIM3_IRQHandler(void)
 				SystemState_Set(&Robo_Base.RB._Axis->Protect,REBOOT);
 				Axis_Init(Robo_Base.RF._Axis,2);
 				Axis_Init(Robo_Base.RB._Axis,3);
-			}
-			if(Robo_Base.Running_Time-Reboot_ODrive1Time<300) HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
+			}if(Robo_Base.Running_Time-Reboot_ODrive1Time<230) HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET);
 			else HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET);
 		}
-	}else Reboot_ODrive1Flag=Reboot_ODrive1Flag=0;
+	}else Reboot_ODrive1Time=Reboot_ODrive1Flag=0;
   /* USER CODE END TIM3_IRQn 1 */
 }
 

@@ -199,3 +199,18 @@ void Counting_Time(void)
   if(Robo_Base.Running_Time>RUNNING_TIME_MAX) Robo_Base.Running_Time=0;
 }
 
+void Pos_CloseLoop_Init(Pos_System* P_Pos)
+{
+	static uint8_t num[4]={0};
+	uint8_t* P_num=&num[P_Pos->Motor_Num];
+	
+	//if(P_Pos->Info.Temperature==0) return ;
+	if(*P_num==0) PID_Speed_Cal(P_Pos,300),*P_num=1;
+	else if(*P_num<100){
+		if(P_Pos==&Robo_Base.LF._Pos) if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7)==GPIO_PIN_RESET) (*P_num)++;
+		if(P_Pos==&Robo_Base.LB._Pos) if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7)==GPIO_PIN_RESET) (*P_num)++;
+		if(P_Pos==&Robo_Base.RF._Pos) if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7)==GPIO_PIN_RESET) (*P_num)++;
+		if(P_Pos==&Robo_Base.RB._Pos) if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_7)==GPIO_PIN_RESET) (*P_num)++;
+	}else if(*P_num==100) P_Pos->Info.Abs_Angle=0,PID_Speed_Cal(P_Pos,0);
+}
+
