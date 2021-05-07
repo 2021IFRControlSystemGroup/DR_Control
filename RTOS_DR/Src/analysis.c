@@ -43,6 +43,8 @@ void MiniPCData_Analysis(uint8_t *pData)
 	
 	Robo_Base.Speed_X=(pData[0]|(pData[1]<<8))&0x07ff;
 	Robo_Base.Speed_Y=(pData[2]|(pData[3]<<8))&0x07ff;
+	
+	
 }
 
 
