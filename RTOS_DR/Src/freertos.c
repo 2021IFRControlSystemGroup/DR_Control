@@ -53,7 +53,6 @@ extern ROBO_BASE Robo_Base;
 osThreadId defaultTaskHandle;
 osThreadId moveTaskHandle;
 osThreadId canSendTaskHandle;
-osThreadId errorCheckTaskHandle;
 osThreadId initTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,7 +63,6 @@ osThreadId initTaskHandle;
 void StartDefaultTask(void const * argument);
 void MoveTask(void const * argument);
 void CanSendTask(void const * argument);
-void ErrorCheckTask(void const * argument);
 void InitTask(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -124,10 +122,6 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(canSendTask, CanSendTask, osPriorityAboveNormal, 0, 128);
   canSendTaskHandle = osThreadCreate(osThread(canSendTask), NULL);
 
-  /* definition and creation of errorCheckTask */
-  osThreadDef(errorCheckTask, ErrorCheckTask, osPriorityHigh, 0, 128);
-  errorCheckTaskHandle = osThreadCreate(osThread(errorCheckTask), NULL);
-
   /* definition and creation of initTask */
   osThreadDef(initTask, InitTask, osPriorityNormal, 0, 128);
   initTaskHandle = osThreadCreate(osThread(initTask), NULL);
@@ -135,7 +129,6 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
 	vTaskSuspend(moveTaskHandle);
-	vTaskSuspend(errorCheckTaskHandle);
   /* USER CODE END RTOS_THREADS */
 
 }
@@ -214,24 +207,6 @@ void CanSendTask(void const * argument)
 		osDelay(1);
   }
   /* USER CODE END CanSendTask */
-}
-
-/* USER CODE BEGIN Header_ErrorCheckTask */
-/**
-* @brief Function implementing the errorCheckTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_ErrorCheckTask */
-void ErrorCheckTask(void const * argument)
-{
-  /* USER CODE BEGIN ErrorCheckTask */
-  /* Infinite loop */
-  for(;;)
-  {
-		osDelay(1);
-  }
-  /* USER CODE END ErrorCheckTask */
 }
 
 /* USER CODE BEGIN Header_InitTask */
