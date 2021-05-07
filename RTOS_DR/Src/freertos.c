@@ -236,7 +236,7 @@ void ErrorCheckTask(void const * argument)
 
 /* USER CODE BEGIN Header_InitTask */
 /**
-* @brief Function implementing the iniTask thread.
+* @brief Function implementing the initTask thread.
 * @param argument: Not used
 * @retval None
 */
