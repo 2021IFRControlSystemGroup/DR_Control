@@ -97,7 +97,7 @@ void BASE_Init(void)
 	extern ODrive ODrive1;
 	
   Pos_System* P_Pos=NULL;																																								//转向电机初始化
-	P_Pos=&Robo_Base.LF._Pos; PID_Init(&P_Pos->Pos_PID,			0.3,	0,	0,	10000,	0,	0,	10000);
+	P_Pos=&Robo_Base.LF._Pos; PID_Init(&P_Pos->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	10000);
 	Motor_Init(P_Pos,0);			PID_Init(&P_Pos->Speed_PID,			5,	0,	0,	5000,	0,	0,	4000);
   P_Pos=&Robo_Base.LB._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
   Motor_Init(P_Pos,1);			PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
@@ -178,7 +178,7 @@ void Base_WatchDog(void)
 	P_Axis=Robo_Base.RB._Axis;
 	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+5));
   
-	if(Error_State) Robo_Base.Working_State=Error_State;
+	if(Error_State) Robo_Base.Error_State=Error_State;
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -203,13 +203,14 @@ void Pos_CloseLoop_Init(Pos_System* P_Pos)
 	static uint8_t num[4]={0};
 	uint8_t* P_num=&num[P_Pos->Motor_Num];
 	
-	if(P_Pos->Info.Temperature==0) return ;
+	//if(P_Pos->Info.Electric==0) return ;
 	if(*P_num<150){
-		PID_Speed_Cal(P_Pos,300);
+		PID_Speed_Cal(P_Pos,1000);
 		if(P_Pos==&Robo_Base.LF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH1_GPIO_Port,TIM3_CH1_Pin)==GPIO_PIN_RESET) (*P_num)++;
 		if(P_Pos==&Robo_Base.LB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH2_GPIO_Port,TIM3_CH2_Pin)==GPIO_PIN_RESET) (*P_num)++;
 		if(P_Pos==&Robo_Base.RF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH3_GPIO_Port,TIM3_CH3_Pin)==GPIO_PIN_RESET) (*P_num)++;
 		if(P_Pos==&Robo_Base.RB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH4_GPIO_Port,TIM3_CH4_Pin)==GPIO_PIN_RESET) (*P_num)++;
-	}else if(*P_num==100) P_Pos->Info.Abs_Angle=0,PID_Speed_Cal(P_Pos,0);
+	}if(*P_num==150) P_Pos->Info.Abs_Angle=0,(*P_num)++;
+	if(*P_num==151) P_Pos->Tar_Pos=0,SystemState_Set(&P_Pos->Protect,WORKING),PID_Pos_Cal(P_Pos);
 }
 

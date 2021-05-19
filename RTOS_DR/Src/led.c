@@ -26,7 +26,7 @@ void LED_WARNING(void)
 	}else if(P_Error==0){
 		LED_RED_OFF;
 		LED_GRE_OFF;
-	}else if(Robo_Base.Working_State&(1<<P_Error)){
+	}else if(Robo_Base.Error_State&(1<<P_Error)){
 		if(P_Time+600<=Robo_Base.Running_Time){
 			LED_RED_OFF;
 			LED_GRE_OFF;

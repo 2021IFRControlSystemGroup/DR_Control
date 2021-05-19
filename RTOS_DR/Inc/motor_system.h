@@ -15,7 +15,7 @@
 
 #define ROTOR_ANGLE 8192																//转子机械角度
 //#define GEAR_RATIO 19																	//电机减速比(3508)
-#define GEAR_RATIO (36*6)																//电机减速比(2006)
+#define GEAR_RATIO (36*6.5)															//电机减速比(2006)
 #define ONE_CIRCLE (ROTOR_ANGLE*GEAR_RATIO)							//电机转动一圈的总机械角度
 
 #define HALF_PI_ANGLE (GEAR_RATIO*ROTOR_ANGLE/4)
@@ -30,6 +30,7 @@
 typedef enum SystemState										//系统状态
 {
 	WORKING,																	//正常工作
+	INITING,
 	MISSING,																	//丢失
 	SUSPENDING,																//挂起
 	REBOOT

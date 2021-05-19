@@ -52,6 +52,7 @@ typedef struct Robo_Base										//底盘结构体
 	float Angle;															//底盘运动的相对方向
 
 	uint32_t Working_State;										//底盘状态
+	uint32_t Error_State;
 	
 	CAN_BUFFER Can1;													//CAN1通信发送数据
 	CAN_BUFFER Can2;													//CAN2通信发送数据

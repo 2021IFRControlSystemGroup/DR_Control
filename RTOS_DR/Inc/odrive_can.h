@@ -23,6 +23,7 @@ typedef struct Axis
 	
 	Protect_System Protect;
 	Can_TxMessageTypeDef* TxMessage;
+	Can_TxMessageTypeDef* Instruction;
 }Axis;
 
 typedef struct ODrive

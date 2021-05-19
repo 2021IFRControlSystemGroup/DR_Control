@@ -352,7 +352,7 @@ void SystemState_Set(Protect_System* Dogs,SystemState State)
 void Feed_WatchDog(Protect_System* Dogs)
 {
   Dogs->Count_Time=0;
-	SystemState_Set(Dogs,WORKING);
+	//SystemState_Set(Dogs,WORKING);
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -383,5 +383,5 @@ void Motor_Init(Pos_System* P_Pos,uint8_t ID)
   P_Pos->Motor_Num=ID;
 	P_Pos->TxMessage=&CanTxMessageList[0];
   P_Pos->Protect.Count_Time=0;
-	SystemState_Set(&P_Pos->Protect,WORKING);
+	SystemState_Set(&P_Pos->Protect,INITING);
 }

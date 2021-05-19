@@ -37,7 +37,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define CAN_TXMESSAGEINDEXMAX 5
+#define CAN_TXMESSAGEINDEXMAX 9
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -159,15 +159,15 @@ void StartDefaultTask(void const * argument)
 		HAL_IWDG_Refresh(&hiwdg);
 		//Base_WatchDog();
 		Led_Task();
-		if(((Robo_Base.Working_State&1)==0)&&Suspend_Flag){
+		if((Robo_Base.Error_State!=0)&&Suspend_Flag){
 			vTaskSuspend(canSendTaskHandle);
-			vTaskSuspend(moveTaskHandle);
-			vTaskSuspend(initTaskHandle);
+			if(Robo_Base.Working_State==5) vTaskSuspend(moveTaskHandle);
+			else if(Robo_Base.Working_State==3) vTaskSuspend(initTaskHandle);
 			Suspend_Flag=0;
-		}if(((Robo_Base.Working_State&1)==1)&&!Suspend_Flag){
+		}if((Robo_Base.Error_State==0)&&!Suspend_Flag){
 			vTaskResume(canSendTaskHandle);
-			vTaskResume(moveTaskHandle);
-			vTaskResume(initTaskHandle);
+			if(Robo_Base.Working_State==5) vTaskResume(moveTaskHandle);
+			else if(Robo_Base.Working_State==3) vTaskResume(initTaskHandle);
 			Suspend_Flag=1;
 		}osDelay(1);
   }
@@ -249,19 +249,18 @@ void InitTask(void const * argument)
   for(;;)
   {
 		if(
-			Robo_Base.LF._Axis->Current_State==8&&Robo_Base.LF._Axis->Error==0&&Robo_Base.LF._Pos.Info.Abs_Angle==0
-//			Robo_Base.LB._Axis->Current_State==8&&Robo_Base.LB._Axis->Error==0
-//			Robo_Base.RF._Axis->Current_State==8&&Robo_Base.RF._Axis->Error==0&&
-//			Robo_Base.RB._Axis->Current_State==8&&Robo_Base.RB._Axis->Error==0	
-
+			Robo_Base.LF._Axis->Protect.State==WORKING&&Robo_Base.LF._Pos.Protect.State==WORKING
+//			Robo_Base.LB._Axis->Protect.State==WORKING&&Robo_Base.LB._Pos.Protect.State==WORKING
+//			Robo_Base.RF._Axis->Protect.State==WORKING&&Robo_Base.RF._Pos.Protect.State==WORKING
+//			Robo_Base.RB._Axis->Protect.State==WORKING&&Robo_Base.RB._Pos.Protect.State==WORKING
 		){
 			vTaskResume(moveTaskHandle);
 			vTaskSuspend(initTaskHandle);
 		}else{
 			Pos_CloseLoop_Init(&Robo_Base.LF._Pos);
-//			Pos_CloseLoop_Init(&Robo_Base.LB._Pos);
-//			Pos_CloseLoop_Init(&Robo_Base.RF._Pos);
-//			Pos_CloseLoop_Init(&Robo_Base.RB._Pos);
+			Pos_CloseLoop_Init(&Robo_Base.LB._Pos);
+			Pos_CloseLoop_Init(&Robo_Base.RF._Pos);
+			Pos_CloseLoop_Init(&Robo_Base.RB._Pos);
 			Axis_CloseLoop_Init(Robo_Base.LF._Axis);
 //			Axis_CloseLoop_Init(Robo_Base.LB._Axis);
 //			Axis_CloseLoop_Init(Robo_Base.RF._Axis);

@@ -34,17 +34,14 @@ void RemoteData_analysis(uint8_t *sbus_rx_buffer)
 	
 	Robo_Base.Speed_X=(RC_Ctl.rc.ch0-1024)*1.0/660;
 	Robo_Base.Speed_Y=(RC_Ctl.rc.ch1-1024)*1.0/660;
-	if(Robo_Base.Speed_X!=0||Robo_Base.Speed_Y!=0) Robo_Base.Angle=atan2(Robo_Base.Speed_X,Robo_Base.Speed_Y);
+	if(sqrt((RC_Ctl.rc.ch0-1024)*(RC_Ctl.rc.ch0-1024)+(RC_Ctl.rc.ch1-1024)*(RC_Ctl.rc.ch1-1024)>10)) Robo_Base.Angle=atan2(Robo_Base.Speed_X,Robo_Base.Speed_Y);
 }
 
 void MiniPCData_Analysis(uint8_t *pData)
 {
-	if(pData==NULL) return ;
-	
+	if(!pData||pData[0]!=0xa5) return ;
 	Robo_Base.Speed_X=(pData[0]|(pData[1]<<8))&0x07ff;
 	Robo_Base.Speed_Y=(pData[2]|(pData[3]<<8))&0x07ff;
-	
-	
 }
 
 

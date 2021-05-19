@@ -121,10 +121,10 @@ void Send_To_ODrive(CAN_HandleTypeDef *hcan,uint16_t StdID,uint8_t* Data,uint8_t
   TxHeader.TransmitGlobalTime = DISABLE;
   TxHeader.DLC = len;
 
-	if (HAL_CAN_AddTxMessage(hcan, &TxHeader, Data, &TxMailbox) != HAL_OK)
+//	if (HAL_CAN_AddTxMessage(hcan, &TxHeader, Data, &TxMailbox) != HAL_OK)
 	{
 	/* Transmission request Error */
-		Error_Handler();
+		//Error_Handler();
 	}
 
 }

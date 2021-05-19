@@ -147,7 +147,7 @@ void Axis_CloseLoop_Init(Axis* _Axis)
 	static uint8_t num[4]={0};
 	uint8_t* P_num=&num[_Axis->Node_ID];
 	
-	if(_Axis->Error!=0||_Axis->Current_State==0||_Axis->Current_State==8) return ;
+	if(_Axis->Error!=0||_Axis->Current_State==0) return ;
 	if(*P_num==0&&_Axis->Current_State==1){
 		_Axis->Requested_State=3;
 		ODrive_Transmit(_Axis,0x7);
@@ -160,13 +160,13 @@ void Axis_CloseLoop_Init(Axis* _Axis)
 		ODrive_Transmit(_Axis,0x7);
 		_Axis->Requested_State=0;
 		*P_num=5;
-	}
+	}if(*P_num==5&&_Axis->Current_State==8) SystemState_Set(&_Axis->Protect,WORKING);
 }
 
 void Axis_Init(Axis* _Axis,uint8_t NodeID)
 {
 	_Axis->CMD=0;
-	_Axis->Current_State=1;																//调试的时候为1, 实际情况下为0
+	_Axis->Current_State=0;																//调试的时候为1, 实际情况下为0
 	_Axis->Encoder_Error=0;
 	_Axis->Encoder_Vel_Estimate=0;
 	_Axis->Error=0;
@@ -178,7 +178,8 @@ void Axis_Init(Axis* _Axis,uint8_t NodeID)
 	_Axis->Vbus_Voltage=0;
 	
 	_Axis->TxMessage=&CanTxMessageList[NodeID+1];
-	_Axis->Protect.Count_Time=0;	SystemState_Set(&_Axis->Protect,WORKING);
+	_Axis->Instruction=&CanTxMessageList[NodeID+5];
+	_Axis->Protect.Count_Time=0;	SystemState_Set(&_Axis->Protect,INITING);
 }
 	
 

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [New_DR_Base\New_DR_Base.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image New_DR_Base\New_DR_Base.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Sat May 01 10:51:19 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Sun May 09 14:10:51 2021
 <BR><P>
 <H3>Maximum Stack Usage =        312 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -641,7 +641,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f405xx.o(RESET)
 </UL>
 <P><STRONG><a name="[14]"></a>EXTI3_IRQHandler</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.EXTI3_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = EXTI3_IRQHandler &rArr; ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = EXTI3_IRQHandler &rArr; ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler
@@ -649,7 +649,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f405xx.o(RESET)
 </UL>
 <P><STRONG><a name="[15]"></a>EXTI4_IRQHandler</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.EXTI4_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = EXTI4_IRQHandler &rArr; ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = EXTI4_IRQHandler &rArr; ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler
@@ -668,7 +668,6 @@ Global Symbols
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_CAN2_Init
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_CAN1_Init
 <LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_Motor
 </UL>
 
@@ -685,32 +684,32 @@ Global Symbols
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Pos_Analysis
 </UL>
 
-<P><STRONG><a name="[8c]"></a>Get_Encoder_Count</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, odrive_can.o(i.Get_Encoder_Count))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Get_Encoder_Count &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<P><STRONG><a name="[8c]"></a>Get_Encoder_Count</STRONG> (Thumb, 22 bytes, Stack size 12 bytes, odrive_can.o(i.Get_Encoder_Count))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Get_Encoder_Count &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
-<P><STRONG><a name="[8e]"></a>Get_Encoder_Error</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, odrive_can.o(i.Get_Encoder_Error))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Get_Encoder_Error &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<P><STRONG><a name="[8e]"></a>Get_Encoder_Error</STRONG> (Thumb, 22 bytes, Stack size 12 bytes, odrive_can.o(i.Get_Encoder_Error))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Get_Encoder_Error &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
-<P><STRONG><a name="[8f]"></a>Get_Encoder_Estimates</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, odrive_can.o(i.Get_Encoder_Estimates))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Get_Encoder_Estimates &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<P><STRONG><a name="[8f]"></a>Get_Encoder_Estimates</STRONG> (Thumb, 22 bytes, Stack size 12 bytes, odrive_can.o(i.Get_Encoder_Estimates))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Get_Encoder_Estimates &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
-<P><STRONG><a name="[90]"></a>Get_Motor_Error</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, odrive_can.o(i.Get_Motor_Error))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Get_Motor_Error &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<P><STRONG><a name="[90]"></a>Get_Motor_Error</STRONG> (Thumb, 22 bytes, Stack size 12 bytes, odrive_can.o(i.Get_Motor_Error))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Get_Motor_Error &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
@@ -742,8 +741,7 @@ Global Symbols
 <P><STRONG><a name="[f0]"></a>HAL_CAN_AddTxMessage</STRONG> (Thumb, 342 bytes, Stack size 20 bytes, stm32f4xx_hal_can.o(i.HAL_CAN_AddTxMessage))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = HAL_CAN_AddTxMessage
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
-<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_Motor
+<BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_Motor
 </UL>
 
 <P><STRONG><a name="[7f]"></a>HAL_CAN_ConfigFilter</STRONG> (Thumb, 286 bytes, Stack size 20 bytes, stm32f4xx_hal_can.o(i.HAL_CAN_ConfigFilter))
@@ -1332,8 +1330,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Move_Analysis
 </UL>
 
-<P><STRONG><a name="[85]"></a>Motor_Init</STRONG> (Thumb, 114 bytes, Stack size 16 bytes, odrive_can.o(i.Motor_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = Motor_Init &rArr; ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<P><STRONG><a name="[85]"></a>Motor_Init</STRONG> (Thumb, 114 bytes, Stack size 12 bytes, odrive_can.o(i.Motor_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = Motor_Init &rArr; ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
@@ -1378,8 +1376,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN1_RX0_IRQHandler
 </UL>
 
-<P><STRONG><a name="[8a]"></a>ODrive_Transmit</STRONG> (Thumb, 130 bytes, Stack size 16 bytes, odrive_can.o(i.ODrive_Transmit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<P><STRONG><a name="[8a]"></a>ODrive_Transmit</STRONG> (Thumb, 130 bytes, Stack size 12 bytes, odrive_can.o(i.ODrive_Transmit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Input_Vel
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Axis_Requested_State
@@ -1406,7 +1404,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[87]"></a>PID_Send</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, robo_base.o(i.PID_Send))
-<BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = PID_Send &rArr; ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = PID_Send &rArr; ODrive_Transmit &rArr; Set_Input_Vel &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_Motor
@@ -1424,8 +1422,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor_Pos_Analysis
 </UL>
 
-<P><STRONG><a name="[ed]"></a>Reboot_ODrive</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, odrive_can.o(i.Reboot_ODrive))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Reboot_ODrive &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<P><STRONG><a name="[ed]"></a>Reboot_ODrive</STRONG> (Thumb, 22 bytes, Stack size 12 bytes, odrive_can.o(i.Reboot_ODrive))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Reboot_ODrive &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
@@ -1447,11 +1445,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Send
 </UL>
 
-<P><STRONG><a name="[8d]"></a>Send_To_ODrive</STRONG> (Thumb, 58 bytes, Stack size 56 bytes, odrive_can.o(i.Send_To_ODrive))
-<BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
-</UL>
-<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Error_Handler
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_AddTxMessage
+<P><STRONG><a name="[8d]"></a>Send_To_ODrive</STRONG> (Thumb, 24 bytes, Stack size 36 bytes, odrive_can.o(i.Send_To_ODrive))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = Send_To_ODrive
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Input_Vel
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Axis_Requested_State
@@ -1462,8 +1457,8 @@ Global Symbols
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Encoder_Count
 </UL>
 
-<P><STRONG><a name="[eb]"></a>Set_Axis_Requested_State</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, odrive_can.o(i.Set_Axis_Requested_State))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = Set_Axis_Requested_State &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<P><STRONG><a name="[eb]"></a>Set_Axis_Requested_State</STRONG> (Thumb, 32 bytes, Stack size 12 bytes, odrive_can.o(i.Set_Axis_Requested_State))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = Set_Axis_Requested_State &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
@@ -1471,7 +1466,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ec]"></a>Set_Input_Vel</STRONG> (Thumb, 76 bytes, Stack size 24 bytes, odrive_can.o(i.Set_Input_Vel))
-<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = Set_Input_Vel &rArr; Send_To_ODrive &rArr; HAL_CAN_AddTxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = Set_Input_Vel &rArr; Send_To_ODrive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>

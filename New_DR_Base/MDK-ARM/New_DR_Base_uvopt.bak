@@ -200,18 +200,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>314</LineNumber>
+          <LineNumber>179</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134220518</Address>
+          <Address>134221280</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>../Src/stm32f4xx_it.c</Filename>
+          <Filename>../Src/main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\New_DR_Base\../Src/stm32f4xx_it.c\314</Expression>
+          <Expression>\\New_DR_Base\../Src/main.c\179</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
