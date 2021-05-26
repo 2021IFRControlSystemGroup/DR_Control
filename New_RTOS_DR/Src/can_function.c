@@ -1,0 +1,59 @@
+#include "can_function.h"
+
+CanTxMessageTypeDef CanTxMessageList[CanTXMESSAGELISTMAX];
+
+void CAN_Start_IT(CAN_HandleTypeDef *hcan)
+{
+	CAN_FilterTypeDef CAN_Filter;
+	extern CAN_HandleTypeDef hcan1;
+	
+	if(hcan==&hcan1)
+		CAN_Filter.FilterBank=0,CAN_Filter.SlaveStartFilterBank=14;
+	else 
+	CAN_Filter.FilterBank=14,CAN_Filter.SlaveStartFilterBank=14;
+	
+	CAN_Filter.FilterActivation=CAN_FILTER_ENABLE;
+	CAN_Filter.FilterIdHigh=0;
+	CAN_Filter.FilterIdLow=0;
+	CAN_Filter.FilterMaskIdHigh=0;
+	CAN_Filter.FilterMaskIdLow=0;
+	CAN_Filter.FilterFIFOAssignment=CAN_FILTER_FIFO0;
+	CAN_Filter.FilterMode=CAN_FILTERMODE_IDMASK;
+	CAN_Filter.FilterScale=CAN_FILTERSCALE_32BIT;
+	
+	HAL_CAN_ConfigFilter(hcan,&CAN_Filter);
+	
+	HAL_CAN_Start(hcan);
+	HAL_CAN_ActivateNotification(hcan,CAN_IT_RX_FIFO0_MSG_PENDING);
+}
+
+void TxMessageData_Add(CanTxMessageTypeDef* TxMessage, uint64_t Data, uint8_t Start_byte, uint8_t End_Byte)
+{
+  if(Start_byte>6||End_Byte>7||End_Byte<=Start_byte) return ;
+  
+  int i;
+  for(i = Start_byte;i <= End_Byte;i++){
+    TxMessage->Data[i] = ((Data >> i * 4) & 0xff);
+  }TxMessage->Update = SET;
+}
+
+void TxMessageHeader_Set(CanTxMessageTypeDef* TxMessage, uint8_t DLC, uint8_t ExtId, uint8_t IDE, uint8_t RTR, uint8_t StdId)
+{
+  TxMessage->Header.DLC=DLC;
+  TxMessage->Header.ExtId=ExtId;
+  TxMessage->Header.IDE=IDE;
+  TxMessage->Header.RTR=RTR;
+  TxMessage->Header.StdId=StdId;
+  TxMessage->Header.TransmitGlobalTime=DISABLE;
+  TxMessage->Update = SET;
+}
+void Can_Send(CAN_HandleTypeDef *hcan,CanTxMessageTypeDef* TxMessage)
+{
+	uint32_t TxMailbox;
+  
+	while(HAL_CAN_GetTxMailboxesFreeLevel(hcan) == RESET) ;
+		if (HAL_CAN_AddTxMessage(hcan, &TxMessage->Header, TxMessage->Data, &TxMailbox) != HAL_OK) Error_Handler();
+	TxMessage->Update = RESET;
+}
+
+

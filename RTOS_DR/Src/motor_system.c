@@ -49,22 +49,22 @@
 void Pos_Info_Analysis(Motor_Pos_Info* Motor,uint8_t* RX_Data)
 {
   //数据解析
-  Motor->Angle=(uint16_t)RX_Data[0]<<8|RX_Data[1];
-  Motor->Speed=(uint16_t)RX_Data[2]<<8|RX_Data[3];
-  Motor->Electric=(uint16_t)RX_Data[4]<<8|RX_Data[5];
-  Motor->Temperature=RX_Data[6];
+  Motor->Angle = (uint16_t)RX_Data[0] << 8 | RX_Data[1];
+  Motor->Speed = (uint16_t)RX_Data[2] << 8 | RX_Data[3];
+  Motor->Electric = (uint16_t)RX_Data[4] << 8 | RX_Data[5];
+  Motor->Temperature = RX_Data[6];
 
   //绝对角度计算
-  if (Motor->Speed!=0)
+  if (Motor->Speed != 0)
   {
-    int16_t Error=Motor->Angle-Motor->Last_Angle;
+    int16_t Error = Motor->Angle-Motor->Last_Angle;
     Motor->Abs_Angle += Error;
     if (Error < -4096)Motor->Abs_Angle += 8192;
     else if (Error > 4096)  Motor->Abs_Angle -= 8192;
-  }Motor->Last_Angle=Motor->Angle;
+  }Motor->Last_Angle = Motor->Angle;
 
-  Motor->Circle_Num=Motor->Abs_Angle/(GEAR_RATIO*ROTOR_ANGLE);
-	Motor->Relative_Angle=Motor->Abs_Angle-Motor->Circle_Num*GEAR_RATIO*ROTOR_ANGLE;
+  Motor->Circle_Num = Motor->Abs_Angle / (GEAR_RATIO * ROTOR_ANGLE);
+	Motor->Relative_Angle = Motor->Abs_Angle - Motor->Circle_Num * GEAR_RATIO * ROTOR_ANGLE;
 }
 //--------------------------------------------------------------------------------------------------//
 //函数名称:
@@ -90,9 +90,9 @@ void Pos_Info_Analysis(Motor_Pos_Info* Motor,uint8_t* RX_Data)
 //--------------------------------------------------------------------------------------------------//
 void Speed_Info_Analysis(Motor_Speed_Info* Motor,uint8_t* RX_Data)
 {
-  Motor->Speed=(uint16_t)RX_Data[2]<<8|RX_Data[3];
-  Motor->Electric=(uint16_t)RX_Data[4]<<8|RX_Data[5];
-  Motor->Temperature=RX_Data[6];
+  Motor->Speed = (uint16_t)RX_Data[2] << 8 | RX_Data[3];
+  Motor->Electric = (uint16_t)RX_Data[4] << 8 | RX_Data[5];
+  Motor->Temperature = RX_Data[6];
 }
 //--------------------------------------------------------------------------------------------------//
 //函数名称:
@@ -177,7 +177,7 @@ void PID_General_Cal(PID *pid, float fdbV, float tarV,uint8_t moto_num,uint8_t *
 	if(pid->output < -pid->output_max)
 		pid->output = -pid->output_max;
 	
-	Tx_msg[moto_num*2]=((int16_t)pid->output)>>8;Tx_msg[moto_num*2+1]=(int16_t)pid->output;
+	Tx_msg[moto_num * 2]=((int16_t)pid->output) >> 8;Tx_msg[moto_num * 2 + 1]=(int16_t)pid->output;
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -247,9 +247,9 @@ void PID_Pos_Cal(Pos_System* Pos_Motor)
 	if(Pos_Motor->Speed_PID.output < -Pos_Motor->Speed_PID.output_max)
 		Pos_Motor->Speed_PID.output = -Pos_Motor->Speed_PID.output_max;
 	
-	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2]=((int16_t)Pos_Motor->Speed_PID.output)>>8;
-	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2+1]=((int16_t)Pos_Motor->Speed_PID.output);
-	Pos_Motor->TxMessage->Update=1;
+	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num * 2] = ((int16_t)Pos_Motor->Speed_PID.output) >> 8;
+	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num * 2 + 1] = ((int16_t)Pos_Motor->Speed_PID.output);
+	Pos_Motor->TxMessage->Update = SET;
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -293,9 +293,9 @@ void PID_Speed_Cal(Pos_System* Pos_Motor,int32_t Tar_Speed)
 	if(Pos_Motor->Speed_PID.output < -Pos_Motor->Speed_PID.output_max)
 		Pos_Motor->Speed_PID.output = -Pos_Motor->Speed_PID.output_max;
 	
-	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2]=((int16_t)Pos_Motor->Speed_PID.output)>>8;
-	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num*2+1]=((int16_t)Pos_Motor->Speed_PID.output);
-	Pos_Motor->TxMessage->Update=1;
+	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num * 2] = ((int16_t)Pos_Motor->Speed_PID.output) >> 8;
+	Pos_Motor->TxMessage->Data[Pos_Motor->Motor_Num * 2 + 1] = ((int16_t)Pos_Motor->Speed_PID.output);
+	Pos_Motor->TxMessage->Update = SET;
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -317,9 +317,9 @@ void Can_Send(CAN_HandleTypeDef *hcan,Can_TxMessageTypeDef* TxMessage)
 {
 	uint32_t TxMailbox;
   
-	while(HAL_CAN_GetTxMailboxesFreeLevel(hcan)==0);
+	while(HAL_CAN_GetTxMailboxesFreeLevel(hcan) == RESET) ;
 		if (HAL_CAN_AddTxMessage(hcan, &TxMessage->Header, TxMessage->Data, &TxMailbox) != HAL_OK) Error_Handler();
-	TxMessage->Update=0;
+	TxMessage->Update = RESET;
 }
 //--------------------------------------------------------------------------------------------------//
 //函数名称:
@@ -335,7 +335,7 @@ void Can_Send(CAN_HandleTypeDef *hcan,Can_TxMessageTypeDef* TxMessage)
 //--------------------------------------------------------------------------------------------------//
 void SystemState_Set(Protect_System* Dogs,SystemState State)
 {
-  Dogs->State=State;
+  Dogs->State = State;
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -351,7 +351,7 @@ void SystemState_Set(Protect_System* Dogs,SystemState State)
 //--------------------------------------------------------------------------------------------------//
 void Feed_WatchDog(Protect_System* Dogs)
 {
-  Dogs->Count_Time=0;
+  Dogs->Count_Time = 0;
 	//SystemState_Set(Dogs,WORKING);
 }
 
@@ -368,12 +368,12 @@ void Feed_WatchDog(Protect_System* Dogs)
 //--------------------------------------------------------------------------------------------------//
 uint8_t System_Check(Protect_System* Dogs)
 {
-  if(Dogs->Count_Time<WATCHDOG_TIME_MAX)
+  if(Dogs->Count_Time < WATCHDOG_TIME_MAX)
   {
 		Dogs->Count_Time++;
-		return 0;
+		return RESET;
   }else SystemState_Set(Dogs,MISSING);
-  return 1;
+  return SET;
 }
 
 void Motor_Init(Pos_System* P_Pos,uint8_t ID)

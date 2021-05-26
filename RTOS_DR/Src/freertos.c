@@ -53,7 +53,6 @@ extern ROBO_BASE Robo_Base;
 osThreadId defaultTaskHandle;
 osThreadId moveTaskHandle;
 osThreadId canSendTaskHandle;
-osThreadId errorCheckTaskHandle;
 osThreadId initTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,7 +63,6 @@ osThreadId initTaskHandle;
 void StartDefaultTask(void const * argument);
 void MoveTask(void const * argument);
 void CanSendTask(void const * argument);
-void ErrorCheckTask(void const * argument);
 void InitTask(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -124,10 +122,6 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(canSendTask, CanSendTask, osPriorityAboveNormal, 0, 128);
   canSendTaskHandle = osThreadCreate(osThread(canSendTask), NULL);
 
-  /* definition and creation of errorCheckTask */
-  osThreadDef(errorCheckTask, ErrorCheckTask, osPriorityHigh, 0, 128);
-  errorCheckTaskHandle = osThreadCreate(osThread(errorCheckTask), NULL);
-
   /* definition and creation of initTask */
   osThreadDef(initTask, InitTask, osPriorityNormal, 0, 128);
   initTaskHandle = osThreadCreate(osThread(initTask), NULL);
@@ -135,7 +129,6 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
 	vTaskSuspend(moveTaskHandle);
-	vTaskSuspend(errorCheckTaskHandle);
   /* USER CODE END RTOS_THREADS */
 
 }
@@ -159,16 +152,16 @@ void StartDefaultTask(void const * argument)
 		HAL_IWDG_Refresh(&hiwdg);
 		//Base_WatchDog();
 		Led_Task();
-		if((Robo_Base.Error_State!=0)&&Suspend_Flag){
+		if((Robo_Base.Error_State != 0) && Suspend_Flag){
 			vTaskSuspend(canSendTaskHandle);
-			if(Robo_Base.Working_State==5) vTaskSuspend(moveTaskHandle);
-			else if(Robo_Base.Working_State==3) vTaskSuspend(initTaskHandle);
-			Suspend_Flag=0;
-		}if((Robo_Base.Error_State==0)&&!Suspend_Flag){
+			if(Robo_Base.Working_State == 5) vTaskSuspend(moveTaskHandle);
+			else if(Robo_Base.Working_State == 3) vTaskSuspend(initTaskHandle);
+			Suspend_Flag = RESET;
+		}if((Robo_Base.Error_State == 0) && !Suspend_Flag){
 			vTaskResume(canSendTaskHandle);
-			if(Robo_Base.Working_State==5) vTaskResume(moveTaskHandle);
-			else if(Robo_Base.Working_State==3) vTaskResume(initTaskHandle);
-			Suspend_Flag=1;
+			if(Robo_Base.Working_State == 5) vTaskResume(moveTaskHandle);
+			else if(Robo_Base.Working_State == 3) vTaskResume(initTaskHandle);
+			Suspend_Flag = SET;
 		}osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
@@ -185,7 +178,7 @@ void StartDefaultTask(void const * argument)
 void MoveTask(void const * argument)
 {
   /* USER CODE BEGIN MoveTask */
-	Robo_Base.Working_State=0x5;
+	Robo_Base.Working_State = 0x5;
   /* Infinite loop */
   for(;;)
   {
@@ -206,32 +199,14 @@ void MoveTask(void const * argument)
 void CanSendTask(void const * argument)
 {
   /* USER CODE BEGIN CanSendTask */
-	int i=0;
+	int i = 0;
   /* Infinite loop */
   for(;;)
   {
-		for(i=0;i<CAN_TXMESSAGEINDEXMAX;i++) if(CanTxMessageList[i].Update!=0) Can_Send(&hcan1,&CanTxMessageList[i]);
+		for(i = 0;i < CAN_TXMESSAGEINDEXMAX;i++) if(CanTxMessageList[i].Update != 0) Can_Send(&hcan1,&CanTxMessageList[i]);
 		osDelay(1);
   }
   /* USER CODE END CanSendTask */
-}
-
-/* USER CODE BEGIN Header_ErrorCheckTask */
-/**
-* @brief Function implementing the errorCheckTask thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_ErrorCheckTask */
-void ErrorCheckTask(void const * argument)
-{
-  /* USER CODE BEGIN ErrorCheckTask */
-  /* Infinite loop */
-  for(;;)
-  {
-		osDelay(1);
-  }
-  /* USER CODE END ErrorCheckTask */
 }
 
 /* USER CODE BEGIN Header_InitTask */
@@ -244,12 +219,12 @@ void ErrorCheckTask(void const * argument)
 void InitTask(void const * argument)
 {
   /* USER CODE BEGIN InitTask */
-	Robo_Base.Working_State=0x3;
+	Robo_Base.Working_State = 0x3;
   /* Infinite loop */
   for(;;)
   {
 		if(
-			Robo_Base.LF._Axis->Protect.State==WORKING&&Robo_Base.LF._Pos.Protect.State==WORKING
+			Robo_Base.LF._Axis->Protect.State == WORKING && Robo_Base.LF._Pos.Protect.State == WORKING
 //			Robo_Base.LB._Axis->Protect.State==WORKING&&Robo_Base.LB._Pos.Protect.State==WORKING
 //			Robo_Base.RF._Axis->Protect.State==WORKING&&Robo_Base.RF._Pos.Protect.State==WORKING
 //			Robo_Base.RB._Axis->Protect.State==WORKING&&Robo_Base.RB._Pos.Protect.State==WORKING

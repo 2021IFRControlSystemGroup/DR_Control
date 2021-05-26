@@ -246,9 +246,9 @@ void CAN1_RX0_IRQHandler(void)
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
-	HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&RxMeg1,Robo_Base.Can1.Rx);
-	if(RxMeg1.StdId>0x0&&RxMeg1.StdId<=0x1ff) ODrive_Recevice(RxMeg1.StdId,Robo_Base.Can1.Rx);
-	if(RxMeg1.StdId>0x200&&RxMeg1.StdId<0x209) Motor_Pos_Analysis(Robo_Base.Can1.Rx,RxMeg1.StdId);
+	HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0,&RxMeg1, Robo_Base.Can1.Rx);
+	if(RxMeg1.StdId > 0x0 && RxMeg1.StdId <= 0x1ff) ODrive_Recevice(RxMeg1.StdId, Robo_Base.Can1.Rx);
+	if(RxMeg1.StdId > 0x200 && RxMeg1.StdId < 0x209) Motor_Pos_Analysis(Robo_Base.Can1.Rx, RxMeg1.StdId);
   /* USER CODE END CAN1_RX0_IRQn 1 */
 }
 
@@ -286,45 +286,45 @@ void TIM2_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
-	static uint32_t Reboot_ODrive0Time=0;
-	static uint32_t Reboot_ODrive1Time=0;
-	static uint8_t Reboot_ODrive0Flag=0;
-	static uint8_t Reboot_ODrive1Flag=0;
+	static uint32_t Reboot_ODrive0Time = 0;
+	static uint32_t Reboot_ODrive1Time = 0;
+	static uint8_t Reboot_ODrive0Flag = 0;
+	static uint8_t Reboot_ODrive1Flag = 0;
 	extern ROBO_BASE Robo_Base;
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
 	Robo_Base.Running_Time++;
 		
-	if(HAL_GPIO_ReadPin(REBOOT0_GPIO_Port,REBOOT0_Pin)==GPIO_PIN_RESET){
-		if(Reboot_ODrive0Time==0) Reboot_ODrive0Time=Robo_Base.Running_Time;
-		if(Robo_Base.Running_Time-Reboot_ODrive0Time>200){
-			if(Reboot_ODrive0Flag==0){
-				ODrive_Transmit(Robo_Base.LF._Axis,0x16);
-				Reboot_ODrive0Flag=1;
-				SystemState_Set(&Robo_Base.LF._Axis->Protect,REBOOT);
-				SystemState_Set(&Robo_Base.LB._Axis->Protect,REBOOT);
-				Axis_Init(Robo_Base.LF._Axis,0);
-				Axis_Init(Robo_Base.LB._Axis,1);
-			}if(Robo_Base.Running_Time-Reboot_ODrive0Time<230) HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+	if(HAL_GPIO_ReadPin(REBOOT0_GPIO_Port, REBOOT0_Pin) == GPIO_PIN_RESET){
+		if(Reboot_ODrive0Time == 0) Reboot_ODrive0Time = Robo_Base.Running_Time;
+		if(Robo_Base.Running_Time - Reboot_ODrive0Time > 200){
+			if(Reboot_ODrive0Flag == 0){
+				ODrive_Transmit(Robo_Base.LF._Axis, 0x16);
+				Reboot_ODrive0Flag = 1;
+				SystemState_Set(&Robo_Base.LF._Axis->Protect, REBOOT);
+				SystemState_Set(&Robo_Base.LB._Axis->Protect, REBOOT);
+				Axis_Init(Robo_Base.LF._Axis, 0);
+				Axis_Init(Robo_Base.LB._Axis, 1);
+			}if(Robo_Base.Running_Time - Reboot_ODrive0Time < 230) HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
 			else HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
 		}
-	}else Reboot_ODrive0Time=Reboot_ODrive0Flag=0,HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);;
+	}else Reboot_ODrive0Time = Reboot_ODrive0Flag = 0, HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);;
 	
-	if(HAL_GPIO_ReadPin(REBOOT1_GPIO_Port,REBOOT1_Pin)==GPIO_PIN_RESET){
-		if(Reboot_ODrive1Time==0) Reboot_ODrive1Time=Robo_Base.Running_Time;
-		if(Robo_Base.Running_Time-Reboot_ODrive1Time>200){
-			if(Reboot_ODrive1Flag==0){
-				ODrive_Transmit(Robo_Base.RF._Axis,0x16);
-				Reboot_ODrive1Flag=1;
-				SystemState_Set(&Robo_Base.RF._Axis->Protect,REBOOT);
-				SystemState_Set(&Robo_Base.RB._Axis->Protect,REBOOT);
-				Axis_Init(Robo_Base.RF._Axis,2);
-				Axis_Init(Robo_Base.RB._Axis,3);
-			}if(Robo_Base.Running_Time-Reboot_ODrive1Time<230) HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+	if(HAL_GPIO_ReadPin(REBOOT1_GPIO_Port,REBOOT1_Pin) == GPIO_PIN_RESET){
+		if(Reboot_ODrive1Time == 0) Reboot_ODrive1Time = Robo_Base.Running_Time;
+		if(Robo_Base.Running_Time - Reboot_ODrive1Time > 200){
+			if(Reboot_ODrive1Flag == 0){
+				ODrive_Transmit(Robo_Base.RF._Axis, 0x16);
+				Reboot_ODrive1Flag = 1;
+				SystemState_Set(&Robo_Base.RF._Axis->Protect, REBOOT);
+				SystemState_Set(&Robo_Base.RB._Axis->Protect, REBOOT);
+				Axis_Init(Robo_Base.RF._Axis, 2);
+				Axis_Init(Robo_Base.RB._Axis, 3);
+			}if(Robo_Base.Running_Time - Reboot_ODrive1Time < 230) HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
 			else HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
 		}
-	}else Reboot_ODrive1Time=Reboot_ODrive1Flag=0;
+	}else Reboot_ODrive1Time = Reboot_ODrive1Flag = 0;
   /* USER CODE END TIM3_IRQn 1 */
 }
 
@@ -338,7 +338,7 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
-	Uart_DMA_Process(&huart1,&hdma_usart1_rx,&Uart1_Rx,RemoteData_analysis);
+	Uart_DMA_Process(&huart1, &hdma_usart1_rx, &Uart1_Rx, RemoteData_analysis);
   /* USER CODE END USART1_IRQn 1 */
 }
 

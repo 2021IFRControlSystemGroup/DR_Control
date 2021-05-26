@@ -1,4 +1,4 @@
---cpu Cortex-M4.fp
+--cpu=Cortex-M4.fp
 "rtos_dr\startup_stm32f405xx.o"
 "rtos_dr\main.o"
 "rtos_dr\gpio.o"
@@ -48,7 +48,6 @@
 "rtos_dr\heap_4.o"
 "rtos_dr\port.o"
 --library_type=microlib --strict --scatter "RTOS_DR\RTOS_DR.sct"
-
---diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--diag_suppress=L6329 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "RTOS_DR.map" -o RTOS_DR\RTOS_DR.axf

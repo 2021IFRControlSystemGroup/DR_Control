@@ -65,8 +65,8 @@ typedef struct Robo_Base										//底盘结构体
 //-------------函数声明------------//
 void Pos_CloseLoop_Init(Pos_System* P_Pos);
 void BASE_Init(void);																									//底盘结构体成员初始化的接口函数
-void Motor_Pos_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);					//位置环电机数据分析的接口函数
-void Motor_Speed_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);				//速度环电机数据分析的接口函数
+void Motor_Pos_Analysis(uint8_t* RX_Data, uint32_t Motor_Num);					//位置环电机数据分析的接口函数
+void Motor_Speed_Analysis(uint8_t* RX_Data, uint32_t Motor_Num);				//速度环电机数据分析的接口函数
 void Can_TxMessageCal(void);																					//计算更新底盘的Can发送数据函数
 void Counting_Time(void);																							//记录底盘运行时间函数
 void Base_WatchDog(void);																					//底盘看门狗接口函数

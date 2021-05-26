@@ -1,7 +1,7 @@
 rtos_dr\freertos.o: ../Src/freertos.c
 rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-rtos_dr\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stddef.h
-rtos_dr\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+rtos_dr\freertos.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stddef.h
+rtos_dr\freertos.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 rtos_dr\freertos.o: ../Inc/FreeRTOSConfig.h
 rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
@@ -48,8 +48,8 @@ rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 rtos_dr\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 rtos_dr\freertos.o: ../Inc/move.h
-rtos_dr\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\math.h
-rtos_dr\freertos.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdlib.h
+rtos_dr\freertos.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\math.h
+rtos_dr\freertos.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 rtos_dr\freertos.o: ../Inc/robo_base.h
 rtos_dr\freertos.o: ../Inc/motor_system.h
 rtos_dr\freertos.o: ../Inc/can.h

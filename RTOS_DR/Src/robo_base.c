@@ -39,16 +39,16 @@ ROBO_BASE Robo_Base;
 //--------------------------------------------------------------------------------------------------//
 void Motor_Pos_Analysis(uint8_t* RX_Data,uint32_t Motor_Num)
 {
-  Pos_System* P_Motor=NULL;
+  Pos_System* P_Motor = NULL;
   switch(Motor_Num)
   {
-    case 0x201:P_Motor=&Robo_Base.LF._Pos;break;
-    case 0x202:P_Motor=&Robo_Base.LB._Pos;break;
-    case 0x203:P_Motor=&Robo_Base.RF._Pos;break;
-    case 0x204:P_Motor=&Robo_Base.RB._Pos;break;
+    case 0x201:P_Motor = &Robo_Base.LF._Pos;break;
+    case 0x202:P_Motor = &Robo_Base.LB._Pos;break;
+    case 0x203:P_Motor = &Robo_Base.RF._Pos;break;
+    case 0x204:P_Motor = &Robo_Base.RB._Pos;break;
 	default:break;
   }if(!P_Motor) return ;
-  Pos_Info_Analysis(&P_Motor->Info,RX_Data);
+  Pos_Info_Analysis(&P_Motor->Info, RX_Data);
   Feed_WatchDog(&P_Motor->Protect);
 }
 
@@ -71,12 +71,12 @@ void Motor_Pos_Analysis(uint8_t* RX_Data,uint32_t Motor_Num)
 //--------------------------------------------------------------------------------------------------//
 void Motor_Speed_Analysis(uint8_t* RX_Data,uint32_t Motor_Num)
 {
-  Speed_System* S_Motor=NULL;
+  Speed_System* S_Motor = NULL;
   switch(Motor_Num)
   {
 		default:break;
   }if(!S_Motor) return ;
-  Speed_Info_Analysis(&S_Motor->Info,RX_Data);
+  Speed_Info_Analysis(&S_Motor->Info, RX_Data);
   Feed_WatchDog(&S_Motor->Protect);
 }
 
@@ -96,22 +96,22 @@ void BASE_Init(void)
 	extern ODrive ODrive0;
 	extern ODrive ODrive1;
 	
-  Pos_System* P_Pos=NULL;																																								//转向电机初始化
-	P_Pos=&Robo_Base.LF._Pos; PID_Init(&P_Pos->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	10000);
-	Motor_Init(P_Pos,0);			PID_Init(&P_Pos->Speed_PID,			5,	0,	0,	5000,	0,	0,	4000);
-  P_Pos=&Robo_Base.LB._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
-  Motor_Init(P_Pos,1);			PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
-  P_Pos=&Robo_Base.RF._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
-  Motor_Init(P_Pos,2);			PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
-  P_Pos=&Robo_Base.RB._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
-  Motor_Init(P_Pos,3);			PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
+  Pos_System* P_Pos = NULL;																																								//转向电机初始化
+	P_Pos = &Robo_Base.LF._Pos; PID_Init(&P_Pos->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	10000);
+	Motor_Init(P_Pos, 0);			  PID_Init(&P_Pos->Speed_PID,			5,	0,	0,	5000,	0,	0,	4000);
+  P_Pos = &Robo_Base.LB._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
+  Motor_Init(P_Pos, 1);			  PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
+  P_Pos = &Robo_Base.RF._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
+  Motor_Init(P_Pos, 2);			  PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
+  P_Pos = &Robo_Base.RB._Pos; PID_Init(&P_Pos->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
+  Motor_Init(P_Pos, 3);			  PID_Init(&P_Pos->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
 
-	Axis* P_Axis=NULL;																																										//驱动电机初始化
-	P_Axis=Robo_Base.LF._Axis=&ODrive0.Axis0; Axis_Init(P_Axis,0);
-	P_Axis=Robo_Base.LB._Axis=&ODrive0.Axis1; Axis_Init(P_Axis,1);
-	P_Axis=Robo_Base.RF._Axis=&ODrive1.Axis0; Axis_Init(P_Axis,2);
-	P_Axis=Robo_Base.RB._Axis=&ODrive1.Axis1; Axis_Init(P_Axis,3);
-	Robo_Base.Working_State=1;
+	Axis* P_Axis = NULL;																																										//驱动电机初始化
+	P_Axis = Robo_Base.LF._Axis = &ODrive0.Axis0; Axis_Init(P_Axis, 0);
+	P_Axis = Robo_Base.LB._Axis = &ODrive0.Axis1; Axis_Init(P_Axis, 1);
+	P_Axis = Robo_Base.RF._Axis = &ODrive1.Axis0; Axis_Init(P_Axis, 2);
+	P_Axis = Robo_Base.RB._Axis = &ODrive1.Axis1; Axis_Init(P_Axis, 3);
+	Robo_Base.Working_State = 1;
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -135,10 +135,10 @@ void Can_TxMessageCal()
 	PID_Pos_Cal(&Robo_Base.RF._Pos);
 	PID_Pos_Cal(&Robo_Base.RB._Pos);
 	
-	ODrive_Transmit(Robo_Base.LF._Axis,0x0D);
-	ODrive_Transmit(Robo_Base.LB._Axis,0x0D);
-	ODrive_Transmit(Robo_Base.RF._Axis,0x0D);
-	ODrive_Transmit(Robo_Base.RB._Axis,0x0D);
+	ODrive_Transmit(Robo_Base.LF._Axis, 0x0D);
+	ODrive_Transmit(Robo_Base.LB._Axis, 0x0D);
+	ODrive_Transmit(Robo_Base.RF._Axis, 0x0D);
+	ODrive_Transmit(Robo_Base.RB._Axis, 0x0D);
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -157,28 +157,28 @@ void Can_TxMessageCal()
 //--------------------------------------------------------------------------------------------------//
 void Base_WatchDog(void)
 {
-  uint32_t Error_State=0;
-  Pos_System* P_Pos=NULL;
-  P_Pos=&Robo_Base.LF._Pos;
-	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num+1));
-  P_Pos=&Robo_Base.LB._Pos;
-	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num+1));
-  P_Pos=&Robo_Base.RF._Pos;
-	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num+1));
-  P_Pos=&Robo_Base.RB._Pos;
-	if(System_Check(&P_Pos->Protect)) Error_State|=(1<<(P_Pos->Motor_Num+1));
+  uint32_t Error_State = 0;
+  Pos_System* P_Pos = NULL;
+  P_Pos = &Robo_Base.LF._Pos;
+	if(System_Check(&P_Pos->Protect)) Error_State |= (1 << (P_Pos->Motor_Num + 1));
+  P_Pos = &Robo_Base.LB._Pos;
+	if(System_Check(&P_Pos->Protect)) Error_State |= (1 << (P_Pos->Motor_Num + 1));
+  P_Pos = &Robo_Base.RF._Pos;
+	if(System_Check(&P_Pos->Protect)) Error_State |= (1 << (P_Pos->Motor_Num + 1));
+  P_Pos = &Robo_Base.RB._Pos;
+	if(System_Check(&P_Pos->Protect)) Error_State |= (1 << (P_Pos->Motor_Num + 1));
 	
-	Axis* P_Axis=NULL;
-	P_Axis=Robo_Base.LF._Axis;
-	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+5));
-	P_Axis=Robo_Base.LB._Axis;
-	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+5));
+	Axis* P_Axis = NULL;
+	P_Axis = Robo_Base.LF._Axis;
+	if(P_Axis->Error != 0 || System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 5));
+	P_Axis = Robo_Base.LB._Axis;
+	if(P_Axis->Error != 0 || System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 5));
 	P_Axis=Robo_Base.RF._Axis;
-	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+5));
+	if(P_Axis->Error != 0 || System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 5));
 	P_Axis=Robo_Base.RB._Axis;
-	if(P_Axis->Error!=0||System_Check(&P_Axis->Protect)) Error_State|=(1<<(P_Axis->Node_ID+5));
+	if(P_Axis->Error != 0 || System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 5));
   
-	if(Error_State) Robo_Base.Error_State=Error_State;
+	if(Error_State) Robo_Base.Error_State = Error_State;
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -195,22 +195,22 @@ void Base_WatchDog(void)
 void Counting_Time(void)
 {
   Robo_Base.Running_Time++;
-  if(Robo_Base.Running_Time>RUNNING_TIME_MAX) Robo_Base.Running_Time=0;
+  if(Robo_Base.Running_Time > RUNNING_TIME_MAX) Robo_Base.Running_Time = 0;
 }
 
 void Pos_CloseLoop_Init(Pos_System* P_Pos)
 {
-	static uint8_t num[4]={0};
-	uint8_t* P_num=&num[P_Pos->Motor_Num];
+	static uint8_t num[4] = {0};
+	uint8_t* P_num = &num[P_Pos->Motor_Num];
 	
 	//if(P_Pos->Info.Electric==0) return ;
-	if(*P_num<150){
-		PID_Speed_Cal(P_Pos,1000);
-		if(P_Pos==&Robo_Base.LF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH1_GPIO_Port,TIM3_CH1_Pin)==GPIO_PIN_RESET) (*P_num)++;
-		if(P_Pos==&Robo_Base.LB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH2_GPIO_Port,TIM3_CH2_Pin)==GPIO_PIN_RESET) (*P_num)++;
-		if(P_Pos==&Robo_Base.RF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH3_GPIO_Port,TIM3_CH3_Pin)==GPIO_PIN_RESET) (*P_num)++;
-		if(P_Pos==&Robo_Base.RB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH4_GPIO_Port,TIM3_CH4_Pin)==GPIO_PIN_RESET) (*P_num)++;
-	}if(*P_num==150) P_Pos->Info.Abs_Angle=0,(*P_num)++;
-	if(*P_num==151) P_Pos->Tar_Pos=0,SystemState_Set(&P_Pos->Protect,WORKING),PID_Pos_Cal(P_Pos);
+	if(*P_num < 150){
+		PID_Speed_Cal(P_Pos, 1000);
+		if(P_Pos == &Robo_Base.LF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH1_GPIO_Port, TIM3_CH1_Pin) == GPIO_PIN_RESET) (*P_num)++;
+		if(P_Pos == &Robo_Base.LB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH2_GPIO_Port, TIM3_CH2_Pin) == GPIO_PIN_RESET) (*P_num)++;
+		if(P_Pos == &Robo_Base.RF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH3_GPIO_Port, TIM3_CH3_Pin) == GPIO_PIN_RESET) (*P_num)++;
+		if(P_Pos == &Robo_Base.RB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH4_GPIO_Port, TIM3_CH4_Pin) == GPIO_PIN_RESET) (*P_num)++;
+	}if(*P_num == 150) P_Pos->Info.Abs_Angle = 0,(*P_num)++;
+	if(*P_num == 151) P_Pos->Tar_Pos = 0,SystemState_Set(&P_Pos->Protect,WORKING),PID_Pos_Cal(P_Pos);
 }
 

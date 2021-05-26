@@ -77,25 +77,25 @@ PUTCHAR_PROTOTYPE
 //--------------------------------------------------------------------------------------------------//
 void Usart_All_Init(void)
 {
-	Uart6_Rx.Buffer[0]=(uint8_t*)malloc(sizeof(uint8_t)*USART6_RX_LEN_MAX);
-	Uart6_Rx.Buffer[1]=(uint8_t*)malloc(sizeof(uint8_t)*USART6_RX_LEN_MAX);
+	Uart6_Rx.Buffer[0] = (uint8_t*)malloc(sizeof(uint8_t) * USART6_RX_LEN_MAX);
+	Uart6_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART6_RX_LEN_MAX);
 	__HAL_UART_ENABLE_IT(&huart6, UART_IT_IDLE);
 	Uart6_Rx.Buffer_Num = 0;
-	Uart6_Rx.Length_Max=USART6_RX_LEN_MAX;
+	Uart6_Rx.Length_Max = USART6_RX_LEN_MAX;
 	HAL_UART_Receive_DMA(&huart6, Uart6_Rx.Buffer[0], USART6_RX_LEN_MAX);
 	
-	Uart2_Rx.Buffer[0]=(uint8_t*)malloc(sizeof(uint8_t)*USART2_RX_LEN_MAX);
-	Uart2_Rx.Buffer[1]=(uint8_t*)malloc(sizeof(uint8_t)*USART2_RX_LEN_MAX);
+	Uart2_Rx.Buffer[0] = (uint8_t*)malloc(sizeof(uint8_t) * USART2_RX_LEN_MAX);
+	Uart2_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART2_RX_LEN_MAX);
 	__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
 	Uart2_Rx.Buffer_Num = 0;
-	Uart2_Rx.Length_Max=USART2_RX_LEN_MAX;
+	Uart2_Rx.Length_Max = USART2_RX_LEN_MAX;
 	HAL_UART_Receive_DMA(&huart2, Uart2_Rx.Buffer[0], USART2_RX_LEN_MAX);
 	
-	Uart1_Rx.Buffer[0]=(uint8_t*)malloc(sizeof(uint8_t)*USART1_RX_LEN_MAX);
-	Uart1_Rx.Buffer[1]=(uint8_t*)malloc(sizeof(uint8_t)*USART1_RX_LEN_MAX);
+	Uart1_Rx.Buffer[0] = (uint8_t*)malloc(sizeof(uint8_t) * USART1_RX_LEN_MAX);
+	Uart1_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART1_RX_LEN_MAX);
 	__HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);
 	Uart1_Rx.Buffer_Num = 0;
-	Uart1_Rx.Length_Max=USART1_RX_LEN_MAX;
+	Uart1_Rx.Length_Max = USART1_RX_LEN_MAX;
 	HAL_UART_Receive_DMA(&huart1, Uart1_Rx.Buffer[0], USART1_RX_LEN_MAX);
 }
 

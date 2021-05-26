@@ -140,8 +140,6 @@ void ODrive_Init(ODrive* _ODrive)
 	Axis_Init(&_ODrive->Axis1,1);
 }
 
-
-
 void Axis_CloseLoop_Init(Axis* _Axis)
 {
 	static uint8_t num[4]={0};

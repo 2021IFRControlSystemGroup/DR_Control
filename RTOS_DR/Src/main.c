@@ -62,7 +62,7 @@ void MX_FREERTOS_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint32_t sysclock=0;
+uint32_t sysclock = 0;
 /* USER CODE END 0 */
 
 /**
@@ -88,7 +88,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-	sysclock=HAL_RCC_GetSysClockFreq();
+	sysclock = HAL_RCC_GetSysClockFreq();
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
