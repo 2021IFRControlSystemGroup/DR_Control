@@ -3,7 +3,7 @@
 <title>Static Call Graph - [RTOS_DR\RTOS_DR.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image RTOS_DR\RTOS_DR.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue May 25 18:32:49 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed May 26 19:16:57 2021
 <BR><P>
 <H3>Maximum Stack Usage =        288 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -612,17 +612,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led_Task
 </UL>
 
-<P><STRONG><a name="[81]"></a>Axis_CloseLoop_Init</STRONG> (Thumb, 144 bytes, Stack size 16 bytes, odrive_can.o(i.Axis_CloseLoop_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Axis_CloseLoop_Init &rArr; ODrive_Transmit &rArr; Set_Axis_Requested_State
+<P><STRONG><a name="[81]"></a>Axis_CloseLoop_Init</STRONG> (Thumb, 164 bytes, Stack size 24 bytes, odrive_can.o(i.Axis_CloseLoop_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = Axis_CloseLoop_Init &rArr; ODrive_Transmit &rArr; Set_Axis_Requested_State
 </UL>
-<BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemState_Set
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemState_Set
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTask
 </UL>
 
 <P><STRONG><a name="[84]"></a>Axis_Init</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, odrive_can.o(i.Axis_Init))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemState_Set
+<BR><BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemState_Set
 </UL>
 <BR>[Called By]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BASE_Init
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
@@ -699,7 +699,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Can_TxMessageCal &rArr; ODrive_Transmit &rArr; Set_Axis_Requested_State
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Pos_Cal
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MoveTask
 </UL>
@@ -781,7 +781,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
 <P><STRONG><a name="[9a]"></a>Get_Encoder_Error</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, odrive_can.o(i.Get_Encoder_Error))
@@ -789,7 +789,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
 <P><STRONG><a name="[9b]"></a>Get_Encoder_Estimates</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, odrive_can.o(i.Get_Encoder_Estimates))
@@ -797,7 +797,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
 <P><STRONG><a name="[9c]"></a>Get_Motor_Error</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, odrive_can.o(i.Get_Motor_Error))
@@ -805,7 +805,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
 <P><STRONG><a name="[9d]"></a>Green_Always</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, led.o(i.Green_Always))
@@ -1296,7 +1296,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f405xx.o(RESET)
 </UL>
-<P><STRONG><a name="[66]"></a>InitTask</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, freertos.o(i.InitTask))
+<P><STRONG><a name="[66]"></a>InitTask</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, freertos.o(i.InitTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = InitTask &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskSuspend
@@ -1511,7 +1511,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN1_RX0_IRQHandler
 </UL>
 
-<P><STRONG><a name="[82]"></a>ODrive_Transmit</STRONG> (Thumb, 126 bytes, Stack size 8 bytes, odrive_can.o(i.ODrive_Transmit))
+<P><STRONG><a name="[83]"></a>ODrive_Transmit</STRONG> (Thumb, 126 bytes, Stack size 8 bytes, odrive_can.o(i.ODrive_Transmit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = ODrive_Transmit &rArr; Set_Axis_Requested_State
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Input_Vel
@@ -1549,7 +1549,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Speed_Cal
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PID_Pos_Cal
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemState_Set
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemState_Set
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitTask
@@ -1572,7 +1572,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
 <P><STRONG><a name="[60]"></a>RemoteData_analysis</STRONG> (Thumb, 280 bytes, Stack size 24 bytes, analysis.o(i.RemoteData_analysis))
@@ -1604,13 +1604,13 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_To_ODrive
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Can_DataTypeSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
 <P><STRONG><a name="[fe]"></a>Set_Input_Vel</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, odrive_can.o(i.Set_Input_Vel))
 <BR><BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Can_DataTypeSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 </UL>
 
 <P><STRONG><a name="[63]"></a>StartDefaultTask</STRONG> (Thumb, 110 bytes, Stack size 0 bytes, freertos.o(i.StartDefaultTask))
@@ -1644,7 +1644,7 @@ Global Symbols
 <P><STRONG><a name="[5a]"></a>SystemInit</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, system_stm32f4xx.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f405xx.o(.text)
 </UL>
-<P><STRONG><a name="[83]"></a>SystemState_Set</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, motor_system.o(i.SystemState_Set))
+<P><STRONG><a name="[82]"></a>SystemState_Set</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, motor_system.o(i.SystemState_Set))
 <BR><BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Pos_CloseLoop_Init
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Axis_CloseLoop_Init
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Axis_Init
@@ -1669,8 +1669,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = TIM3_IRQHandler &rArr; ODrive_Transmit &rArr; Set_Axis_Requested_State
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemState_Set
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemState_Set
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ODrive_Transmit
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Axis_Init

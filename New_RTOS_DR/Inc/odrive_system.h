@@ -38,8 +38,8 @@ void Axis_CloseLoop_Init(Axis* _Axis);
 void ODrive_Init(ODrive* _ODrive);
 
 
-void ODrive_Transmit(Axis* _Axis,uint16_t CMD);
-void ODrive_Recevice(uint16_t StdID,uint8_t* Data);
+void ODrive_CAN_Transmit(Axis* _Axis,uint16_t CMD);
+void ODrive_CAN_Recevice(uint16_t StdID,uint8_t* Data);
 void Send_To_ODrive(CanTxMessageTypeDef* TxMessage,uint16_t StdID,uint8_t* Data,uint8_t len,uint8_t RTR);
 void Can_DataTypeSet(CAN_TxHeaderTypeDef* TxHeader);
 
@@ -53,6 +53,11 @@ void Get_IQ(Axis* _Axis);
 void Get_Sensorless_Estimates(Axis* _Axis);
 void Set_Input_Vel(Axis* _Axis);
 void Reboot_ODrive(Axis* _Axis);
+void Get_Vbus_Voltage(Axis* _Axis);
+void Reboot_ALL_ODrives(uint32_t Time);
+
+extern ODrive ODrive0;
+extern ODrive ODrive1;
 #endif
 
 

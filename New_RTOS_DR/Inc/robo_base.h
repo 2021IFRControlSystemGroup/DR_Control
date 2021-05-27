@@ -56,7 +56,7 @@ typedef struct RoboBase										//底盘结构体
 	CanBuffer Can1;													//CAN1通信发送数据
 	CanBuffer Can2;													//CAN2通信发送数据
 	
-	uint32_t Running_Time;										//运行时间
+	volatile uint32_t Running_Time;										//运行时间
 }RoboBase;
 
 //---------------------------------//
@@ -64,7 +64,7 @@ typedef struct RoboBase										//底盘结构体
 //-------------函数声明------------//
 void Pos_CloseLoop_Init(MotorSystem* P_Motor);
 void BASE_Init(void);																									//底盘结构体成员初始化的接口函数
-void ALL_Motor_Info_Analysis(uint8_t* RX_Data,uint32_t Motor_Num);
+void Motor_CAN_Recevice(uint32_t Motor_Num, uint8_t* RX_Data);
 void Can_TxMessage_MoveMode(void);																					//计算更新底盘的Can发送数据函数
 void Counting_Time(void);																							//记录底盘运行时间函数
 void Base_WatchDog(void);																					//底盘看门狗接口函数

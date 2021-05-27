@@ -7,9 +7,14 @@ double dA_Tar = 0;
 double dS_Tar = 0;
 void Move_Analysis(void)
 {
+    Robo_Base.Speed_X=(RC_Ctl.rc.ch0-1024)*1.0/660;
+	Robo_Base.Speed_Y=(RC_Ctl.rc.ch1-1024)*1.0/660;
+	if(sqrt((RC_Ctl.rc.ch0 - 1024) * (RC_Ctl.rc.ch0 - 1024) + (RC_Ctl.rc.ch1 - 1024) * (RC_Ctl.rc.ch1 - 1024) > 10))
+    Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
+    
 	dS_Tar = sqrt((Robo_Base.Speed_X * Robo_Base.Speed_X) + (Robo_Base.Speed_Y * Robo_Base.Speed_Y)) * MAX_SPEED;
-  if(Robo_Base.Angle >= 0) dA_Tar = Robo_Base.Angle / TWO_PI * ROTOR_ANGLE * GEAR_RATIO;
-  else dA_Tar = (Robo_Base.Angle + TWO_PI) / TWO_PI * ROTOR_ANGLE * GEAR_RATIO;
+    if(Robo_Base.Angle >= 0) dA_Tar = Robo_Base.Angle / TWO_PI * ROTOR_ANGLE * GEAR_RATIO;
+    else dA_Tar = (Robo_Base.Angle + TWO_PI) / TWO_PI * ROTOR_ANGLE * GEAR_RATIO;
 	
 	Robo_Base.LF._Axis->Input_Vel = dS_Tar;
 	Robo_Base.LB._Axis->Input_Vel = dS_Tar;

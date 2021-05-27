@@ -33,7 +33,7 @@
 #include "robo_base.h"
 /* USER CODE END Includes */
 
-/* Private typedefs -----------------------------------------------------------*/
+/* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -104,11 +104,10 @@ int main(void)
   MX_TIM3_Init();
   MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
-    HAL_TIM_Base_Start_IT(&htim3);
-  	CAN_Start_IT(&hcan1);
-
     Usart_All_Init();
     BASE_Init();
+    CAN_Start_IT(&hcan1);
+    HAL_TIM_Base_Start_IT(&htim3);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -121,6 +120,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -204,7 +204,7 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-
+    HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
   /* USER CODE END Error_Handler_Debug */
 }
 

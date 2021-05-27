@@ -5,7 +5,7 @@
 #include "can.h"
 
 #define CAN_FUNCTION_ABLE ENABLE
-#define CanTXMESSAGELISTMAX 9
+#define CANTXMESSAGELISTMAX 9
 typedef struct CanTxMessageTypeDef
 {
 	CAN_TxHeaderTypeDef Header;
@@ -13,11 +13,12 @@ typedef struct CanTxMessageTypeDef
 	uint8_t Update;
 }CanTxMessageTypeDef;
 
-void Can_Send(CAN_HandleTypeDef *hcan,CanTxMessageTypeDef* TxMessage);
+void Can_Send(CAN_HandleTypeDef *hcan,CanTxMessageTypeDef* TxMessage, uint32_t Time);
 void TxMessageHeader_Set(CanTxMessageTypeDef* TxMessage, uint8_t DLC, uint8_t ExtId, uint8_t IDE, uint8_t RTR, uint8_t StdId);
-void TxMessageData_Add(CanTxMessageTypeDef* TxMessage, uint64_t Data, uint8_t Start_byte, uint8_t End_Byte);
+void TxMessageData_Add(CanTxMessageTypeDef* TxMessage, uint8_t* Data, uint8_t Start_byte, uint8_t End_Byte);
 void CAN_Start_IT(CAN_HandleTypeDef *hcan);
+void CAN_Error_Handler(CAN_HandleTypeDef *hcan);
 
-extern CanTxMessageTypeDef CanTxMessageList[CanTXMESSAGELISTMAX];
+extern CanTxMessageTypeDef Can_TxMessageList[CANTXMESSAGELISTMAX];
 #endif
 

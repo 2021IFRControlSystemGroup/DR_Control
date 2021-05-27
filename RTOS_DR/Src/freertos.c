@@ -224,8 +224,8 @@ void InitTask(void const * argument)
   for(;;)
   {
 		if(
-			Robo_Base.LF._Axis->Protect.State == WORKING && Robo_Base.LF._Pos.Protect.State == WORKING
-//			Robo_Base.LB._Axis->Protect.State==WORKING&&Robo_Base.LB._Pos.Protect.State==WORKING
+//			Robo_Base.LF._Axis->Protect.State == WORKING && Robo_Base.LF._Pos.Protect.State == WORKING
+			Robo_Base.LB._Axis->Protect.State==WORKING//&&Robo_Base.LB._Pos.Protect.State==WORKING
 //			Robo_Base.RF._Axis->Protect.State==WORKING&&Robo_Base.RF._Pos.Protect.State==WORKING
 //			Robo_Base.RB._Axis->Protect.State==WORKING&&Robo_Base.RB._Pos.Protect.State==WORKING
 		){
@@ -236,8 +236,8 @@ void InitTask(void const * argument)
 			Pos_CloseLoop_Init(&Robo_Base.LB._Pos);
 			Pos_CloseLoop_Init(&Robo_Base.RF._Pos);
 			Pos_CloseLoop_Init(&Robo_Base.RB._Pos);
-			Axis_CloseLoop_Init(Robo_Base.LF._Axis);
-//			Axis_CloseLoop_Init(Robo_Base.LB._Axis);
+//			Axis_CloseLoop_Init(Robo_Base.LF._Axis);
+			Axis_CloseLoop_Init(Robo_Base.LB._Axis);
 //			Axis_CloseLoop_Init(Robo_Base.RF._Axis);
 //			Axis_CloseLoop_Init(Robo_Base.RB._Axis);
 		}osDelay(1);

@@ -182,7 +182,7 @@ void Motor_Init(MotorSystem* P_System,uint8_t ID)
     P_System->Motor_Num = ID;
 	
     #if CAN_FUNCTION_ABLE == ENABLE
-        P_System->TxMessage=&CanTxMessageList[0];
+        P_System->TxMessage=&Can_TxMessageList[0];
     #endif
   
     #if PROTECT_FUNCTION_ABLE == ENABLE

@@ -37,7 +37,7 @@ RoboBase Robo_Base;
 //		uint32_t µç»úºÅÂë
 //
 //--------------------------------------------------------------------------------------------------//
-void ALL_Motor_Info_Analysis(uint8_t* RX_Data,uint32_t Motor_Num)
+void Motor_CAN_Recevice(uint32_t Motor_Num, uint8_t* RX_Data)
 {
     MotorSystem* P_Motor = NULL;
     switch(Motor_Num)
@@ -65,9 +65,6 @@ void ALL_Motor_Info_Analysis(uint8_t* RX_Data,uint32_t Motor_Num)
 //--------------------------------------------------------------------------------------------------//
 void BASE_Init(void)
 {
-	extern ODrive ODrive0;
-	extern ODrive ODrive1;
-	
     MotorSystem* P_Motor = NULL;
     P_Motor = &Robo_Base.LF._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	10000);
 	Motor_Init(P_Motor, 0);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	4000);
@@ -104,14 +101,18 @@ void BASE_Init(void)
 void Can_TxMessage_MoveMode(void)
 {
 	PID_Pos_Cal(&Robo_Base.LF._Pos);
+    Motor_Add_Can_TxMessageList(&Robo_Base.LF._Pos);
 	PID_Pos_Cal(&Robo_Base.LB._Pos);
+    Motor_Add_Can_TxMessageList(&Robo_Base.LB._Pos);
 	PID_Pos_Cal(&Robo_Base.RF._Pos);
+    Motor_Add_Can_TxMessageList(&Robo_Base.RF._Pos);
 	PID_Pos_Cal(&Robo_Base.RB._Pos);
-	
-	ODrive_Transmit(Robo_Base.LF._Axis, 0x0D);
-	ODrive_Transmit(Robo_Base.LB._Axis, 0x0D);
-	ODrive_Transmit(Robo_Base.RF._Axis, 0x0D);
-	ODrive_Transmit(Robo_Base.RB._Axis, 0x0D);
+	Motor_Add_Can_TxMessageList(&Robo_Base.RB._Pos);
+    
+	ODrive_CAN_Transmit(Robo_Base.LF._Axis, 0x0D);
+	ODrive_CAN_Transmit(Robo_Base.LB._Axis, 0x0D);
+	ODrive_CAN_Transmit(Robo_Base.RF._Axis, 0x0D);
+	ODrive_CAN_Transmit(Robo_Base.RB._Axis, 0x0D);
 }
 
 //--------------------------------------------------------------------------------------------------//
@@ -133,23 +134,23 @@ void Base_WatchDog(void)
     uint32_t Error_State = 0;
     MotorSystem* P_Motor = NULL;
     P_Motor = &Robo_Base.LF._Pos;
-	if(System_Check(&P_Motor->Protect)) Error_State |= (1 << (P_Motor->Motor_Num + 1));
+	if(!System_Check(&P_Motor->Protect)) Error_State |= (1 << P_Motor->Motor_Num);
     P_Motor = &Robo_Base.LB._Pos;
-	if(System_Check(&P_Motor->Protect)) Error_State |= (1 << (P_Motor->Motor_Num + 1));
+	if(!System_Check(&P_Motor->Protect)) Error_State |= (1 << P_Motor->Motor_Num);
     P_Motor = &Robo_Base.RF._Pos;
-	if(System_Check(&P_Motor->Protect)) Error_State |= (1 << (P_Motor->Motor_Num + 1));
+	if(!System_Check(&P_Motor->Protect)) Error_State |= (1 << P_Motor->Motor_Num);
     P_Motor = &Robo_Base.RB._Pos;
-	if(System_Check(&P_Motor->Protect)) Error_State |= (1 << (P_Motor->Motor_Num + 1));
+	if(!System_Check(&P_Motor->Protect)) Error_State |= (1 << P_Motor->Motor_Num);
 	
 	Axis* P_Axis = NULL;
 	P_Axis = Robo_Base.LF._Axis;
-	if(P_Axis->Error != 0 || System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 5));
+	if(P_Axis->Error != 0 || !System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 4));
 	P_Axis = Robo_Base.LB._Axis;
-	if(P_Axis->Error != 0 || System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 5));
+	if(P_Axis->Error != 0 || !System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 4));
 	P_Axis=Robo_Base.RF._Axis;
-	if(P_Axis->Error != 0 || System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 5));
+	if(P_Axis->Error != 0 || !System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 4));
 	P_Axis=Robo_Base.RB._Axis;
-	if(P_Axis->Error != 0 || System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 5));
+	if(P_Axis->Error != 0 || !System_Check(&P_Axis->Protect)) Error_State |= (1 << (P_Axis->Node_ID + 4));
   
 	if(Error_State) Robo_Base.Error_State = Error_State;
 }

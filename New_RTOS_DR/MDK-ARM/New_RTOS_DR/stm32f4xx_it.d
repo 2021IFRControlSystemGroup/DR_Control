@@ -43,3 +43,15 @@ new_rtos_dr\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/
 new_rtos_dr\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
 new_rtos_dr\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
 new_rtos_dr\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+new_rtos_dr\stm32f4xx_it.o: ../Inc/robo_base.h
+new_rtos_dr\stm32f4xx_it.o: ../Inc/motor_system.h
+new_rtos_dr\stm32f4xx_it.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\math.h
+new_rtos_dr\stm32f4xx_it.o: ../Inc/can_function.h
+new_rtos_dr\stm32f4xx_it.o: ../Inc/can.h
+new_rtos_dr\stm32f4xx_it.o: ../Inc/protect.h
+new_rtos_dr\stm32f4xx_it.o: ../Inc/odrive_system.h
+new_rtos_dr\stm32f4xx_it.o: ../Inc/usart_analysis.h
+new_rtos_dr\stm32f4xx_it.o: ../Inc/usart.h
+new_rtos_dr\stm32f4xx_it.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+new_rtos_dr\stm32f4xx_it.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\string.h
+new_rtos_dr\stm32f4xx_it.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdio.h

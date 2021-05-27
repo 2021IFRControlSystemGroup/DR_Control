@@ -6,19 +6,21 @@ void Led_Task(uint32_t Working_State, uint32_t Error_State, uint32_t Time)
     LED_Time = Time;
 	if(Error_State != 0) LED_WARNING(Error_State);
 	else switch(Working_State){
-		case 1:ALL_Always();break;
-		case 3:Green_Quick();break;
-		case 5:Green_Always();break;
+		case 0:ALL_Always();break;
+		case 1:Green_Quick();break;
+		case 2:Green_Always();break;
 	}
 }
 
 void LED_WARNING(uint16_t Error_State)
 {
-    const static uint8_t Warning_Max = 9;
+    const static uint8_t Warning_Max = 8;
 	static int8_t Warning_Num = 0;
 	static uint32_t P_Time = 0;
 	
-	HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+//    if(LED_Time % 300 > 200) HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
+//    else HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+
 	if(LED_Time >= P_Time + 800) P_Time = LED_Time, Warning_Num++;
     
     if(Warning_Num < Warning_Max){
@@ -31,7 +33,7 @@ void LED_WARNING(uint16_t Error_State)
 
 void Green_Quick(void)
 {
-	if(LED_Time%500>400){
+	if(LED_Time % 300 > 200){
 		LED_RED_OFF;
 		LED_GRE_OFF;
 	}else{

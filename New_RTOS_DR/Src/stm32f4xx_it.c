@@ -25,6 +25,7 @@
 #include "task.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "robo_base.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -237,11 +238,13 @@ void DMA1_Stream6_IRQHandler(void)
 void CAN1_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
-
+CAN_RxHeaderTypeDef Reg1;
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
-
+    HAL_CAN_GetRxMessage(&hcan1, CAN_RX_FIFO0, &Reg1, Robo_Base.Can1.Rx);
+    if(Reg1.StdId<0x200) ODrive_CAN_Recevice(Reg1.StdId,Robo_Base.Can1.Rx);
+    else Motor_CAN_Recevice(Reg1.StdId,Robo_Base.Can1.Rx);
   /* USER CODE END CAN1_RX0_IRQn 1 */
 }
 
@@ -275,7 +278,7 @@ void TIM2_IRQHandler(void)
 
 /**
   * @brief This function handles TIM3 global interrupt.
-  */
+  */uint8_t flag = 0;
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
@@ -283,6 +286,12 @@ void TIM3_IRQHandler(void)
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
+    Robo_Base.Running_Time++;
+    if(flag == 1){
+        ODrive_CAN_Transmit(Robo_Base.LF._Axis,0x17);
+        ODrive_CAN_Transmit(Robo_Base.LB._Axis,0x9);
+    }Reboot_ALL_ODrives(Robo_Base.Running_Time);
+
 
   /* USER CODE END TIM3_IRQn 1 */
 }
@@ -297,7 +306,7 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
-
+    Usart_DMA_Process(&huart1,&hdma_usart1_rx, &Uart1_Rx, RemoteData_analysis);
   /* USER CODE END USART1_IRQn 1 */
 }
 

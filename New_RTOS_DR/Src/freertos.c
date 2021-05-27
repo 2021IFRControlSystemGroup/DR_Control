@@ -31,7 +31,7 @@
 #include "led.h"
 /* USER CODE END Includes */
 
-/* Private typedefs -----------------------------------------------------------*/
+/* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -54,6 +54,7 @@ osThreadId defaultTaskHandle;
 osThreadId moveTaskHandle;
 osThreadId canSendTaskHandle;
 osThreadId initTaskHandle;
+osMessageQId CAN_TxMessageQueueHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -104,6 +105,11 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
+
+  /* Create the queue(s) */
+  /* definition and creation of CAN_TxMessageQueue */
+  osMessageQDef(CAN_TxMessageQueue, 90, uint8_t);
+  CAN_TxMessageQueueHandle = osMessageCreate(osMessageQ(CAN_TxMessageQueue), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -181,7 +187,7 @@ void MoveTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    Move_Analysis();
+    //Move_Analysis();
 	Can_TxMessage_MoveMode();
     osDelay(1);
   }
@@ -194,17 +200,24 @@ void MoveTask(void const * argument)
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_CanSendTask */
+/* USER CODE END Header_CanSendTask */    uint8_t num = 0 ;    uint8_t i = 0;
 void CanSendTask(void const * argument)
 {
   /* USER CODE BEGIN CanSendTask */
-    uint8_t i = 0;
+
+
   /* Infinite loop */
     for(;;)
     {
-        for(i = 0;i < CanTXMESSAGELISTMAX;i++) 
-            if(CanTxMessageList[i].Update != 0) Can_Send(&hcan1,&CanTxMessageList[i]);
-        osDelay(1);
+        for(i = 0;i<CANTXMESSAGELISTMAX;i++){
+            //if(Can_TxMessageList[i].Update == SET) xQueueSend(CAN_TxMessageQueueHandle, &i, 1);
+            if(Can_TxMessageList[i].Update == SET) Can_Send(&hcan1,&Can_TxMessageList[i], 10);
+        }osDelay(1);
+//        i = 0;
+//        if(xQueueIsQueueEmptyFromISR(CAN_TxMessageQueueHandle) != pdTRUE){
+//            while(xQueueReceive(CAN_TxMessageQueueHandle, &num, 10) == pdPASS && i < 3)
+//                Can_Send(&hcan1,&Can_TxMessageList[num], 10),i++;
+//        }
     }
   /* USER CODE END CanSendTask */
 }
@@ -219,20 +232,21 @@ void CanSendTask(void const * argument)
 void InitTask(void const * argument)
 {
   /* USER CODE BEGIN InitTask */
+    Robo_Base.Working_State = 1;
   /* Infinite loop */
     for(;;)
     {
-        if( Robo_Base.LF._Axis->Protect.Work_State == WORKING && Robo_Base.LF._Pos.Protect.Work_State == WORKING &&
-            Robo_Base.LB._Axis->Protect.Work_State == WORKING && Robo_Base.LB._Pos.Protect.Work_State == WORKING &&
-            Robo_Base.RF._Axis->Protect.Work_State == WORKING && Robo_Base.RF._Pos.Protect.Work_State == WORKING &&
-            Robo_Base.RB._Axis->Protect.Work_State == WORKING && Robo_Base.RB._Pos.Protect.Work_State == WORKING
+        if( //Robo_Base.LF._Axis->Protect.Work_State == WORKING && Robo_Base.LF._Pos.Protect.Work_State == WORKING &&
+            Robo_Base.LB._Axis->Protect.Work_State == WORKING //&& Robo_Base.LB._Pos.Protect.Work_State == WORKING &&
+            //Robo_Base.RF._Axis->Protect.Work_State == WORKING && Robo_Base.RF._Pos.Protect.Work_State == WORKING &&
+            //Robo_Base.RB._Axis->Protect.Work_State == WORKING && Robo_Base.RB._Pos.Protect.Work_State == WORKING
 		){
             vTaskResume(moveTaskHandle); vTaskSuspend(initTaskHandle);
         }else {
-			Pos_CloseLoop_Init(&Robo_Base.LF._Pos); Axis_CloseLoop_Init(Robo_Base.LF._Axis);
+			//Pos_CloseLoop_Init(&Robo_Base.LF._Pos); Axis_CloseLoop_Init(Robo_Base.LF._Axis);
 			Pos_CloseLoop_Init(&Robo_Base.LB._Pos); Axis_CloseLoop_Init(Robo_Base.LB._Axis);
-			Pos_CloseLoop_Init(&Robo_Base.RF._Pos); Axis_CloseLoop_Init(Robo_Base.RF._Axis);
-			Pos_CloseLoop_Init(&Robo_Base.RB._Pos); Axis_CloseLoop_Init(Robo_Base.RB._Axis);
+			//Pos_CloseLoop_Init(&Robo_Base.RF._Pos); Axis_CloseLoop_Init(Robo_Base.RF._Axis);
+			//Pos_CloseLoop_Init(&Robo_Base.RB._Pos); Axis_CloseLoop_Init(Robo_Base.RB._Axis);
         }osDelay(1);
     }
   /* USER CODE END InitTask */
@@ -240,7 +254,7 @@ void InitTask(void const * argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
-     
+
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

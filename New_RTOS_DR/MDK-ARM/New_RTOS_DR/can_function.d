@@ -35,3 +35,13 @@ new_rtos_dr\can_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_ti
 new_rtos_dr\can_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 new_rtos_dr\can_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 new_rtos_dr\can_function.o: ../Inc/can.h
+new_rtos_dr\can_function.o: ../Inc/robo_base.h
+new_rtos_dr\can_function.o: ../Inc/motor_system.h
+new_rtos_dr\can_function.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\math.h
+new_rtos_dr\can_function.o: ../Inc/protect.h
+new_rtos_dr\can_function.o: ../Inc/odrive_system.h
+new_rtos_dr\can_function.o: ../Inc/usart_analysis.h
+new_rtos_dr\can_function.o: ../Inc/usart.h
+new_rtos_dr\can_function.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+new_rtos_dr\can_function.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\string.h
+new_rtos_dr\can_function.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdio.h

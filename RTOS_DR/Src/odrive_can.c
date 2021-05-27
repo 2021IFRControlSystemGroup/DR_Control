@@ -146,7 +146,8 @@ void Axis_CloseLoop_Init(Axis* _Axis)
 	uint8_t* P_num=&num[_Axis->Node_ID];
 	
 	if(_Axis->Error!=0||_Axis->Current_State==0) return ;
-	if(*P_num==0&&_Axis->Current_State==1){
+	if(_Axis->Current_State==8) SystemState_Set(&_Axis->Protect,WORKING);
+    if(*P_num==0&&_Axis->Current_State==1){
 		_Axis->Requested_State=3;
 		ODrive_Transmit(_Axis,0x7);
 		(*P_num)++;
