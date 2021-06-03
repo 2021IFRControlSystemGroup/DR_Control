@@ -290,6 +290,8 @@ void TIM3_IRQHandler(void)
     if(flag == 1){
         ODrive_CAN_Transmit(Robo_Base.LF._Axis,0x17);
         ODrive_CAN_Transmit(Robo_Base.LB._Axis,0x9);
+//        ODrive_CAN_Transmit(Robo_Base.RF._Axis,0x17);
+//        ODrive_CAN_Transmit(Robo_Base.RB._Axis,0x9);
     }Reboot_ALL_ODrives(Robo_Base.Running_Time);
 
 

@@ -38,7 +38,10 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define CLOSE_MOVE vTaskSuspend(moveTaskHandle)
+#define START_MOVE vTaskResume(moveTaskHandle)
+#define CLOSE_INIT vTaskSuspend(initTaskHandle)
+#define START_INIT vTaskResume(initTaskHandle)
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -65,6 +68,12 @@ void StartDefaultTask(void const * argument);
 void MoveTask(void const * argument);
 void CanSendTask(void const * argument);
 void InitTask(void const * argument);
+void Control_Task(void);
+void Task_Swtich(void);
+void Remote_Control(void);
+void Bucket_Turning(void);
+void Arrow_PickUp(void);
+void Arrow_HandOver(void);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -133,7 +142,8 @@ void MX_FREERTOS_Init(void) {
   initTaskHandle = osThreadCreate(osThread(initTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  vTaskSuspend(moveTaskHandle);
+  CLOSE_MOVE;
+  CLOSE_INIT;
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
@@ -156,6 +166,7 @@ void StartDefaultTask(void const * argument)
     {
         HAL_IWDG_Refresh(&hiwdg);
         //Base_WatchDog();
+        Control_Task();
         Led_Task(Robo_Base.Working_State, Robo_Base.Error_State, Robo_Base.Running_Time);
         if((Robo_Base.Error_State != 0) && Suspend_Flag){
 			vTaskSuspend(canSendTaskHandle);
@@ -187,7 +198,7 @@ void MoveTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    //Move_Analysis();
+    Move_Analysis();
 	Can_TxMessage_MoveMode();
     osDelay(1);
   }
@@ -229,24 +240,25 @@ void CanSendTask(void const * argument)
 * @retval None
 */
 /* USER CODE END Header_InitTask */
+
 void InitTask(void const * argument)
 {
   /* USER CODE BEGIN InitTask */
-    Robo_Base.Working_State = 1;
   /* Infinite loop */
     for(;;)
     {
-        if( //Robo_Base.LF._Axis->Protect.Work_State == WORKING && Robo_Base.LF._Pos.Protect.Work_State == WORKING &&
-            Robo_Base.LB._Axis->Protect.Work_State == WORKING //&& Robo_Base.LB._Pos.Protect.Work_State == WORKING &&
+        if(
+            //Robo_Base.LF._Axis->Protect.Work_State == WORKING && Robo_Base.LF._Pos.Protect.Work_State == WORKING &&
+            //Robo_Base.LB._Axis->Protect.Work_State == WORKING && Robo_Base.LB._Pos.Protect.Work_State == WORKING &&
             //Robo_Base.RF._Axis->Protect.Work_State == WORKING && Robo_Base.RF._Pos.Protect.Work_State == WORKING &&
-            //Robo_Base.RB._Axis->Protect.Work_State == WORKING && Robo_Base.RB._Pos.Protect.Work_State == WORKING
+            Robo_Base.RB._Axis->Protect.Work_State == WORKING //&& Robo_Base.RB._Pos.Protect.Work_State == WORKING
 		){
-            vTaskResume(moveTaskHandle); vTaskSuspend(initTaskHandle);
+            START_MOVE; CLOSE_MOVE;
         }else {
 			//Pos_CloseLoop_Init(&Robo_Base.LF._Pos); Axis_CloseLoop_Init(Robo_Base.LF._Axis);
-			Pos_CloseLoop_Init(&Robo_Base.LB._Pos); Axis_CloseLoop_Init(Robo_Base.LB._Axis);
+			//Pos_CloseLoop_Init(&Robo_Base.LB._Pos); Axis_CloseLoop_Init(Robo_Base.LB._Axis);
 			//Pos_CloseLoop_Init(&Robo_Base.RF._Pos); Axis_CloseLoop_Init(Robo_Base.RF._Axis);
-			//Pos_CloseLoop_Init(&Robo_Base.RB._Pos); Axis_CloseLoop_Init(Robo_Base.RB._Axis);
+			Pos_CloseLoop_Init(&Robo_Base.RB._Pos); Axis_CloseLoop_Init(Robo_Base.RB._Axis);
         }osDelay(1);
     }
   /* USER CODE END InitTask */
@@ -254,7 +266,98 @@ void InitTask(void const * argument)
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
+void Task_Swtich(void)
+{
+//    switch(RC_Ctl.rc.switch_left){
+//        case 0:Robo_Base.Working_State = 1;break;
+//        case 1:Robo_Base.Working_State = 1;break;
+//        case 2:Robo_Base.Working_State = 1;break;
+//        case 3:Robo_Base.Working_State = 1;break;
+//    }
+}
 
+void Control_Task(void)
+{
+    if(RC_Ctl.State_Update == SET) Task_Swtich();
+    
+    switch(Robo_Base.Working_State){
+        case 0:break;
+        case 1:START_INIT;break;
+        case 2:Remote_Control();break;
+        case 3:Bucket_Turning();break;
+        case 4:Arrow_PickUp();break;
+        case 5:Arrow_HandOver();break;
+        
+    }
+}
+
+void Remote_Control(void)
+{
+    Robo_Base.Speed_X=(RC_Ctl.rc.ch0-1024)*1.0/660;
+	Robo_Base.Speed_Y=(RC_Ctl.rc.ch1-1024)*1.0/660;
+	if(sqrt((RC_Ctl.rc.ch0 - 1024) * (RC_Ctl.rc.ch0 - 1024) + (RC_Ctl.rc.ch1 - 1024) * (RC_Ctl.rc.ch1 - 1024) > 10))
+    Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
+}
+
+void Bucket_Turning(void)
+{
+    static uint8_t Bucket_Turning_State = 0;
+    switch(Bucket_Turning_State){
+        case 0:{
+            if(1/*是否到位*/) Bucket_Turning_State = 1;
+            break;
+        }case 1:{
+            if(1/*是否抓取结束*/) Bucket_Turning_State = 2;
+            break;
+        }case 2:{
+            if(1/*是否到位*/) Bucket_Turning_State = 3;
+            break;
+        }case 3:{
+            Bucket_Turning_State = 0;
+            Robo_Base.Working_State = 0;
+            break;
+        }
+    }
+}
+
+void Arrow_PickUp(void)
+{
+    static uint8_t Arrow_PickUp_State = 0;
+    switch(Arrow_PickUp_State){
+        case 0:{
+            if(1/*是否到位*/) Arrow_PickUp_State = 1;
+            break;
+        }case 1:{
+            if(1/*是否抓取结束*/) Arrow_PickUp_State = 2;
+            break;
+        }case 2:{
+            Arrow_PickUp_State = 0;
+            Robo_Base.Working_State = 0;
+            break;
+        }
+    }
+}
+
+void Arrow_HandOver(void)
+{
+    static uint8_t Arrow_HandOver_State = 0;
+    switch(Arrow_HandOver_State){
+        case 0:{
+            if(1/*是否到位*/) Arrow_HandOver_State = 1;
+            break;
+        }case 1:{
+            if(1/*是否交接结束*/) Arrow_HandOver_State = 2;
+            break;
+        }case 2:{
+            if(1/*是否分离*/) Arrow_HandOver_State = 3;
+            break;
+        }case 3:{
+            Arrow_HandOver_State = 0;
+            Robo_Base.Working_State = 0;
+            break;
+        }
+    }
+}
 /* USER CODE END Application */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -55,12 +55,12 @@ I (../Inc/tim.h)(0x60AF24EF)
 I (../Inc/usart.h)(0x60AF24EF)
 I (../Inc/gpio.h)(0x60AF24ED)
 I (../Inc/robo_base.h)(0x60AE299D)
-I (../Inc/motor_system.h)(0x60ADF51F)
+I (../Inc/motor_system.h)(0x60B87777)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (../Inc/can_function.h)(0x60AF46EC)
 I (../Inc/protect.h)(0x60ADF345)
 I (../Inc/odrive_system.h)(0x60AFA170)
-I (../Inc/usart_analysis.h)(0x60AFA2BB)
+I (../Inc/usart_analysis.h)(0x60B8772E)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
@@ -169,7 +169,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Src/freertos.c)(0x60AF46EC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\freertos.o --omf_browse new_rtos_dr\freertos.crf --depend new_rtos_dr\freertos.d)
+F (../Src/freertos.c)(0x60B88524)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\freertos.o --omf_browse new_rtos_dr\freertos.crf --depend new_rtos_dr\freertos.d)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x5FA9E67D)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -220,13 +220,13 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h)(0x5FA9E67D
 I (../Inc/iwdg.h)(0x60AF24EF)
 I (../Inc/move.h)(0x60ADF632)
 I (../Inc/robo_base.h)(0x60AE299D)
-I (../Inc/motor_system.h)(0x60ADF51F)
+I (../Inc/motor_system.h)(0x60B87777)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (../Inc/can_function.h)(0x60AF46EC)
 I (../Inc/can.h)(0x60AF24EE)
 I (../Inc/protect.h)(0x60ADF345)
 I (../Inc/odrive_system.h)(0x60AFA170)
-I (../Inc/usart_analysis.h)(0x60AFA2BB)
+I (../Inc/usart_analysis.h)(0x60B8772E)
 I (../Inc/usart.h)(0x60AF24EF)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\string.h)(0x599ECD2C)
@@ -337,7 +337,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (../Src/stm32f4xx_it.c)(0x60AFA24D)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\stm32f4xx_it.o --omf_browse new_rtos_dr\stm32f4xx_it.crf --depend new_rtos_dr\stm32f4xx_it.d)
+F (../Src/stm32f4xx_it.c)(0x60B34637)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\stm32f4xx_it.o --omf_browse new_rtos_dr\stm32f4xx_it.crf --depend new_rtos_dr\stm32f4xx_it.d)
 I (../Inc/main.h)(0x60AF24F0)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
 I (../Inc/stm32f4xx_hal_conf.h)(0x60AF24F0)
@@ -382,13 +382,13 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h)(0x5FA9E67D
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/task.h)(0x5FA9E67D)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/list.h)(0x5FA9E67D)
 I (../Inc/robo_base.h)(0x60AE299D)
-I (../Inc/motor_system.h)(0x60ADF51F)
+I (../Inc/motor_system.h)(0x60B87777)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (../Inc/can_function.h)(0x60AF46EC)
 I (../Inc/can.h)(0x60AF24EE)
 I (../Inc/protect.h)(0x60ADF345)
 I (../Inc/odrive_system.h)(0x60AFA170)
-I (../Inc/usart_analysis.h)(0x60AFA2BB)
+I (../Inc/usart_analysis.h)(0x60B8772E)
 I (../Inc/usart.h)(0x60AF24EF)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\string.h)(0x599ECD2C)
@@ -461,7 +461,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
 F (..\Src\motor_system.c)(0x60AF1F51)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\motor_system.o --omf_browse new_rtos_dr\motor_system.crf --depend new_rtos_dr\motor_system.d)
-I (../Inc/motor_system.h)(0x60ADF51F)
+I (../Inc/motor_system.h)(0x60B87777)
 I (../Inc/main.h)(0x60AF24F0)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
 I (../Inc/stm32f4xx_hal_conf.h)(0x60AF24F0)
@@ -534,9 +534,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (..\Src\odrive_system.c)(0x60AF630B)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\odrive_system.o --omf_browse new_rtos_dr\odrive_system.crf --depend new_rtos_dr\odrive_system.d)
+F (..\Src\odrive_system.c)(0x60AFABF0)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\odrive_system.o --omf_browse new_rtos_dr\odrive_system.crf --depend new_rtos_dr\odrive_system.d)
 I (../Inc/odrive_system.h)(0x60AFA170)
-I (../Inc/motor_system.h)(0x60ADF51F)
+I (../Inc/motor_system.h)(0x60B87777)
 I (../Inc/main.h)(0x60AF24F0)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
 I (../Inc/stm32f4xx_hal_conf.h)(0x60AF24F0)
@@ -574,7 +574,7 @@ I (E:\Software\MDK_Keil5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (../Inc/can_function.h)(0x60AF46EC)
 I (../Inc/can.h)(0x60AF24EE)
 I (../Inc/protect.h)(0x60ADF345)
-F (..\Src\can_function.c)(0x60AFA639)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\can_function.o --omf_browse new_rtos_dr\can_function.crf --depend new_rtos_dr\can_function.d)
+F (..\Src\can_function.c)(0x60B348EC)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\can_function.o --omf_browse new_rtos_dr\can_function.crf --depend new_rtos_dr\can_function.d)
 I (../Inc/can_function.h)(0x60AF46EC)
 I (../Inc/main.h)(0x60AF24F0)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
@@ -611,18 +611,18 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
 I (../Inc/can.h)(0x60AF24EE)
 I (../Inc/robo_base.h)(0x60AE299D)
-I (../Inc/motor_system.h)(0x60ADF51F)
+I (../Inc/motor_system.h)(0x60B87777)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (../Inc/protect.h)(0x60ADF345)
 I (../Inc/odrive_system.h)(0x60AFA170)
-I (../Inc/usart_analysis.h)(0x60AFA2BB)
+I (../Inc/usart_analysis.h)(0x60B8772E)
 I (../Inc/usart.h)(0x60AF24EF)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 F (..\Src\robo_base.c)(0x60AFA5D6)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\robo_base.o --omf_browse new_rtos_dr\robo_base.crf --depend new_rtos_dr\robo_base.d)
 I (../Inc/robo_base.h)(0x60AE299D)
-I (../Inc/motor_system.h)(0x60ADF51F)
+I (../Inc/motor_system.h)(0x60B87777)
 I (../Inc/main.h)(0x60AF24F0)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
 I (../Inc/stm32f4xx_hal_conf.h)(0x60AF24F0)
@@ -661,7 +661,7 @@ I (../Inc/can_function.h)(0x60AF46EC)
 I (../Inc/can.h)(0x60AF24EE)
 I (../Inc/protect.h)(0x60ADF345)
 I (../Inc/odrive_system.h)(0x60AFA170)
-I (../Inc/usart_analysis.h)(0x60AFA2BB)
+I (../Inc/usart_analysis.h)(0x60B8772E)
 I (../Inc/usart.h)(0x60AF24EF)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\string.h)(0x599ECD2C)
@@ -701,8 +701,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
-F (..\Src\usart_analysis.c)(0x60AFA2A9)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\usart_analysis.o --omf_browse new_rtos_dr\usart_analysis.crf --depend new_rtos_dr\usart_analysis.d)
-I (../Inc/usart_analysis.h)(0x60AFA2BB)
+F (..\Src\usart_analysis.c)(0x60B883EB)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\usart_analysis.o --omf_browse new_rtos_dr\usart_analysis.crf --depend new_rtos_dr\usart_analysis.d)
+I (../Inc/usart_analysis.h)(0x60B8772E)
 I (../Inc/main.h)(0x60AF24F0)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
 I (../Inc/stm32f4xx_hal_conf.h)(0x60AF24F0)
@@ -740,7 +740,7 @@ I (../Inc/usart.h)(0x60AF24EF)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-F (..\Src\move.c)(0x60AFA2A9)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\move.o --omf_browse new_rtos_dr\move.crf --depend new_rtos_dr\move.d)
+F (..\Src\move.c)(0x60B883EB)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_New_RTOS_DR-IE:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IE:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Device\Include-D__UVISION_VERSION="527" -D_RTE_ -DSTM32F405xx -DUSE_HAL_DRIVER -DSTM32F405xx-o new_rtos_dr\move.o --omf_browse new_rtos_dr\move.crf --depend new_rtos_dr\move.d)
 I (../Inc/move.h)(0x60ADF632)
 I (../Inc/main.h)(0x60AF24F0)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5FA9E695)
@@ -776,13 +776,13 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x5FA9E695)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5FA9E695)
 I (../Inc/robo_base.h)(0x60AE299D)
-I (../Inc/motor_system.h)(0x60ADF51F)
+I (../Inc/motor_system.h)(0x60B87777)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (../Inc/can_function.h)(0x60AF46EC)
 I (../Inc/can.h)(0x60AF24EE)
 I (../Inc/protect.h)(0x60ADF345)
 I (../Inc/odrive_system.h)(0x60AFA170)
-I (../Inc/usart_analysis.h)(0x60AFA2BB)
+I (../Inc/usart_analysis.h)(0x60B8772E)
 I (../Inc/usart.h)(0x60AF24EF)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (E:\Software\MDK_Keil5\ARM\ARMCC\include\string.h)(0x599ECD2C)

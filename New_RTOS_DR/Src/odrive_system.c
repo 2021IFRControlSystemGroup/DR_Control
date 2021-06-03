@@ -109,7 +109,10 @@ void Axis_CloseLoop_Init(Axis* _Axis)
 	static uint8_t Axis_Init_State[4] = {0};
   
 	if(_Axis->Error != 0 || _Axis->Current_State == 0) return ;
-    if(_Axis->Current_State == 8) WorkState_Set(&_Axis->Protect, WORKING);
+    if(_Axis->Current_State == 8){
+        WorkState_Set(&_Axis->Protect, WORKING);
+        return ;
+    }
     switch(Axis_Init_State[_Axis->Node_ID]){
     case 0:
       if(_Axis->Current_State == 1){

@@ -25,7 +25,7 @@
 #define RC_DATA_DEFAULT {\
 	{1024,1024,1024,1024,3,3},\
 	{0},\
-	{0},\
+	{0},0, \
 }
 
 typedef  struct
@@ -69,6 +69,8 @@ typedef struct
 		uint8_t v_l;
 		uint8_t v_h;
 	}key;
+    
+    uint8_t State_Update;
 }RC_Ctl_t;
 
 //-------Ԯࠚͨхޡٹͥҿؖ--------//

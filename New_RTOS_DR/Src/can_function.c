@@ -56,7 +56,7 @@ void Can_Send(CAN_HandleTypeDef *hcan,CanTxMessageTypeDef* TxMessage, uint32_t L
     if (HAL_CAN_AddTxMessage(hcan, &TxMessage->Header, TxMessage->Data, &TxMailbox) != HAL_OK) CAN_Error_Handler(hcan);
 	TxMessage->Update = RESET;
 }
-
+uint16_t Error_Times = 0;
 void CAN_Error_Handler(CAN_HandleTypeDef *hcan)
 {
     if(hcan->ErrorCode != HAL_CAN_ERROR_NONE){
@@ -64,5 +64,6 @@ void CAN_Error_Handler(CAN_HandleTypeDef *hcan)
         HAL_CAN_ResetError(hcan);
         HAL_CAN_Stop(hcan);
         CAN_Start_IT(hcan);
+        Error_Times++;
     }
 }
