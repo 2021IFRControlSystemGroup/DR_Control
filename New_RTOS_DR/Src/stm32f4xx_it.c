@@ -278,7 +278,7 @@ void TIM2_IRQHandler(void)
 
 /**
   * @brief This function handles TIM3 global interrupt.
-  */uint8_t flag = 0;
+  */uint8_t flag = 1;
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
@@ -287,11 +287,11 @@ void TIM3_IRQHandler(void)
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
     Robo_Base.Running_Time++;
-    if(flag == 1){
+    if(Robo_Base.Working_State == 2){
         ODrive_CAN_Transmit(Robo_Base.LF._Axis,0x17);
         ODrive_CAN_Transmit(Robo_Base.LB._Axis,0x9);
-//        ODrive_CAN_Transmit(Robo_Base.RF._Axis,0x17);
-//        ODrive_CAN_Transmit(Robo_Base.RB._Axis,0x9);
+        ODrive_CAN_Transmit(Robo_Base.RF._Axis,0x17);
+        ODrive_CAN_Transmit(Robo_Base.RB._Axis,0x9);
     }Reboot_ALL_ODrives(Robo_Base.Running_Time);
 
 

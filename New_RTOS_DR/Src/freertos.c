@@ -198,7 +198,7 @@ void MoveTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    Move_Analysis();
+    //Move_Analysis();
 	Can_TxMessage_MoveMode();
     osDelay(1);
   }
