@@ -5,7 +5,7 @@
 #include "can.h"
 
 #define CAN_FUNCTION_ABLE ENABLE
-#define CANTXMESSAGELISTMAX 9
+#define CANTXMESSAGELISTMAX 12  //1 2006控制 2-9ODrive控制 10-12 控制指令
 typedef struct CanTxMessageTypeDef
 {
 	CAN_TxHeaderTypeDef Header;

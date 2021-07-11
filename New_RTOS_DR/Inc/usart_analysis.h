@@ -89,6 +89,7 @@ void Usart_DMA_Process(UART_HandleTypeDef *huart,DMA_HandleTypeDef* hdma_usart_r
 					UsartRxBuffer* Uart_Rx,void(*DataProcessFunc)(uint8_t *pData));	//ԮࠚDMAޓ˕Ԧmگ˽ 
 void VisionData_analysis(uint8_t *pData);
 void RemoteData_analysis(uint8_t *sbus_rx_buffer);
+void Control_CAN_Recevice(uint32_t StdID, uint8_t *pData);
 
 extern UsartRxBuffer Uart2_Rx;
 extern UsartRxBuffer Uart1_Rx;
@@ -97,6 +98,7 @@ extern UsartRxBuffer Uart6_Rx;
 
 extern VISION_DATA Vision_Data;
 extern RC_Ctl_t RC_Ctl;
+extern uint8_t Task_End_Flag;
 //---------------------------------//
 #endif
 

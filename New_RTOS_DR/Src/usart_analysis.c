@@ -18,6 +18,7 @@
 //--------------------------------//
 
 //---------Ҥʹķҿؖ-----------//
+uint8_t Task_End_Flag;
 uint8_t Uart2_Tx[USART2_TX_LEN_MAX]={0};
 
 UsartRxBuffer Uart2_Rx;
@@ -151,11 +152,9 @@ void RemoteData_analysis(uint8_t *sbus_rx_buffer)
 
 }
 
-void MiniPCData_Analysis(uint8_t *pData)
+void Control_CAN_Recevice(uint32_t StdID, uint8_t *pData)
 {
-	if(!pData || pData[0] != 0xa5) return ;
-//	Robo_Base.Speed_X = (pData[0] | (pData[1] << 8)) & 0x07ff;
-//	Robo_Base.Speed_Y = (pData[2] | (pData[3] << 8)) & 0x07ff;
+    if(StdID == 0x20 || StdID == 0x21 || StdID == 0x22 || StdID == 0x30) Task_End_Flag = pData[0];
 }
 
 

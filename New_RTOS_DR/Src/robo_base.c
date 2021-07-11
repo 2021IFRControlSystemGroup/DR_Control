@@ -66,14 +66,14 @@ void Motor_CAN_Recevice(uint32_t Motor_Num, uint8_t* RX_Data)
 void BASE_Init(void)
 {
     MotorSystem* P_Motor = NULL;
-    P_Motor = &Robo_Base.LF._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	10000);
-	Motor_Init(P_Motor, 0);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	4000);
-    P_Motor = &Robo_Base.LB._Pos; PID_Init(&P_Motor->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
-    Motor_Init(P_Motor, 1);			  PID_Init(&P_Motor->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
-    P_Motor = &Robo_Base.RF._Pos; PID_Init(&P_Motor->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
-    Motor_Init(P_Motor, 2);			  PID_Init(&P_Motor->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
-    P_Motor = &Robo_Base.RB._Pos; PID_Init(&P_Motor->Pos_PID,			0,	0,	0,	0,	0,	0,	0);
-    Motor_Init(P_Motor, 3);			  PID_Init(&P_Motor->Speed_PID,			0,	0,	0,	0,	0,	0,	0); 
+    P_Motor = &Robo_Base.LF._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	4000);
+	Motor_Init(P_Motor, 0);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	6000);
+    P_Motor = &Robo_Base.LB._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	4000);
+    Motor_Init(P_Motor, 1);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	6000); 
+    P_Motor = &Robo_Base.RF._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	4000);
+    Motor_Init(P_Motor, 2);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	6000); 
+    P_Motor = &Robo_Base.RB._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	4000);
+    Motor_Init(P_Motor, 3);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	6000); 
 
 	Axis* P_Axis = NULL;																																										//驱动电机初始化
 	P_Axis = Robo_Base.LF._Axis = &ODrive0.Axis0; Axis_Init(P_Axis, 0);
@@ -171,20 +171,22 @@ void Counting_Time(void)
   Robo_Base.Running_Time++;
   if(Robo_Base.Running_Time > RUNNING_TIME_MAX) Robo_Base.Running_Time = 0;
 }
-
+int32_t Speed = 3000;
 void Pos_CloseLoop_Init(MotorSystem* P_Motor)
 {
 	static uint8_t num[4] = {0};
 	uint8_t* P_num = &num[P_Motor->Motor_Num];
 	
 	//if(P_Motor->Info.Electric==0) return ;
-	if(*P_num < 150){
+	if(*P_num < 20){
+        P_Motor->Tar_Speed = Speed;
 		PID_Speed_Cal(P_Motor);
-		if(P_Motor == &Robo_Base.LF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH1_GPIO_Port, TIM3_CH1_Pin) == GPIO_PIN_RESET) (*P_num)++;
-		if(P_Motor == &Robo_Base.LB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH2_GPIO_Port, TIM3_CH2_Pin) == GPIO_PIN_RESET) (*P_num)++;
-		if(P_Motor == &Robo_Base.RF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH3_GPIO_Port, TIM3_CH3_Pin) == GPIO_PIN_RESET) (*P_num)++;
-		if(P_Motor == &Robo_Base.RB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH4_GPIO_Port, TIM3_CH4_Pin) == GPIO_PIN_RESET) (*P_num)++;
-	}if(*P_num == 150) P_Motor->Info.Abs_Angle = 0,(*P_num)++;
-	if(*P_num == 151) P_Motor->Tar_Pos = 0, WorkState_Set(&P_Motor->Protect, WORKING), PID_Pos_Cal(P_Motor);
+		if(P_Motor == &Robo_Base.LF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH1_GPIO_Port, TIM3_CH1_Pin) == GPIO_PIN_SET) (*P_num)++;
+		if(P_Motor == &Robo_Base.LB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH2_GPIO_Port, TIM3_CH2_Pin) == GPIO_PIN_SET) (*P_num)++;
+		if(P_Motor == &Robo_Base.RF._Pos) if(HAL_GPIO_ReadPin(TIM3_CH3_GPIO_Port, TIM3_CH3_Pin) == GPIO_PIN_SET) (*P_num)++;
+		if(P_Motor == &Robo_Base.RB._Pos) if(HAL_GPIO_ReadPin(TIM3_CH4_GPIO_Port, TIM3_CH4_Pin) == GPIO_PIN_SET) (*P_num)++;
+	}if(*P_num == 20) P_Motor->Info.Abs_Angle = P_Motor->Tar_Speed = 0, (*P_num)++;
+	if(*P_num == 21) P_Motor->Tar_Pos = 0, WorkState_Set(&P_Motor->Protect, WORKING), PID_Pos_Cal(P_Motor);
+    Motor_Add_Can_TxMessageList(P_Motor);
 }
 

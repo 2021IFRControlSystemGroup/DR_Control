@@ -49,7 +49,9 @@ typedef struct RoboBase										//底盘结构体
 	float Speed_X;													//底盘X方向上目标速度
 	float Speed_Y;													//底盘Y方向上目标速度
 	float Angle;															//底盘运动的相对方向
-
+    float Speed_Rotate;
+    
+    uint32_t Last_WorkingState;
 	uint32_t Working_State;										//底盘状态
 	uint32_t Error_State;
 	

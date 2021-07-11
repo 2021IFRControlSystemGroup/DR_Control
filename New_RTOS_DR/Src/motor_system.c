@@ -30,7 +30,7 @@ void Motor_Info_Analysis(MotorInfo* P_Motor, uint8_t* RX_Data)
   P_Motor->Angle = (uint16_t)RX_Data[0] << 8 | RX_Data[1];
   P_Motor->Speed = (uint16_t)RX_Data[2] << 8 | RX_Data[3];
   P_Motor->Electric = (uint16_t)RX_Data[4] << 8 | RX_Data[5];
-  P_Motor->Temperature = RX_Data[6];
+  //P_Motor->Temperature = RX_Data[6];
 
   //¾ø¶Ô½Ç¶È¼ÆËã
   if (P_Motor->Speed != 0){

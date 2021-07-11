@@ -69,6 +69,7 @@ void MoveTask(void const * argument);
 void CanSendTask(void const * argument);
 void InitTask(void const * argument);
 void Control_Task(void);
+void Stop_Move(void);
 void Task_Swtich(void);
 void Remote_Control(void);
 void Bucket_Turning(void);
@@ -194,11 +195,11 @@ void StartDefaultTask(void const * argument)
 void MoveTask(void const * argument)
 {
   /* USER CODE BEGIN MoveTask */
-  Robo_Base.Working_State = 2;
+
   /* Infinite loop */
   for(;;)
   {
-    //Move_Analysis();
+    Move_Analysis();
 	Can_TxMessage_MoveMode();
     osDelay(1);
   }
@@ -211,12 +212,11 @@ void MoveTask(void const * argument)
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_CanSendTask */    uint8_t num = 0 ;    uint8_t i = 0;
+/* USER CODE END Header_CanSendTask */
 void CanSendTask(void const * argument)
 {
   /* USER CODE BEGIN CanSendTask */
-
-
+    int i = 0;
   /* Infinite loop */
     for(;;)
     {
@@ -248,16 +248,21 @@ void InitTask(void const * argument)
     for(;;)
     {
         if(
-            //Robo_Base.LF._Axis->Protect.Work_State == WORKING && Robo_Base.LF._Pos.Protect.Work_State == WORKING &&
-            //Robo_Base.LB._Axis->Protect.Work_State == WORKING && Robo_Base.LB._Pos.Protect.Work_State == WORKING &&
-            //Robo_Base.RF._Axis->Protect.Work_State == WORKING && Robo_Base.RF._Pos.Protect.Work_State == WORKING &&
-            Robo_Base.RB._Axis->Protect.Work_State == WORKING //&& Robo_Base.RB._Pos.Protect.Work_State == WORKING
+            //Robo_Base.LF._Axis->Protect.Work_State == WORKING &&
+        Robo_Base.LF._Pos.Protect.Work_State == WORKING &&
+            //Robo_Base.LB._Axis->Protect.Work_State == WORKING &&
+        Robo_Base.LB._Pos.Protect.Work_State == WORKING &&
+            //Robo_Base.RF._Axis->Protect.Work_State == WORKING &&
+        Robo_Base.RF._Pos.Protect.Work_State == WORKING &&
+            //Robo_Base.RB._Axis->Protect.Work_State == WORKING &&
+        Robo_Base.RB._Pos.Protect.Work_State == WORKING
 		){
-            START_MOVE; CLOSE_MOVE;
+            START_MOVE; CLOSE_INIT;
+            Robo_Base.Working_State = 2;
         }else {
-			//Pos_CloseLoop_Init(&Robo_Base.LF._Pos); Axis_CloseLoop_Init(Robo_Base.LF._Axis);
-			//Pos_CloseLoop_Init(&Robo_Base.LB._Pos); Axis_CloseLoop_Init(Robo_Base.LB._Axis);
-			//Pos_CloseLoop_Init(&Robo_Base.RF._Pos); Axis_CloseLoop_Init(Robo_Base.RF._Axis);
+			Pos_CloseLoop_Init(&Robo_Base.LF._Pos); Axis_CloseLoop_Init(Robo_Base.LF._Axis);
+			Pos_CloseLoop_Init(&Robo_Base.LB._Pos); Axis_CloseLoop_Init(Robo_Base.LB._Axis);
+			Pos_CloseLoop_Init(&Robo_Base.RF._Pos); Axis_CloseLoop_Init(Robo_Base.RF._Axis);
 			Pos_CloseLoop_Init(&Robo_Base.RB._Pos); Axis_CloseLoop_Init(Robo_Base.RB._Axis);
         }osDelay(1);
     }
@@ -268,6 +273,8 @@ void InitTask(void const * argument)
 /* USER CODE BEGIN Application */
 void Task_Swtich(void)
 {
+    TxMessageHeader_Set(&Can_TxMessageList[10],8,0,0,0,0x10);
+    TxMessageData_Add(&Can_TxMessageList[10],(uint8_t*)&Robo_Base.Working_State,0,1);
 //    switch(RC_Ctl.rc.switch_left){
 //        case 0:Robo_Base.Working_State = 1;break;
 //        case 1:Robo_Base.Working_State = 1;break;
@@ -278,25 +285,32 @@ void Task_Swtich(void)
 
 void Control_Task(void)
 {
-    if(RC_Ctl.State_Update == SET) Task_Swtich();
-    
+//    if(RC_Ctl.State_Update == SET) Task_Swtich(),RC_Ctl.State_Update = RESET;
+//    
     switch(Robo_Base.Working_State){
-        case 0:break;
+        case 0:Stop_Move();break;
         case 1:START_INIT;break;
         case 2:Remote_Control();break;
         case 3:Bucket_Turning();break;
         case 4:Arrow_PickUp();break;
         case 5:Arrow_HandOver();break;
-        
     }
 }
 
+void Stop_Move(void)
+{
+    Robo_Base.LF._Axis->Input_Vel = 0;
+    Robo_Base.LB._Axis->Input_Vel = 0;
+    Robo_Base.RF._Axis->Input_Vel = 0;
+    Robo_Base.RB._Axis->Input_Vel = 0;
+}
 void Remote_Control(void)
 {
     Robo_Base.Speed_X=(RC_Ctl.rc.ch0-1024)*1.0/660;
 	Robo_Base.Speed_Y=(RC_Ctl.rc.ch1-1024)*1.0/660;
 	if(sqrt((RC_Ctl.rc.ch0 - 1024) * (RC_Ctl.rc.ch0 - 1024) + (RC_Ctl.rc.ch1 - 1024) * (RC_Ctl.rc.ch1 - 1024) > 10))
     Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
+    //Robo_Base.Speed_Rotate = (RC_Ctl.rc.ch0-1024)*1.0/660;
 }
 
 void Bucket_Turning(void)
@@ -304,17 +318,16 @@ void Bucket_Turning(void)
     static uint8_t Bucket_Turning_State = 0;
     switch(Bucket_Turning_State){
         case 0:{
-            if(1/*是否到位*/) Bucket_Turning_State = 1;
+            if(Task_End_Flag == 0xA/*是否到位*/) Bucket_Turning_State = 1,Task_End_Flag = 0;
             break;
         }case 1:{
-            if(1/*是否抓取结束*/) Bucket_Turning_State = 2;
+            if(Task_End_Flag == 0xB/*是否抓取结束*/) Bucket_Turning_State = 2,Task_End_Flag = 0;
             break;
         }case 2:{
-            if(1/*是否到位*/) Bucket_Turning_State = 3;
+            if(Task_End_Flag == 0xC/*是否到位*/) Bucket_Turning_State = 3,Task_End_Flag = 0;
             break;
         }case 3:{
             Bucket_Turning_State = 0;
-            Robo_Base.Working_State = 0;
             break;
         }
     }

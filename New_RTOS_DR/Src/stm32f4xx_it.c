@@ -238,7 +238,7 @@ void DMA1_Stream6_IRQHandler(void)
 void CAN1_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
-CAN_RxHeaderTypeDef Reg1;
+    CAN_RxHeaderTypeDef Reg1;
   /* USER CODE END CAN1_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan1);
   /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
@@ -288,12 +288,11 @@ void TIM3_IRQHandler(void)
   /* USER CODE BEGIN TIM3_IRQn 1 */
     Robo_Base.Running_Time++;
     if(Robo_Base.Working_State == 2){
-        ODrive_CAN_Transmit(Robo_Base.LF._Axis,0x17);
-        ODrive_CAN_Transmit(Robo_Base.LB._Axis,0x9);
-        ODrive_CAN_Transmit(Robo_Base.RF._Axis,0x17);
-        ODrive_CAN_Transmit(Robo_Base.RB._Axis,0x9);
+//        ODrive_CAN_Transmit(Robo_Base.LF._Axis,0x9);
+//        ODrive_CAN_Transmit(Robo_Base.LB._Axis,0x9);
+//        ODrive_CAN_Transmit(Robo_Base.RF._Axis,0x9);
+//        ODrive_CAN_Transmit(Robo_Base.RB._Axis,0x9);
     }Reboot_ALL_ODrives(Robo_Base.Running_Time);
-
 
   /* USER CODE END TIM3_IRQn 1 */
 }
@@ -374,11 +373,12 @@ void DMA2_Stream2_IRQHandler(void)
 void CAN2_RX0_IRQHandler(void)
 {
   /* USER CODE BEGIN CAN2_RX0_IRQn 0 */
-
+    CAN_RxHeaderTypeDef Reg2;
   /* USER CODE END CAN2_RX0_IRQn 0 */
   HAL_CAN_IRQHandler(&hcan2);
   /* USER CODE BEGIN CAN2_RX0_IRQn 1 */
-
+    HAL_CAN_GetRxMessage(&hcan2, CAN_RX_FIFO0, &Reg2, Robo_Base.Can2.Rx);
+    Control_CAN_Recevice(Reg2.StdId,Robo_Base.Can2.Rx);
   /* USER CODE END CAN2_RX0_IRQn 1 */
 }
 
