@@ -120,20 +120,15 @@ void Axis_CloseLoop_Init(Axis* _Axis)
             Axis_Init_State[_Axis->Node_ID]++;
           }break;
         case 1:
-          if(_Axis->Current_State == 4){
-            Axis_Init_State[_Axis->Node_ID]++;
-          }break;
+          if(_Axis->Current_State == 7) Axis_Init_State[_Axis->Node_ID]++;
+          break;
         case 2:
-          if(_Axis->Current_State == 7){
-            Axis_Init_State[_Axis->Node_ID]++;
-          }break;
-        case 3:
           if(_Axis->Current_State == 1){
             _Axis->Requested_State=8;
             ODrive_CAN_Transmit(_Axis,0x7);
-            _Axis->Requested_State=0;
             Axis_Init_State[_Axis->Node_ID]++;
           }break;
+        case 3: if(_Axis->Current_State == 8) _Axis->Requested_State = 0;
         default:break;
    }
 }

@@ -70,7 +70,7 @@ typedef struct
 		uint8_t v_h;
 	}key;
     
-    uint8_t State_Update;
+    volatile uint8_t State_Update;
 }RC_Ctl_t;
 
 //-------Ԯࠚͨхޡٹͥҿؖ--------//

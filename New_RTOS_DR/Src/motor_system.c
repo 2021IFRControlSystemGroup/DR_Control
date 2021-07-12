@@ -40,6 +40,7 @@ void Motor_Info_Analysis(MotorInfo* P_Motor, uint8_t* RX_Data)
         else if (Error > 4096)  P_Motor->Abs_Angle -= 8192;
     }P_Motor->Last_Angle = P_Motor->Angle;
     P_Motor->Circle_Num = P_Motor->Abs_Angle / (GEAR_RATIO * ROTOR_ANGLE);
+    if(P_Motor->Abs_Angle <= P_Motor->Circle_Num * GEAR_RATIO) P_Motor->Circle_Num--;
     P_Motor->Relative_Angle = P_Motor->Abs_Angle - P_Motor->Circle_Num * GEAR_RATIO * ROTOR_ANGLE;
 }
 

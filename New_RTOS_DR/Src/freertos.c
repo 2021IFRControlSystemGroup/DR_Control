@@ -33,7 +33,9 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+#define X_OFFSET 40
+#define Y_OFFSET 40
+#define Z_OFFSET 40
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -118,7 +120,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the queue(s) */
   /* definition and creation of CAN_TxMessageQueue */
-  osMessageQDef(CAN_TxMessageQueue, 90, uint8_t);
+  osMessageQDef(CAN_TxMessageQueue, 47, uint8_t);
   CAN_TxMessageQueueHandle = osMessageCreate(osMessageQ(CAN_TxMessageQueue), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -213,22 +215,43 @@ void MoveTask(void const * argument)
 * @retval None
 */
 /* USER CODE END Header_CanSendTask */
+uint8_t Queue_List[16]={0};
+uint16_t PQueue = 0;
+    uint8_t num = 0;
+uint8_t Num_List[CANTXMESSAGELISTMAX] = {0, 1, 2, 3, 4, 5, 6};
+uint8_t Flag_12_34 = 0;
 void CanSendTask(void const * argument)
 {
   /* USER CODE BEGIN CanSendTask */
     int i = 0;
+
   /* Infinite loop */
     for(;;)
     {
-        for(i = 0;i<CANTXMESSAGELISTMAX;i++){
-            //if(Can_TxMessageList[i].Update == SET) xQueueSend(CAN_TxMessageQueueHandle, &i, 1);
-            if(Can_TxMessageList[i].Update == SET) Can_Send(&hcan1,&Can_TxMessageList[i], 10);
-        }osDelay(1);
+        Can_Send(&hcan1,&Can_TxMessageList[0], 0);
+        if(Flag_12_34 == 0){
+            Can_Send(&hcan1,&Can_TxMessageList[1], 0);
+            Can_Send(&hcan1,&Can_TxMessageList[2], 0);
+            Flag_12_34 = 1;
+        }else{
+            Can_Send(&hcan1,&Can_TxMessageList[3], 0);
+            Can_Send(&hcan1,&Can_TxMessageList[4], 0);
+            Flag_12_34 = 0;
+        }
+//        for(i = 0;i<CANTXMESSAGELISTMAX;i++){
+//            if(Can_TxMessageList[i].Update == SET) xQueueSendToBack(CAN_TxMessageQueueHandle, &Num_List[i], 0);
+//        }
 //        i = 0;
 //        if(xQueueIsQueueEmptyFromISR(CAN_TxMessageQueueHandle) != pdTRUE){
-//            while(xQueueReceive(CAN_TxMessageQueueHandle, &num, 10) == pdPASS && i < 3)
-//                Can_Send(&hcan1,&Can_TxMessageList[num], 10),i++;
+//            while(i < 3 && xQueueReceive(CAN_TxMessageQueueHandle, &num, 0) == pdPASS){
+//                Can_Send(&hcan1,&Can_TxMessageList[num], 0);
+//                i++;
+//                Queue_List[PQueue] = num;
+//                PQueue++;
+//                PQueue%=15;
+//            }
 //        }
+        osDelay(1);
     }
   /* USER CODE END CanSendTask */
 }
@@ -248,22 +271,26 @@ void InitTask(void const * argument)
     for(;;)
     {
         if(
-            //Robo_Base.LF._Axis->Protect.Work_State == WORKING &&
-        Robo_Base.LF._Pos.Protect.Work_State == WORKING &&
-            //Robo_Base.LB._Axis->Protect.Work_State == WORKING &&
-        Robo_Base.LB._Pos.Protect.Work_State == WORKING &&
-            //Robo_Base.RF._Axis->Protect.Work_State == WORKING &&
-        Robo_Base.RF._Pos.Protect.Work_State == WORKING &&
-            //Robo_Base.RB._Axis->Protect.Work_State == WORKING &&
-        Robo_Base.RB._Pos.Protect.Work_State == WORKING
+            Robo_Base.LF._Axis->Protect.Work_State == WORKING &&
+            Robo_Base.LB._Axis->Protect.Work_State == WORKING &&
+            Robo_Base.RF._Axis->Protect.Work_State == WORKING &&
+            Robo_Base.RB._Axis->Protect.Work_State == WORKING &&
+            Robo_Base.LF._Pos.Protect.Work_State == WORKING &&
+            Robo_Base.LB._Pos.Protect.Work_State == WORKING &&
+            Robo_Base.RF._Pos.Protect.Work_State == WORKING &&
+            Robo_Base.RB._Pos.Protect.Work_State == WORKING  
 		){
             START_MOVE; CLOSE_INIT;
             Robo_Base.Working_State = 2;
         }else {
-			Pos_CloseLoop_Init(&Robo_Base.LF._Pos); Axis_CloseLoop_Init(Robo_Base.LF._Axis);
-			Pos_CloseLoop_Init(&Robo_Base.LB._Pos); Axis_CloseLoop_Init(Robo_Base.LB._Axis);
-			Pos_CloseLoop_Init(&Robo_Base.RF._Pos); Axis_CloseLoop_Init(Robo_Base.RF._Axis);
-			Pos_CloseLoop_Init(&Robo_Base.RB._Pos); Axis_CloseLoop_Init(Robo_Base.RB._Axis);
+            Axis_CloseLoop_Init(Robo_Base.LF._Axis);
+            Axis_CloseLoop_Init(Robo_Base.LB._Axis);
+            Axis_CloseLoop_Init(Robo_Base.RF._Axis);
+            Axis_CloseLoop_Init(Robo_Base.RB._Axis);
+			Pos_CloseLoop_Init(&Robo_Base.LF._Pos); 
+			Pos_CloseLoop_Init(&Robo_Base.LB._Pos); 
+			Pos_CloseLoop_Init(&Robo_Base.RF._Pos); 
+			Pos_CloseLoop_Init(&Robo_Base.RB._Pos); 
         }osDelay(1);
     }
   /* USER CODE END InitTask */
@@ -273,20 +300,19 @@ void InitTask(void const * argument)
 /* USER CODE BEGIN Application */
 void Task_Swtich(void)
 {
-    TxMessageHeader_Set(&Can_TxMessageList[10],8,0,0,0,0x10);
-    TxMessageData_Add(&Can_TxMessageList[10],(uint8_t*)&Robo_Base.Working_State,0,1);
-//    switch(RC_Ctl.rc.switch_left){
-//        case 0:Robo_Base.Working_State = 1;break;
-//        case 1:Robo_Base.Working_State = 1;break;
-//        case 2:Robo_Base.Working_State = 1;break;
-//        case 3:Robo_Base.Working_State = 1;break;
-//    }
+//    TxMessageHeader_Set(&Can_TxMessageList[10],8,0,0,0,0x10);
+//    TxMessageData_Add(&Can_TxMessageList[10],(uint8_t*)&Robo_Base.Working_State,0,1);
+    switch(RC_Ctl.rc.switch_left){
+        case 1:Robo_Base.Working_State = 0;break;
+        case 2:Robo_Base.Working_State = 1;break;
+        case 3:break;
+    }
 }
 
 void Control_Task(void)
 {
-//    if(RC_Ctl.State_Update == SET) Task_Swtich(),RC_Ctl.State_Update = RESET;
-//    
+    if(RC_Ctl.State_Update == SET) Task_Swtich(), RC_Ctl.State_Update = RESET;
+    
     switch(Robo_Base.Working_State){
         case 0:Stop_Move();break;
         case 1:START_INIT;break;
@@ -306,11 +332,17 @@ void Stop_Move(void)
 }
 void Remote_Control(void)
 {
-    Robo_Base.Speed_X=(RC_Ctl.rc.ch0-1024)*1.0/660;
-	Robo_Base.Speed_Y=(RC_Ctl.rc.ch1-1024)*1.0/660;
-	if(sqrt((RC_Ctl.rc.ch0 - 1024) * (RC_Ctl.rc.ch0 - 1024) + (RC_Ctl.rc.ch1 - 1024) * (RC_Ctl.rc.ch1 - 1024) > 10))
-    Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
-    //Robo_Base.Speed_Rotate = (RC_Ctl.rc.ch0-1024)*1.0/660;
+         if(RC_Ctl.rc.ch0 >= 1024 + X_OFFSET) Robo_Base.Speed_X = (RC_Ctl.rc.ch0 - 1024 - X_OFFSET) * 1.0 / (660 - X_OFFSET);
+    else if(RC_Ctl.rc.ch0 <= 1024 - X_OFFSET) Robo_Base.Speed_X = (RC_Ctl.rc.ch0 - 1024 + X_OFFSET) * 1.0 / (660 - X_OFFSET);
+    else Robo_Base.Speed_X = 0;
+         if(RC_Ctl.rc.ch1 >= 1024 + Y_OFFSET) Robo_Base.Speed_Y = (RC_Ctl.rc.ch1 - 1024 - Y_OFFSET) * 1.0 / (660 - Y_OFFSET);
+    else if(RC_Ctl.rc.ch1 <= 1024 - Y_OFFSET) Robo_Base.Speed_Y = (RC_Ctl.rc.ch1 - 1024 + Y_OFFSET) * 1.0 / (660 - Y_OFFSET);
+    else Robo_Base.Speed_Y = 0;
+        if(RC_Ctl.rc.ch2 >= 1024 + Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 - Z_OFFSET) * 1.0 / (660 - Z_OFFSET);
+    else if(RC_Ctl.rc.ch2 <= 1024 - Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 + Z_OFFSET) * 1.0 / (660 - Z_OFFSET);
+	else Robo_Base.Speed_Rotate = 0;
+    
+    if(Robo_Base.Speed_X != 0 || Robo_Base.Speed_Y != 0) Robo_Base.Angle = atan2(-Robo_Base.Speed_X, Robo_Base.Speed_Y);
 }
 
 void Bucket_Turning(void)

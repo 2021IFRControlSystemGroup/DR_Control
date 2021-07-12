@@ -66,20 +66,20 @@ void Motor_CAN_Recevice(uint32_t Motor_Num, uint8_t* RX_Data)
 void BASE_Init(void)
 {
     MotorSystem* P_Motor = NULL;
-    P_Motor = &Robo_Base.LF._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	4000);
-	Motor_Init(P_Motor, 0);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	6000);
-    P_Motor = &Robo_Base.LB._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	4000);
-    Motor_Init(P_Motor, 1);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	6000); 
-    P_Motor = &Robo_Base.RF._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	4000);
-    Motor_Init(P_Motor, 2);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	6000); 
-    P_Motor = &Robo_Base.RB._Pos; PID_Init(&P_Motor->Pos_PID,			0.6,	0,	0,	10000,	0,	0,	4000);
-    Motor_Init(P_Motor, 3);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	6000); 
+    P_Motor = &Robo_Base.LF._Pos; PID_Init(&P_Motor->Pos_PID,			0.8,	0,	0,	10000,	0,	0,	8000);
+	Motor_Init(P_Motor, 0);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000);
+    P_Motor = &Robo_Base.LB._Pos; PID_Init(&P_Motor->Pos_PID,			0.8,	0.02,	0,	10000,	0,	2000,	8000);
+    Motor_Init(P_Motor, 1);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
+    P_Motor = &Robo_Base.RF._Pos; PID_Init(&P_Motor->Pos_PID,			0.8,	0,	0,	10000,	0,	0,	8000);
+    Motor_Init(P_Motor, 2);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
+    P_Motor = &Robo_Base.RB._Pos; PID_Init(&P_Motor->Pos_PID,			0.8,	0,	0,	10000,	0,	0,	8000);
+    Motor_Init(P_Motor, 3);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
 
 	Axis* P_Axis = NULL;																																										//驱动电机初始化
-	P_Axis = Robo_Base.LF._Axis = &ODrive0.Axis0; Axis_Init(P_Axis, 0);
-	P_Axis = Robo_Base.LB._Axis = &ODrive0.Axis1; Axis_Init(P_Axis, 1);
-	P_Axis = Robo_Base.RF._Axis = &ODrive1.Axis0; Axis_Init(P_Axis, 2);
-	P_Axis = Robo_Base.RB._Axis = &ODrive1.Axis1; Axis_Init(P_Axis, 3);
+	P_Axis = Robo_Base.RF._Axis = &ODrive0.Axis0; Axis_Init(P_Axis, 0);
+	P_Axis = Robo_Base.RB._Axis = &ODrive0.Axis1; Axis_Init(P_Axis, 1);
+	P_Axis = Robo_Base.LB._Axis = &ODrive1.Axis0; Axis_Init(P_Axis, 2);
+	P_Axis = Robo_Base.LF._Axis = &ODrive1.Axis1; Axis_Init(P_Axis, 3);
 	Robo_Base.Working_State = 1;
     Robo_Base.Error_State = 0;
 }
