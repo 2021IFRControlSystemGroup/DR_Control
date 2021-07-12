@@ -7,7 +7,7 @@
 
 void Move_Analysis(void);
 void Motor_Angle(MotorGroup* P_Motor,double dA_Tar);
-
+void Motor_Rotate(MotorGroup* P_Motor, double Rotation_Angle);
 #endif
 
 
