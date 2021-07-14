@@ -2,29 +2,73 @@
 
 #define TWO_PI (2*PI)
 #define MAX_SPEED 20.0
+#define MAX_ROTATE 10.0
 
-double dA_Tar = 0;
-double dS_Tar = 0;
+double Angle_Tar[4] = {0};
+double Speed_Tar[4] = {0};
+double Angle_XY = 0;
+double Speed_XY = 0;
 double dR_Tar = 0;
-void Move_Analysis(void)
-{   
-	dS_Tar = sqrt((Robo_Base.Speed_X * Robo_Base.Speed_X) + (Robo_Base.Speed_Y * Robo_Base.Speed_Y)) * MAX_SPEED;
-    dA_Tar = Robo_Base.Angle / TWO_PI * ROTOR_ANGLE * GEAR_RATIO;
-    if(Robo_Base.Angle < 0) dA_Tar += ROTOR_ANGLE * GEAR_RATIO;
-	
-    Robo_Base.LF._Axis->Input_Vel = -dS_Tar;
-	Robo_Base.LB._Axis->Input_Vel = -dS_Tar;
-	Robo_Base.RF._Axis->Input_Vel = dS_Tar;
-	Robo_Base.RB._Axis->Input_Vel = dS_Tar;
-	Motor_Angle(&Robo_Base.LF,dA_Tar);
-	Motor_Angle(&Robo_Base.LB,dA_Tar);
-	Motor_Angle(&Robo_Base.RF,dA_Tar);
-	Motor_Angle(&Robo_Base.RB,dA_Tar);
+double Distance = 0;
+double Radius = 0;
+void Move_Analysis(double Vel_X, double Vel_Y, double Vel_W)
+{
+    Speed_XY = sqrt((Vel_X * Vel_X) + (Vel_Y * Vel_Y));
+    Angle_XY = Robo_Base.Angle;
+    if(Vel_W == 0 && (Vel_X != 0 || Vel_Y != 0)){
+        //Radius = INFINITY;
+        Angle_Tar[Robo_Base.LF._Pos.Motor_Num] = Angle_XY / TWO_PI * ONE_CIRCLE;
+        Angle_Tar[Robo_Base.LB._Pos.Motor_Num] = Angle_XY / TWO_PI * ONE_CIRCLE;
+        Angle_Tar[Robo_Base.RF._Pos.Motor_Num] = Angle_XY / TWO_PI * ONE_CIRCLE;
+        Angle_Tar[Robo_Base.RB._Pos.Motor_Num] = Angle_XY / TWO_PI * ONE_CIRCLE;
+        Speed_Tar[Robo_Base.LF._Pos.Motor_Num] = Speed_XY * MAX_SPEED;
+        Speed_Tar[Robo_Base.LB._Pos.Motor_Num] = Speed_XY * MAX_SPEED;
+        Speed_Tar[Robo_Base.RF._Pos.Motor_Num] = Speed_XY * MAX_SPEED;
+        Speed_Tar[Robo_Base.RB._Pos.Motor_Num] = Speed_XY * MAX_SPEED;
+    }else if((Vel_X == 0 && Vel_Y == 0) && Vel_W != 0){
+        Radius = 0;
+        Angle_Tar[Robo_Base.LF._Pos.Motor_Num] = (TWO_PI - HALF_PI / 2) / TWO_PI * ONE_CIRCLE;
+        Angle_Tar[Robo_Base.LB._Pos.Motor_Num] = (HALF_PI / 2) / TWO_PI * ONE_CIRCLE;
+        Angle_Tar[Robo_Base.RF._Pos.Motor_Num] = (PI + HALF_PI / 2) / TWO_PI * ONE_CIRCLE;
+        Angle_Tar[Robo_Base.RB._Pos.Motor_Num] = (PI - HALF_PI / 2) / TWO_PI * ONE_CIRCLE;
+        Speed_Tar[Robo_Base.LF._Pos.Motor_Num] = Vel_W * MAX_SPEED * 1.414 / 2 * 0.205 * MAX_ROTATE;
+        Speed_Tar[Robo_Base.LB._Pos.Motor_Num] = Vel_W * MAX_SPEED* 1.414 / 2 * 0.205 * MAX_ROTATE;
+        Speed_Tar[Robo_Base.RF._Pos.Motor_Num] = Vel_W * MAX_SPEED* 1.414 / 2 * 0.205 * MAX_ROTATE;
+        Speed_Tar[Robo_Base.RB._Pos.Motor_Num] = Vel_W * MAX_SPEED* 1.414 / 2 * 0.205 * MAX_ROTATE;
+    }else if((Vel_X != 0 || Vel_Y != 0) && Vel_W != 0){
+        Radius = Speed_XY / Vel_W;
+        Angle_Tar[Robo_Base.RF._Pos.Motor_Num] = (HALF_PI - atan2((Radius * cos(Angle_XY) + 0.205) , (Radius * sin(Angle_XY) + 0.205))) / TWO_PI * ONE_CIRCLE;
+        Angle_Tar[Robo_Base.LB._Pos.Motor_Num] = (HALF_PI - atan2((Radius * cos(Angle_XY) + 0.205) , (-Radius * sin(Angle_XY) + 0.205))) / TWO_PI * ONE_CIRCLE;
+        Angle_Tar[Robo_Base.LF._Pos.Motor_Num] = (HALF_PI - atan2((Radius * cos(Angle_XY) - 0.205) , (Radius * sin(Angle_XY) + 0.205))) / TWO_PI * ONE_CIRCLE;
+        Angle_Tar[Robo_Base.RB._Pos.Motor_Num] = (HALF_PI - atan2((Radius * cos(Angle_XY) - 0.205) , (-Radius * sin(Angle_XY) + 0.205))) / TWO_PI * ONE_CIRCLE;
+        Speed_Tar[Robo_Base.LF._Pos.Motor_Num] = Vel_W * 
+        MAX_SPEED * sqrt((0.205 + Radius * sin(Angle_XY)) * (0.205 + Radius * sin(Angle_XY))+(0.205 + Radius * cos(Angle_XY))*(0.205 + Radius * cos(Angle_XY)));
+        Speed_Tar[Robo_Base.LB._Pos.Motor_Num] = Vel_W * 
+        MAX_SPEED * sqrt((0.205 - Radius * sin(Angle_XY)) * (0.205 - Radius * sin(Angle_XY))+(0.205 + Radius * cos(Angle_XY))*(0.205 + Radius * cos(Angle_XY)));
+        Speed_Tar[Robo_Base.RF._Pos.Motor_Num] = Vel_W * 
+        MAX_SPEED * sqrt((0.205 - Radius * sin(Angle_XY)) * (0.205 - Radius * sin(Angle_XY))+(-0.205 + Radius * cos(Angle_XY))*(-0.205 + Radius * cos(Angle_XY)));
+        Speed_Tar[Robo_Base.RB._Pos.Motor_Num] = Vel_W * 
+        MAX_SPEED * sqrt((0.205 + Radius * sin(Angle_XY)) * (0.205 + Radius * sin(Angle_XY))+(-0.205 + Radius * cos(Angle_XY))*(-0.205 + Radius * cos(Angle_XY)));
+    }else{
+        Speed_Tar[Robo_Base.LF._Pos.Motor_Num] = 0;
+        Speed_Tar[Robo_Base.LB._Pos.Motor_Num] = 0;
+        Speed_Tar[Robo_Base.RF._Pos.Motor_Num] = 0;
+        Speed_Tar[Robo_Base.RB._Pos.Motor_Num] = 0;
+    }
     
-    //Motor_Rotate(&Robo_Base.LF,PI);
-    //Motor_Rotate(&Robo_Base.LB,TWO_PI-HALF_PI/2);
-//    Motor_Rotate(&Robo_Base.RF,HALF_PI+HALF_PI/2);
-    //Motor_Rotate(&Robo_Base.LF,HALF_PI/2);
+    if(Angle_Tar[Robo_Base.LF._Pos.Motor_Num] < 0) Angle_Tar[Robo_Base.LF._Pos.Motor_Num] += ONE_CIRCLE;
+    if(Angle_Tar[Robo_Base.LB._Pos.Motor_Num] < 0) Angle_Tar[Robo_Base.LB._Pos.Motor_Num] += ONE_CIRCLE;
+    if(Angle_Tar[Robo_Base.RF._Pos.Motor_Num] < 0) Angle_Tar[Robo_Base.RF._Pos.Motor_Num] += ONE_CIRCLE;
+    if(Angle_Tar[Robo_Base.RB._Pos.Motor_Num] < 0) Angle_Tar[Robo_Base.RB._Pos.Motor_Num] += ONE_CIRCLE;
+    
+    Robo_Base.LF._Axis->Input_Vel = -Speed_Tar[Robo_Base.LF._Pos.Motor_Num];
+	Robo_Base.LB._Axis->Input_Vel = -Speed_Tar[Robo_Base.LB._Pos.Motor_Num];
+	Robo_Base.RF._Axis->Input_Vel = Speed_Tar[Robo_Base.RF._Pos.Motor_Num];
+	Robo_Base.RB._Axis->Input_Vel = Speed_Tar[Robo_Base.RB._Pos.Motor_Num];
+	Motor_Angle(&Robo_Base.LF,Angle_Tar[Robo_Base.LF._Pos.Motor_Num]);
+	Motor_Angle(&Robo_Base.LB,Angle_Tar[Robo_Base.LB._Pos.Motor_Num]);
+	Motor_Angle(&Robo_Base.RF,Angle_Tar[Robo_Base.RF._Pos.Motor_Num]);
+	Motor_Angle(&Robo_Base.RB,Angle_Tar[Robo_Base.RB._Pos.Motor_Num]);
 }
 
 void Motor_Angle(MotorGroup* P_Motor,double dA_Tar)
@@ -55,18 +99,4 @@ void Motor_Angle(MotorGroup* P_Motor,double dA_Tar)
     }P_Pos->Info.Relative_Angle = Relative_Angle_temp;
 }
 
-//double Speed_Rotate = 0;
-//double COS = 0;
-//double Error_Angle = 0;
-//void Motor_Rotate(MotorGroup* P_Motor, double Angle)
-//{
-//    
-//    
-//    
-//    
-//    if(P_Motor == &Robo_Base.)
-//    if(P_Motor->_Pos.Info.Relative_Angle / ONE_CIRCLE * TWO_PI > Rotation_Angle) Error_Angle = P_Motor->_Pos.Info.Relative_Angle / ONE_CIRCLE * TWO_PI - Rotation_Angle;
-//    COS = cos(Error_Angle);
-//    Speed_Rotate = cos(Error_Angle) * 15 *Robo_Base.Speed_Rotate;
-//    P_Motor->_Axis->Input_Vel += Speed_Rotate;
-//}
+

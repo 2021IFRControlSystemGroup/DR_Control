@@ -5,7 +5,7 @@
 #include "robo_base.h"
 #include "usart_analysis.h"
 
-void Move_Analysis(void);
+void Move_Analysis(double Vel_X, double Vel_Y, double Vel_W);
 void Motor_Angle(MotorGroup* P_Motor,double dA_Tar);
 void Motor_Rotate(MotorGroup* P_Motor, double Rotation_Angle);
 #endif

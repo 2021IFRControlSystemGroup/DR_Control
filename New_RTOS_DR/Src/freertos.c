@@ -201,7 +201,7 @@ void MoveTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    Move_Analysis();
+    Move_Analysis(Robo_Base.Speed_X, Robo_Base.Speed_Y, Robo_Base.Speed_Rotate);
 	Can_TxMessage_MoveMode();
     osDelay(1);
   }
