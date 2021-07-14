@@ -27,14 +27,14 @@
 
 typedef struct MotorInfo								//进行位置环控制的电机信息
 {
-  int16_t Speed;														//电机速度				单位(rad/min 转/每分钟)
-  uint16_t Angle;														//转子机械角度
-  int32_t Abs_Angle;												//转子绝对机械角度
-  int32_t Relative_Angle;										//电机相对坐标角度		单位(° 度)
-	int Circle_Num;
-  uint8_t Temperature;											//电机温度				单位(℃ 摄氏度)
-  int16_t Electric;													//电流					单位(mA 毫安)
-  uint16_t Last_Angle;											//上一次的转子绝对角度
+    int16_t Speed;														//电机速度				单位(rad/min 转/每分钟)
+    uint16_t Angle;														//转子机械角度
+    int32_t Abs_Angle;												//转子绝对机械角度
+    int32_t Relative_Angle;										//电机相对坐标角度		单位(° 度)
+    int Circle_Num;
+    int8_t Temperature;											//电机温度				单位(℃ 摄氏度)
+    int16_t Electric;													//电流					单位(mA 毫安)
+    uint16_t Last_Angle;											//上一次的转子绝对角度
 }MotorInfo;
 
 typedef struct PID{								//电机PID参数结构体
@@ -72,6 +72,8 @@ typedef struct MotorSystem										//位置环系统
     #if CAN_FUNCTION_ABLE == ENABLE
         CanTxMessageTypeDef* TxMessage;
     #endif
+    float Length_X;
+    float Length_Y;
 }MotorSystem;
 
 
@@ -79,7 +81,7 @@ typedef struct MotorSystem										//位置环系统
 
 //-------------函数声明------------//
 void PID_Init(PID *pid, float Kp, float Ki, float Kd, float error_max, float dead_line, float intergral_max, float output_max);		//PID訋私缘始郫诏私
-void Motor_Init(MotorSystem* P_System, uint8_t ID);
+void Motor_Init(MotorSystem* P_System,uint8_t ID, float Length_X, float Length_Y);
 
 void Motor_Info_Analysis(MotorInfo* P_Motor, uint8_t* Rx_Data);											//位置环电机数据分析的操作函数
 

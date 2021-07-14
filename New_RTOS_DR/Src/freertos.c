@@ -63,20 +63,18 @@ osMessageQId CAN_TxMessageQueueHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-   
+void Control_Task(void);
+void Bucket_Turning(void);
+void Stop_Move(void);
+void Remote_Control(void);
+void Arrow_PickUp(void);
+void Arrow_HandOver(void);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
 void MoveTask(void const * argument);
 void CanSendTask(void const * argument);
 void InitTask(void const * argument);
-void Control_Task(void);
-void Stop_Move(void);
-void Task_Swtich(void);
-void Remote_Control(void);
-void Bucket_Turning(void);
-void Arrow_PickUp(void);
-void Arrow_HandOver(void);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -120,7 +118,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the queue(s) */
   /* definition and creation of CAN_TxMessageQueue */
-  osMessageQDef(CAN_TxMessageQueue, 47, uint8_t);
+  osMessageQDef(CAN_TxMessageQueue, 90, uint8_t);
   CAN_TxMessageQueueHandle = osMessageCreate(osMessageQ(CAN_TxMessageQueue), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -201,7 +199,7 @@ void MoveTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    Move_Analysis();
+    Move_Analysis(Robo_Base.Speed_X,Robo_Base.Speed_Y,Robo_Base.Speed_Rotate);
 	Can_TxMessage_MoveMode();
     osDelay(1);
   }
@@ -215,15 +213,11 @@ void MoveTask(void const * argument)
 * @retval None
 */
 /* USER CODE END Header_CanSendTask */
-uint8_t Queue_List[16]={0};
-uint16_t PQueue = 0;
-    uint8_t num = 0;
-uint8_t Num_List[CANTXMESSAGELISTMAX] = {0, 1, 2, 3, 4, 5, 6};
-uint8_t Flag_12_34 = 0;
 void CanSendTask(void const * argument)
 {
   /* USER CODE BEGIN CanSendTask */
     int i = 0;
+    static uint8_t Flag_12_34 = 0;
 
   /* Infinite loop */
     for(;;)
@@ -263,7 +257,6 @@ void CanSendTask(void const * argument)
 * @retval None
 */
 /* USER CODE END Header_InitTask */
-
 void InitTask(void const * argument)
 {
   /* USER CODE BEGIN InitTask */
@@ -330,6 +323,7 @@ void Stop_Move(void)
     Robo_Base.RF._Axis->Input_Vel = 0;
     Robo_Base.RB._Axis->Input_Vel = 0;
 }
+
 void Remote_Control(void)
 {
          if(RC_Ctl.rc.ch0 >= 1024 + X_OFFSET) Robo_Base.Speed_X = -(RC_Ctl.rc.ch0 - 1024 - X_OFFSET) * 1.0 / (660 - X_OFFSET);
@@ -341,8 +335,6 @@ void Remote_Control(void)
         if(RC_Ctl.rc.ch2 >= 1024 + Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 - Z_OFFSET) * 1.0 / (660 - Z_OFFSET);
     else if(RC_Ctl.rc.ch2 <= 1024 - Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 + Z_OFFSET) * 1.0 / (660 - Z_OFFSET);
 	else Robo_Base.Speed_Rotate = 0;
-    
-    if(Robo_Base.Speed_X != 0 || Robo_Base.Speed_Y != 0) Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
 }
 
 void Bucket_Turning(void)

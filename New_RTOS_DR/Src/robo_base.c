@@ -67,13 +67,13 @@ void BASE_Init(void)
 {
     MotorSystem* P_Motor = NULL;
     P_Motor = &Robo_Base.LF._Pos; PID_Init(&P_Motor->Pos_PID,			0.8,	0,	0,	10000,	0,	0,	8000);
-	Motor_Init(P_Motor, 3);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000);
+	Motor_Init(P_Motor, 3, 0.205, 0.205);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000);
     P_Motor = &Robo_Base.LB._Pos; PID_Init(&P_Motor->Pos_PID,			0.8,	0,	0,	10000,	0,	2000,	8000);
-    Motor_Init(P_Motor, 2);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
+    Motor_Init(P_Motor, 2, 0.205, -0.205);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
     P_Motor = &Robo_Base.RF._Pos; PID_Init(&P_Motor->Pos_PID,			0.8,	0,	0,	10000,	0,	0,	8000);
-    Motor_Init(P_Motor, 0);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
+    Motor_Init(P_Motor, 0, -0.205, 0.205);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
     P_Motor = &Robo_Base.RB._Pos; PID_Init(&P_Motor->Pos_PID,			0.8,	0,	0,	10000,	0,	0,	8000);
-    Motor_Init(P_Motor, 1);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
+    Motor_Init(P_Motor, 1, -0.205, -0.205);			  PID_Init(&P_Motor->Speed_PID,			5,	0,	0,	5000,	0,	0,	7000); 
 
 	Axis* P_Axis = NULL;																																										//驱动电机初始化
 	P_Axis = Robo_Base.RF._Axis = &ODrive0.Axis0; Axis_Init(P_Axis, 0);

@@ -178,9 +178,11 @@ void PID_Speed_Cal(MotorSystem* P_System)
 		P_System->Speed_PID.output = -P_System->Speed_PID.output_max;
 }
 
-void Motor_Init(MotorSystem* P_System,uint8_t ID)
+void Motor_Init(MotorSystem* P_System,uint8_t ID, float Length_X, float Length_Y)
 {
     P_System->Motor_Num = ID;
+    P_System->Length_X = Length_X;
+    P_System->Length_Y = Length_Y;
 	
     #if CAN_FUNCTION_ABLE == ENABLE
         P_System->TxMessage=&Can_TxMessageList[0];

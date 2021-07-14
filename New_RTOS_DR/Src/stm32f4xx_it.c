@@ -278,7 +278,7 @@ void TIM2_IRQHandler(void)
 
 /**
   * @brief This function handles TIM3 global interrupt.
-  */uint8_t flag = 1;
+  */
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
@@ -321,7 +321,7 @@ void USART2_IRQHandler(void)
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */
-
+    Usart_DMA_Process(&huart2, &hdma_usart2_rx, &Uart2_Rx, IMU_Analysis);
   /* USER CODE END USART2_IRQn 1 */
 }
 
@@ -335,7 +335,6 @@ void USART3_IRQHandler(void)
   /* USER CODE END USART3_IRQn 0 */
   HAL_UART_IRQHandler(&huart3);
   /* USER CODE BEGIN USART3_IRQn 1 */
-
   /* USER CODE END USART3_IRQn 1 */
 }
 
