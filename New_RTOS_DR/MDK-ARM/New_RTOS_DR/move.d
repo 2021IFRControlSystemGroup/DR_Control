@@ -46,3 +46,4 @@ new_rtos_dr\move.o: ../Inc/usart.h
 new_rtos_dr\move.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 new_rtos_dr\move.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\string.h
 new_rtos_dr\move.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+new_rtos_dr\move.o: ../Inc/iwdg.h

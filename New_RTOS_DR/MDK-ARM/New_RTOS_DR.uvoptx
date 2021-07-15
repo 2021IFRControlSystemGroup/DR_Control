@@ -233,7 +233,7 @@
         <Ww>
           <count>15</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Direct_System</ItemText>
+          <ItemText>Direct_System,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>16</count>

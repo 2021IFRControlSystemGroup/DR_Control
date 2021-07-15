@@ -9,7 +9,7 @@ typedef struct DirectSystem
 {
     IMU_Info* IMU;
     PID Dir_Pos_Pid;
-    int16_t Direction_Tar;
+    double Direction_Tar;
     uint8_t Tar_Update;
 }DirectSystem;
 
