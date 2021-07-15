@@ -338,8 +338,8 @@ void Remote_Control(void)
          if(RC_Ctl.rc.ch1 >= 1024 + Y_OFFSET) Robo_Base.Speed_Y = (RC_Ctl.rc.ch1 - 1024 - Y_OFFSET) * 1.0 / (660 - Y_OFFSET);
     else if(RC_Ctl.rc.ch1 <= 1024 - Y_OFFSET) Robo_Base.Speed_Y = (RC_Ctl.rc.ch1 - 1024 + Y_OFFSET) * 1.0 / (660 - Y_OFFSET);
     else Robo_Base.Speed_Y = 0;
-        if(RC_Ctl.rc.ch2 >= 1024 + Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 - Z_OFFSET) * 1.0 / (660 - Z_OFFSET);
-    else if(RC_Ctl.rc.ch2 <= 1024 - Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 + Z_OFFSET) * 1.0 / (660 - Z_OFFSET);
+        if(RC_Ctl.rc.ch2 >= 1024 + Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 - Z_OFFSET) * 2.0 / (660 - Z_OFFSET);
+    else if(RC_Ctl.rc.ch2 <= 1024 - Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 + Z_OFFSET) * 2.0 / (660 - Z_OFFSET);
 	else Robo_Base.Speed_Rotate = 0;
     
     if(Robo_Base.Speed_X != 0 || Robo_Base.Speed_Y != 0) Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
