@@ -15,7 +15,7 @@
 #define USART2_TX_LEN_MAX 50
 
 #define USART1_RX_LEN_MAX 18
-#define USART3_RX_LEN_MAX 10
+#define USART3_RX_LEN_MAX 13
 #define USART6_RX_LEN_MAX 10
 //---------------------------------//
 
@@ -80,6 +80,13 @@ typedef struct UsartRxBuffer
 	uint8_t Buffer_Num;
 	uint16_t Length_Max;
 }UsartRxBuffer;
+
+typedef struct IMU_Info
+{
+    double Row;
+    double Yaw;
+    double Pitch;
+}IMU_Info;
 //---------------------------------//
 
 //-------------گ˽ʹķ------------//
@@ -87,6 +94,7 @@ void Usart_All_Init(void);						//ԮࠚͨхԵʼۯگ˽
 void usart_sendData_DMA(UART_HandleTypeDef *huart, uint8_t *Data, uint8_t len);			//ԮࠚDMAע̍گ˽ 
 void Usart_DMA_Process(UART_HandleTypeDef *huart,DMA_HandleTypeDef* hdma_usart_rx, 
 					UsartRxBuffer* Uart_Rx,void(*DataProcessFunc)(uint8_t *pData));	//ԮࠚDMAޓ˕Ԧmگ˽ 
+void IMU_analysis(uint8_t *pData);
 void VisionData_analysis(uint8_t *pData);
 void RemoteData_analysis(uint8_t *sbus_rx_buffer);
 void Control_CAN_Recevice(uint32_t StdID, uint8_t *pData);
@@ -99,6 +107,7 @@ extern UsartRxBuffer Uart6_Rx;
 extern VISION_DATA Vision_Data;
 extern RC_Ctl_t RC_Ctl;
 extern uint8_t Task_End_Flag;
+extern IMU_Info IMU;
 //---------------------------------//
 #endif
 

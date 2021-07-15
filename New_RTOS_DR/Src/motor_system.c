@@ -62,7 +62,7 @@ void PID_Init(PID *pid, float Kp, float Ki, float Kd, float error_max, float dea
 	pid->output = 0;
 }
 
-void PID_General_Cal(PID *pid, float fdbV, float tarV,uint8_t moto_num,uint8_t *Tx_msg)
+void PID_General_Cal(PID *pid, float fdbV, float tarV)
 {
 
 	pid->error =  tarV - fdbV;
@@ -91,7 +91,7 @@ void PID_General_Cal(PID *pid, float fdbV, float tarV,uint8_t moto_num,uint8_t *
 	if(pid->output < -pid->output_max)
 		pid->output = -pid->output_max;
 	
-	Tx_msg[moto_num * 2]=((int16_t)pid->output) >> 8;Tx_msg[moto_num * 2 + 1]=(int16_t)pid->output;
+	//Tx_msg[moto_num * 2]=((int16_t)pid->output) >> 8;Tx_msg[moto_num * 2 + 1]=(int16_t)pid->output;
 }
 
 void PID_Pos_Cal(MotorSystem* P_System)

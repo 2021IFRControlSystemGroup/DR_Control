@@ -78,6 +78,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+
     HAL_Init();
 
   /* USER CODE BEGIN Init */
@@ -109,6 +110,7 @@ int main(void)
     CAN_Start_IT(&hcan1);
     CAN_Start_IT(&hcan2);
     HAL_TIM_Base_Start_IT(&htim3);
+    DirectSystem_Init();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */

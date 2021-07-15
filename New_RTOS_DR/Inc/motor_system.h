@@ -83,7 +83,7 @@ void Motor_Init(MotorSystem* P_System, uint8_t ID);
 
 void Motor_Info_Analysis(MotorInfo* P_Motor, uint8_t* Rx_Data);											//位置环电机数据分析的操作函数
 
-void PID_General_Cal(PID *pid, float fdbV, float tarV, uint8_t moto_num, uint8_t *Tx_msg);					//PID计算函数----为了向下兼容
+void PID_General_Cal(PID *pid, float fdbV, float tarV);
 void PID_Pos_Cal(MotorSystem* P_System);																					//位置环系统PID计算函数
 void PID_Speed_Cal(MotorSystem* P_System);
 void Motor_Add_Can_TxMessageList(MotorSystem* Pos_Motor);

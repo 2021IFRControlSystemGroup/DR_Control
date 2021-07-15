@@ -15,6 +15,7 @@
 
 //---------ͷτݾӽԃҿؖ---------//
 #include "usart_analysis.h"
+#include "move.h"
 //--------------------------------//
 
 //---------Ҥʹķҿؖ-----------//
@@ -28,6 +29,7 @@ UsartRxBuffer Uart6_Rx;
 
 VISION_DATA Vision_Data = VISION_DATA_DEFAULT;
 RC_Ctl_t RC_Ctl = RC_DATA_DEFAULT;
+IMU_Info IMU = {0,0,0};
 //--------------------------------//
 
 //---------΢ҿҤʹķҿؖ-------//
@@ -77,6 +79,13 @@ void Usart_All_Init(void)
 	Uart2_Rx.Buffer_Num = 0;
 	Uart2_Rx.Length_Max = USART2_RX_LEN_MAX;
 	HAL_UART_Receive_DMA(&huart2, Uart2_Rx.Buffer[0], USART2_RX_LEN_MAX);
+    
+	Uart3_Rx.Buffer[0] = (uint8_t*)malloc(sizeof(uint8_t) * USART3_RX_LEN_MAX);
+	Uart3_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART3_RX_LEN_MAX);
+	__HAL_UART_ENABLE_IT(&huart3, UART_IT_IDLE);
+	Uart3_Rx.Buffer_Num = 0;
+	Uart3_Rx.Length_Max = USART3_RX_LEN_MAX;
+	HAL_UART_Receive_DMA(&huart3, Uart3_Rx.Buffer[0], USART3_RX_LEN_MAX);
 	
 	Uart1_Rx.Buffer[0] = (uint8_t*)malloc(sizeof(uint8_t) * USART1_RX_LEN_MAX);
 	Uart1_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART1_RX_LEN_MAX);
@@ -120,6 +129,13 @@ void Usart_DMA_Process(UART_HandleTypeDef *huart,DMA_HandleTypeDef* hdma_usart_r
 					if(DataProcessFunc) DataProcessFunc(Uart_Rx->Buffer[0]);
 			}
 		}
+}
+
+void IMU_analysis(uint8_t *pData)
+{
+	if(pData[6] == 0xD0){
+        IMU.Yaw = ToRadian(((int16_t)((pData[12] << 8) | pData[11]) / 10.0) * 1.0);
+    };
 }
 
 void VisionData_analysis(uint8_t *pData)

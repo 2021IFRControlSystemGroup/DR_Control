@@ -230,12 +230,27 @@
           <WinNumber>1</WinNumber>
           <ItemText>Angle_XY</ItemText>
         </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Direct_System</ItemText>
+        </Ww>
+        <Ww>
+          <count>16</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>IMU</ItemText>
+        </Ww>
+        <Ww>
+          <count>17</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Uart3_Rx</ItemText>
+        </Ww>
       </WatchWindow1>
       <MemoryWindow1>
         <Mm>
           <WinNumber>1</WinNumber>
           <SubType>0</SubType>
-          <ItemText>\\New_RTOS_DR\../Src/freertos.c\CAN_TxMessageQueueHandle</ItemText>
+          <ItemText>\\New_RTOS_DR\../Src/usart_analysis.c\Uart3_Rx.Buffer[0]</ItemText>
           <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>

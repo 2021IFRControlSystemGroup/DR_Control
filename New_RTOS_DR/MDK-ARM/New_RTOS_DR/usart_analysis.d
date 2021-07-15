@@ -38,3 +38,11 @@ new_rtos_dr\usart_analysis.o: ../Inc/usart.h
 new_rtos_dr\usart_analysis.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 new_rtos_dr\usart_analysis.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\string.h
 new_rtos_dr\usart_analysis.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdio.h
+new_rtos_dr\usart_analysis.o: ../Inc/move.h
+new_rtos_dr\usart_analysis.o: ../Inc/robo_base.h
+new_rtos_dr\usart_analysis.o: ../Inc/motor_system.h
+new_rtos_dr\usart_analysis.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\math.h
+new_rtos_dr\usart_analysis.o: ../Inc/can_function.h
+new_rtos_dr\usart_analysis.o: ../Inc/can.h
+new_rtos_dr\usart_analysis.o: ../Inc/protect.h
+new_rtos_dr\usart_analysis.o: ../Inc/odrive_system.h

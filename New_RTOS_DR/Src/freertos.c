@@ -199,12 +199,13 @@ void MoveTask(void const * argument)
   /* USER CODE BEGIN MoveTask */
 
   /* Infinite loop */
-  for(;;)
-  {
-    Move_Analysis(Robo_Base.Speed_X, Robo_Base.Speed_Y, Robo_Base.Speed_Rotate);
-	Can_TxMessage_MoveMode();
-    osDelay(1);
-  }
+    for(;;)
+    {
+        HAL_IWDG_Refresh(&hiwdg);
+        Move_Analysis(Robo_Base.Speed_X, Robo_Base.Speed_Y, Robo_Base.Speed_Rotate);
+        Can_TxMessage_MoveMode();
+        osDelay(1);
+    }
   /* USER CODE END MoveTask */
 }
 
@@ -223,11 +224,12 @@ uint8_t Flag_12_34 = 0;
 void CanSendTask(void const * argument)
 {
   /* USER CODE BEGIN CanSendTask */
-    int i = 0;
+//    int i = 0;
 
   /* Infinite loop */
     for(;;)
     {
+        HAL_IWDG_Refresh(&hiwdg);
         Can_Send(&hcan1,&Can_TxMessageList[0], 0);
         if(Flag_12_34 == 0){
             Can_Send(&hcan1,&Can_TxMessageList[1], 0);
@@ -270,6 +272,7 @@ void InitTask(void const * argument)
   /* Infinite loop */
     for(;;)
     {
+        HAL_IWDG_Refresh(&hiwdg);
         if(
             Robo_Base.LF._Axis->Protect.Work_State == WORKING &&
             Robo_Base.LB._Axis->Protect.Work_State == WORKING &&
