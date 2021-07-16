@@ -16,6 +16,8 @@
 //---------ͷτݾӽԃҿؖ---------//
 #include "usart_analysis.h"
 #include "move.h"
+#include "cmsis_os.h"
+#include "freertos.h"
 //--------------------------------//
 
 //---------Ҥʹķҿؖ-----------//
@@ -67,18 +69,18 @@ PUTCHAR_PROTOTYPE
 void Usart_All_Init(void)
 {
 	Uart6_Rx.Buffer[0] = (uint8_t*)malloc(sizeof(uint8_t) * USART6_RX_LEN_MAX);
-	Uart6_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART6_RX_LEN_MAX);
-	__HAL_UART_ENABLE_IT(&huart6, UART_IT_IDLE);
-	Uart6_Rx.Buffer_Num = 0;
-	Uart6_Rx.Length_Max = USART6_RX_LEN_MAX;
-	HAL_UART_Receive_DMA(&huart6, Uart6_Rx.Buffer[0], USART6_RX_LEN_MAX);
-	
-	Uart2_Rx.Buffer[0] = (uint8_t*)malloc(sizeof(uint8_t) * USART2_RX_LEN_MAX);
-	Uart2_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART2_RX_LEN_MAX);
-	__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
-	Uart2_Rx.Buffer_Num = 0;
-	Uart2_Rx.Length_Max = USART2_RX_LEN_MAX;
-	HAL_UART_Receive_DMA(&huart2, Uart2_Rx.Buffer[0], USART2_RX_LEN_MAX);
+//	Uart6_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART6_RX_LEN_MAX);
+//	__HAL_UART_ENABLE_IT(&huart6, UART_IT_IDLE);
+//	Uart6_Rx.Buffer_Num = 0;
+//	Uart6_Rx.Length_Max = USART6_RX_LEN_MAX;
+//	HAL_UART_Receive_DMA(&huart6, Uart6_Rx.Buffer[0], USART6_RX_LEN_MAX);
+//	
+//	Uart2_Rx.Buffer[0] = (uint8_t*)malloc(sizeof(uint8_t) * USART2_RX_LEN_MAX);
+//	Uart2_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART2_RX_LEN_MAX);
+//	__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
+//	Uart2_Rx.Buffer_Num = 0;
+//	Uart2_Rx.Length_Max = USART2_RX_LEN_MAX;
+//	HAL_UART_Receive_DMA(&huart2, Uart2_Rx.Buffer[0], USART2_RX_LEN_MAX);
     
 	Uart3_Rx.Buffer[0] = (uint8_t*)malloc(sizeof(uint8_t) * USART3_RX_LEN_MAX);
 	Uart3_Rx.Buffer[1] = (uint8_t*)malloc(sizeof(uint8_t) * USART3_RX_LEN_MAX);
@@ -104,31 +106,23 @@ void usart_sendData_DMA(UART_HandleTypeDef *huart, uint8_t *Data, uint8_t len)
 	}
 }
 
-void Usart_DMA_Process(UART_HandleTypeDef *huart,DMA_HandleTypeDef* hdma_usart_rx,UsartRxBuffer* Uart_Rx,void(*DataProcessFunc)(uint8_t *pData))
+void Usart_DMA_Process(UART_HandleTypeDef *huart,DMA_HandleTypeDef* hdma_usart_rx,UsartRxBuffer* Uart_Rx, int16_t ID)
 {
-	uint8_t this_frame_len = 0;
-	
+    extern osThreadId usartTaskHandle;
 	if((__HAL_UART_GET_FLAG(huart,UART_FLAG_IDLE) != RESET))  
-		{   
-			__HAL_DMA_DISABLE(hdma_usart_rx);
-			__HAL_UART_CLEAR_IDLEFLAG(huart);  
-			
-			this_frame_len = Uart_Rx->Length_Max - __HAL_DMA_GET_COUNTER(hdma_usart_rx);
-			if(Uart_Rx->Buffer_Num)
-			{
-				Uart_Rx->Buffer_Num = 0;
-				HAL_UART_Receive_DMA(huart, Uart_Rx->Buffer[0], Uart_Rx->Length_Max);
-				if(this_frame_len == Uart_Rx->Length_Max)
-					if(DataProcessFunc) DataProcessFunc(Uart_Rx->Buffer[1]);
-			}
-			else
-			{
-				Uart_Rx->Buffer_Num = 1;
-				HAL_UART_Receive_DMA(huart, Uart_Rx->Buffer[1], Uart_Rx->Length_Max);
-				if(this_frame_len == Uart_Rx->Length_Max)
-					if(DataProcessFunc) DataProcessFunc(Uart_Rx->Buffer[0]);
-			}
-		}
+    {   
+        __HAL_DMA_DISABLE(hdma_usart_rx);
+        __HAL_UART_CLEAR_IDLEFLAG(huart);  
+        
+        Uart_Rx->Frame_Length = Uart_Rx->Length_Max - __HAL_DMA_GET_COUNTER(hdma_usart_rx);
+        if(Uart_Rx->Buffer_Num){
+            HAL_UART_Receive_DMA(huart, Uart_Rx->Buffer[0], Uart_Rx->Length_Max);
+            osSignalSet(usartTaskHandle, ID);
+        }else{
+            HAL_UART_Receive_DMA(huart, Uart_Rx->Buffer[1], Uart_Rx->Length_Max);
+            osSignalSet(usartTaskHandle, ID);
+        }
+    }
 }
 
 void IMU_analysis(uint8_t *pData)

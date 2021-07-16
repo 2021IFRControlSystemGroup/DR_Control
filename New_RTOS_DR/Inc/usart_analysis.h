@@ -78,6 +78,7 @@ typedef struct UsartRxBuffer
 	uint8_t* Buffer[2];
 	uint8_t Buffer_Num;
 	uint16_t Length_Max;
+    uint16_t Frame_Length;
 }UsartRxBuffer;
 
 typedef struct IMU_Info
@@ -91,8 +92,7 @@ typedef struct IMU_Info
 //-------------گ˽ʹķ------------//
 void Usart_All_Init(void);						//ԮࠚͨхԵʼۯگ˽ 
 void usart_sendData_DMA(UART_HandleTypeDef *huart, uint8_t *Data, uint8_t len);			//ԮࠚDMAע̍گ˽ 
-void Usart_DMA_Process(UART_HandleTypeDef *huart,DMA_HandleTypeDef* hdma_usart_rx, 
-					UsartRxBuffer* Uart_Rx,void(*DataProcessFunc)(uint8_t *pData));	//ԮࠚDMAޓ˕Ԧmگ˽ 
+void Usart_DMA_Process(UART_HandleTypeDef *huart,DMA_HandleTypeDef* hdma_usart_rx,UsartRxBuffer* Uart_Rx, int16_t ID);
 void IMU_analysis(uint8_t *pData);
 void VisionData_analysis(uint8_t *pData);
 void RemoteData_analysis(uint8_t *sbus_rx_buffer);

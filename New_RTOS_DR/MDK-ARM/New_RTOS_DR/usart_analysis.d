@@ -46,3 +46,17 @@ new_rtos_dr\usart_analysis.o: ../Inc/can_function.h
 new_rtos_dr\usart_analysis.o: ../Inc/can.h
 new_rtos_dr\usart_analysis.o: ../Inc/protect.h
 new_rtos_dr\usart_analysis.o: ../Inc/odrive_system.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+new_rtos_dr\usart_analysis.o: ../Inc/FreeRTOSConfig.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
+new_rtos_dr\usart_analysis.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h

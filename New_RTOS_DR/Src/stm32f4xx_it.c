@@ -107,6 +107,7 @@ void HardFault_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+      HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }
@@ -278,7 +279,7 @@ void TIM2_IRQHandler(void)
 
 /**
   * @brief This function handles TIM3 global interrupt.
-  */uint8_t flag = 1;
+  */
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
@@ -307,7 +308,7 @@ void USART1_IRQHandler(void)
   /* USER CODE END USART1_IRQn 0 */
   HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
-    Usart_DMA_Process(&huart1,&hdma_usart1_rx, &Uart1_Rx, RemoteData_analysis);
+    Usart_DMA_Process(&huart1,&hdma_usart1_rx, &Uart1_Rx, 0x1);
   /* USER CODE END USART1_IRQn 1 */
 }
 
@@ -335,7 +336,7 @@ void USART3_IRQHandler(void)
   /* USER CODE END USART3_IRQn 0 */
   HAL_UART_IRQHandler(&huart3);
   /* USER CODE BEGIN USART3_IRQn 1 */
-    Usart_DMA_Process(&huart3, &hdma_usart3_rx, &Uart3_Rx, IMU_analysis);
+    Usart_DMA_Process(&huart3, &hdma_usart3_rx, &Uart3_Rx, 0x3);
   /* USER CODE END USART3_IRQn 1 */
 }
 

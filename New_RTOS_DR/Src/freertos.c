@@ -53,30 +53,35 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+//uint8_t Queue_List[16]={0};
+//uint16_t PQueue = 0;
+//    uint8_t num = 0;
+//uint8_t Num_List[CANTXMESSAGELISTMAX] = {0, 1, 2, 3, 4, 5, 6};
+uint8_t Flag_12_34 = 0;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId moveTaskHandle;
 osThreadId canSendTaskHandle;
 osThreadId initTaskHandle;
+osThreadId usartTaskHandle;
 osMessageQId CAN_TxMessageQueueHandle;
+osSemaphoreId Usart_SemHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-   
+void Remote_Control(void);
+void Stop_Move(void);
+void Bucket_Turning(void);
+void Arrow_PickUp(void);
+void Arrow_HandOver(void);
+void Control_Task(void);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
 void MoveTask(void const * argument);
 void CanSendTask(void const * argument);
 void InitTask(void const * argument);
-void Control_Task(void);
-void Stop_Move(void);
-void Task_Swtich(void);
-void Remote_Control(void);
-void Bucket_Turning(void);
-void Arrow_PickUp(void);
-void Arrow_HandOver(void);
+void Usart_Task(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -110,6 +115,11 @@ void MX_FREERTOS_Init(void) {
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
 
+  /* Create the semaphores(s) */
+  /* definition and creation of Usart_Sem */
+  osSemaphoreDef(Usart_Sem);
+  Usart_SemHandle = osSemaphoreCreate(osSemaphore(Usart_Sem), 1);
+
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -120,7 +130,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the queue(s) */
   /* definition and creation of CAN_TxMessageQueue */
-  osMessageQDef(CAN_TxMessageQueue, 47, uint8_t);
+  osMessageQDef(CAN_TxMessageQueue, 90, uint8_t);
   CAN_TxMessageQueueHandle = osMessageCreate(osMessageQ(CAN_TxMessageQueue), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -143,6 +153,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of initTask */
   osThreadDef(initTask, InitTask, osPriorityNormal, 0, 128);
   initTaskHandle = osThreadCreate(osThread(initTask), NULL);
+
+  /* definition and creation of usartTask */
+  osThreadDef(usartTask, Usart_Task, osPriorityAboveNormal, 0, 128);
+  usartTaskHandle = osThreadCreate(osThread(usartTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   CLOSE_MOVE;
@@ -181,8 +195,7 @@ void StartDefaultTask(void const * argument)
 			if(Robo_Base.Working_State == 2) vTaskResume(moveTaskHandle);
 			else if(Robo_Base.Working_State == 1) vTaskResume(initTaskHandle);
 			Suspend_Flag = SET;
-		}
-        osDelay(1);
+		}osDelay(1);
     }
   /* USER CODE END StartDefaultTask */
 }
@@ -201,7 +214,6 @@ void MoveTask(void const * argument)
   /* Infinite loop */
     for(;;)
     {
-        HAL_IWDG_Refresh(&hiwdg);
         Move_Analysis(Robo_Base.Speed_X, Robo_Base.Speed_Y, Robo_Base.Speed_Rotate);
         Can_TxMessage_MoveMode();
         osDelay(1);
@@ -216,11 +228,6 @@ void MoveTask(void const * argument)
 * @retval None
 */
 /* USER CODE END Header_CanSendTask */
-uint8_t Queue_List[16]={0};
-uint16_t PQueue = 0;
-    uint8_t num = 0;
-uint8_t Num_List[CANTXMESSAGELISTMAX] = {0, 1, 2, 3, 4, 5, 6};
-uint8_t Flag_12_34 = 0;
 void CanSendTask(void const * argument)
 {
   /* USER CODE BEGIN CanSendTask */
@@ -239,7 +246,7 @@ void CanSendTask(void const * argument)
             Can_Send(&hcan1,&Can_TxMessageList[3], 0);
             Can_Send(&hcan1,&Can_TxMessageList[4], 0);
             Flag_12_34 = 0;
-        }
+        }osDelay(1);
 //        for(i = 0;i<CANTXMESSAGELISTMAX;i++){
 //            if(Can_TxMessageList[i].Update == SET) xQueueSendToBack(CAN_TxMessageQueueHandle, &Num_List[i], 0);
 //        }
@@ -253,7 +260,6 @@ void CanSendTask(void const * argument)
 //                PQueue%=15;
 //            }
 //        }
-        osDelay(1);
     }
   /* USER CODE END CanSendTask */
 }
@@ -265,7 +271,6 @@ void CanSendTask(void const * argument)
 * @retval None
 */
 /* USER CODE END Header_InitTask */
-
 void InitTask(void const * argument)
 {
   /* USER CODE BEGIN InitTask */
@@ -299,6 +304,50 @@ void InitTask(void const * argument)
   /* USER CODE END InitTask */
 }
 
+/* USER CODE BEGIN Header_Usart_Task */
+/**
+* @brief Function implementing the usartTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_Usart_Task */
+void Usart_Task(void const * argument)
+{
+  /* USER CODE BEGIN Usart_Task */
+    osEvent Event;
+  /* Infinite loop */
+  for(;;)
+  {
+    Event = osSignalWait(0x03, osWaitForever);
+    if(Event.status == osEventSignal){
+        if(Event.value.signals & 0x01){
+            if(Uart1_Rx.Frame_Length == Uart1_Rx.Length_Max){
+                if(Uart1_Rx.Buffer_Num == 1){
+                    RemoteData_analysis(Uart1_Rx.Buffer[1]);
+                    Uart1_Rx.Buffer_Num = 0;
+                }else{
+                    RemoteData_analysis(Uart1_Rx.Buffer[0]);
+                    Uart1_Rx.Buffer_Num = 1;
+                }
+            }
+        }if(Event.value.signals & 0x02){
+            if(Uart3_Rx.Frame_Length == Uart3_Rx.Length_Max){
+                if(Uart3_Rx.Buffer_Num == 1){
+                    IMU_analysis(Uart3_Rx.Buffer[1]);
+                    Uart3_Rx.Buffer_Num = 0;
+                }else{
+                    IMU_analysis(Uart3_Rx.Buffer[0]);
+                    Uart3_Rx.Buffer_Num = 1;
+                }
+            }
+        }
+    }
+
+                
+  }
+  /* USER CODE END Usart_Task */
+}
+
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 void Task_Swtich(void)
@@ -320,14 +369,20 @@ void Control_Task(void)
         case 0:Stop_Move();break;
         case 1:START_INIT;break;
         case 2:Remote_Control();break;
-        case 3:Bucket_Turning();break;
-        case 4:Arrow_PickUp();break;
-        case 5:Arrow_HandOver();break;
+        //case 3:MiniPC_Control();break;
+        case 4:Bucket_Turning();break;
+        case 5:Arrow_PickUp();break;
+        case 6:Arrow_HandOver();break;
     }
 }
 
 void Stop_Move(void)
 {
+    Robo_Base.LF._Pos.Tar_Pos = 0;
+    Robo_Base.LB._Pos.Tar_Pos = 0;
+    Robo_Base.RF._Pos.Tar_Pos = 0;
+    Robo_Base.RB._Pos.Tar_Pos = 0;
+    
     Robo_Base.LF._Axis->Input_Vel = 0;
     Robo_Base.LB._Axis->Input_Vel = 0;
     Robo_Base.RF._Axis->Input_Vel = 0;
@@ -349,6 +404,21 @@ void Remote_Control(void)
     if(Robo_Base.Speed_X != 0 || Robo_Base.Speed_Y != 0) Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
 }
 
+//void MiniPC_Control(void)
+//{
+//         if(RC_Ctl.rc.ch0 >= 1024 + X_OFFSET) Robo_Base.Speed_X = -(RC_Ctl.rc.ch0 - 1024 - X_OFFSET) * 1.0 / (660 - X_OFFSET);
+//    else if(RC_Ctl.rc.ch0 <= 1024 - X_OFFSET) Robo_Base.Speed_X = -(RC_Ctl.rc.ch0 - 1024 + X_OFFSET) * 1.0 / (660 - X_OFFSET);
+//    else Robo_Base.Speed_X = 0;
+//         if(RC_Ctl.rc.ch1 >= 1024 + Y_OFFSET) Robo_Base.Speed_Y = (RC_Ctl.rc.ch1 - 1024 - Y_OFFSET) * 1.0 / (660 - Y_OFFSET);
+//    else if(RC_Ctl.rc.ch1 <= 1024 - Y_OFFSET) Robo_Base.Speed_Y = (RC_Ctl.rc.ch1 - 1024 + Y_OFFSET) * 1.0 / (660 - Y_OFFSET);
+//    else Robo_Base.Speed_Y = 0;
+//        if(RC_Ctl.rc.ch2 >= 1024 + Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 - Z_OFFSET) * 2.0 / (660 - Z_OFFSET);
+//    else if(RC_Ctl.rc.ch2 <= 1024 - Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 + Z_OFFSET) * 2.0 / (660 - Z_OFFSET);
+//	else Robo_Base.Speed_Rotate = 0;
+//    
+//    if(Robo_Base.Speed_X != 0 || Robo_Base.Speed_Y != 0) Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
+//}
+    
 void Bucket_Turning(void)
 {
     static uint8_t Bucket_Turning_State = 0;

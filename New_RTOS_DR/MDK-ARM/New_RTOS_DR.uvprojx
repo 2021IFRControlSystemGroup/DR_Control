@@ -14,7 +14,7 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>STM32F405RG</Device>
+          <Device>STM32F405RGTx</Device>
           <Vendor>STMicroelectronics</Vendor>
           <PackID>Keil.STM32F4xx_DFP.2.15.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
@@ -110,11 +110,11 @@
         </CommonProperty>
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
-          <SimDllArguments> -REMAP -MPU</SimDllArguments>
+          <SimDllArguments>-REMAP -MPU</SimDllArguments>
           <SimDlgDll>DCM.DLL</SimDlgDll>
           <SimDlgDllArguments>-pCM4</SimDlgDllArguments>
           <TargetDllName>SARMCM3.DLL</TargetDllName>
-          <TargetDllArguments> -MPU</TargetDllArguments>
+          <TargetDllArguments>-MPU</TargetDllArguments>
           <TargetDlgDll>TCM.DLL</TargetDlgDll>
           <TargetDlgDllArguments>-pCM4</TargetDlgDllArguments>
         </DllOption>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F405xx, __FPU_PRESENT, __TARGET_FPU_VFP, ARM_MATH_CM4, __CC_ARM</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy; ../Middlewares/Third_Party/FreeRTOS/Source/include; ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS; ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F; ../Drivers/CMSIS/Device/ST/STM32F4xx/Include; ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -393,6 +393,46 @@
           <GroupName>Application/User</GroupName>
           <Files>
             <File>
+              <FileName>motor_system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\motor_system.c</FilePath>
+            </File>
+            <File>
+              <FileName>protect.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\protect.c</FilePath>
+            </File>
+            <File>
+              <FileName>odrive_system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\odrive_system.c</FilePath>
+            </File>
+            <File>
+              <FileName>can_function.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\can_function.c</FilePath>
+            </File>
+            <File>
+              <FileName>robo_base.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\robo_base.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart_analysis.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\usart_analysis.c</FilePath>
+            </File>
+            <File>
+              <FileName>move.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\move.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/main.c</FilePath>
@@ -446,46 +486,6 @@
               <FileName>stm32f4xx_hal_timebase_tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/stm32f4xx_hal_timebase_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>motor_system.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\motor_system.c</FilePath>
-            </File>
-            <File>
-              <FileName>protect.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\protect.c</FilePath>
-            </File>
-            <File>
-              <FileName>odrive_system.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\odrive_system.c</FilePath>
-            </File>
-            <File>
-              <FileName>can_function.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\can_function.c</FilePath>
-            </File>
-            <File>
-              <FileName>robo_base.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\robo_base.c</FilePath>
-            </File>
-            <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\led.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart_analysis.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\usart_analysis.c</FilePath>
-            </File>
-            <File>
-              <FileName>move.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\move.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -595,7 +595,7 @@
             <File>
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\Drivers\CMSIS\Include\arm_cortexM4lf_math.lib</FilePath>
+              <FilePath>..\Src\arm_cortexM4lf_math.lib</FilePath>
             </File>
           </Files>
         </Group>

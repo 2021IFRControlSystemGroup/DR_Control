@@ -28,10 +28,13 @@ Project File Date:  07/16/2021
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\Software\MDK_Keil5\ARM\ARMCC\Bin'
 Build target 'New_RTOS_DR'
 compiling freertos.c...
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h(52): warning:  #47-D: incompatible redefinition of macro "__FPU_PRESENT" 
+  #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+../Src/freertos.c: 1 warning, 0 errors
 linking...
-Program Size: Code=26808 RO-data=2848 RW-data=676 ZI-data=20060  
+Program Size: Code=28576 RO-data=2892 RW-data=672 ZI-data=20056  
 FromELF: creating hex file...
-"New_RTOS_DR\New_RTOS_DR.axf" - 0 Error(s), 0 Warning(s).
+"New_RTOS_DR\New_RTOS_DR.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 

@@ -9,24 +9,29 @@
 DirectSystem Direct_System;
 float Angle_Tar[4] = {0};
 float Speed_Tar[4] = {0};
-float Angle_XY = 0;
-float Speed_XY = 0;
-float Radius = 0;
+int32_t Cal_Time = 0;
+int32_t Error_Time = 0;
 
 void DirectSystem_Init(void)
 {
     Direct_System.IMU = &IMU;
-    PID_Init(&Direct_System.Dir_Pos_Pid, 0.2, 0, 0 , PI, 0, 0, 0.8);
+    PID_Init(&Direct_System.Dir_Pos_Pid, 1, 0, 0 , PI, 0, 0, 1.2);
     Direct_System.Direction_Tar = 0;
     Direct_System.Tar_Update = SET;
 }
-float COS_Angle = 0;
-float SIN_Angle = 0;
+
 void Move_Analysis(float Vel_X, float Vel_Y, float Vel_W)
 {
+    float COS_Angle = 0;
+    float SIN_Angle = 0;
+    float Sqrt_Res = 0;
+    float Angle_XY = 0;
+    float Speed_XY = 0;
+    float Radius = 0;
+    
+    Cal_Time = Robo_Base.Running_Time;
     arm_sqrt_f32((Vel_X * Vel_X) + (Vel_Y * Vel_Y), &Speed_XY);
     Angle_XY = Robo_Base.Angle;
-    float Sqrt_Res = 0;
     COS_Angle = arm_cos_f32(Angle_XY);
     SIN_Angle = arm_sin_f32(Angle_XY);
     
@@ -110,6 +115,7 @@ void Move_Analysis(float Vel_X, float Vel_Y, float Vel_W)
 	Motor_Angle(&Robo_Base.LB,Angle_Tar[Robo_Base.LB._Pos.Motor_Num]);
 	Motor_Angle(&Robo_Base.RF,Angle_Tar[Robo_Base.RF._Pos.Motor_Num]);
 	Motor_Angle(&Robo_Base.RB,Angle_Tar[Robo_Base.RB._Pos.Motor_Num]);
+    Error_Time = Robo_Base.Running_Time - Cal_Time;
 }
 
 void Motor_Angle(MotorGroup* P_Group,float Angle_Tar)

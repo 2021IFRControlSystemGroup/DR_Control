@@ -54,9 +54,10 @@ void Can_Send(CAN_HandleTypeDef *hcan,CanTxMessageTypeDef* TxMessage, uint32_t L
     uint32_t Time = Robo_Base.Running_Time;
     
     if(TxMessage->Update != SET) return ;
-	if(HAL_CAN_GetTxMailboxesFreeLevel(hcan) != RESET)
+	if(HAL_CAN_GetTxMailboxesFreeLevel(hcan) != RESET){
         if (HAL_CAN_AddTxMessage(hcan, &TxMessage->Header, TxMessage->Data, &TxMailbox) != HAL_OK) CAN_Error_Handler(hcan);
         else TxMessage->Update = RESET;
+    }
 }
 uint16_t Error_Times = 0;
 void CAN_Error_Handler(CAN_HandleTypeDef *hcan)
