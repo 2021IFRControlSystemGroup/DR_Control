@@ -379,7 +379,6 @@ void CAN2_RX0_IRQHandler(void)
   HAL_CAN_IRQHandler(&hcan2);
   /* USER CODE BEGIN CAN2_RX0_IRQn 1 */
     HAL_CAN_GetRxMessage(&hcan2, CAN_RX_FIFO0, &Reg2, Robo_Base.Can2.Rx);
-    Control_CAN_Recevice(Reg2.StdId,Robo_Base.Can2.Rx);
   /* USER CODE END CAN2_RX0_IRQn 1 */
 }
 

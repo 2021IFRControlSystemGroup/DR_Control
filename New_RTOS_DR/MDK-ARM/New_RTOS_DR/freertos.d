@@ -62,3 +62,5 @@ new_rtos_dr\freertos.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 new_rtos_dr\freertos.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\string.h
 new_rtos_dr\freertos.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdio.h
 new_rtos_dr\freertos.o: ../Inc/led.h
+new_rtos_dr\freertos.o: E:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\DSP\Include\arm_math.h
+new_rtos_dr\freertos.o: ../Drivers/CMSIS/Include/core_cm4.h

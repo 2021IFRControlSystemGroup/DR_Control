@@ -29,6 +29,7 @@
 #include "iwdg.h"
 #include "move.h"
 #include "led.h"
+#include "arm_math.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -75,6 +76,7 @@ void Bucket_Turning(void);
 void Arrow_PickUp(void);
 void Arrow_HandOver(void);
 void Control_Task(void);
+void MiniPC_Control(void);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
@@ -355,9 +357,9 @@ void Task_Swtich(void)
 //    TxMessageHeader_Set(&Can_TxMessageList[10],8,0,0,0,0x10);
 //    TxMessageData_Add(&Can_TxMessageList[10],(uint8_t*)&Robo_Base.Working_State,0,1);
     switch(RC_Ctl.rc.switch_left){
-        case 1:Robo_Base.Working_State = 0;break;
-        case 2:Robo_Base.Working_State = 1;break;
-        case 3:break;
+        case 1:Robo_Base.Working_State = 1;break;
+        case 2:Robo_Base.Working_State = 2;break;
+        case 3:Robo_Base.Working_State = 3;break;
     }
 }
 
@@ -369,7 +371,7 @@ void Control_Task(void)
         case 0:Stop_Move();break;
         case 1:START_INIT;break;
         case 2:Remote_Control();break;
-        //case 3:MiniPC_Control();break;
+        case 3:MiniPC_Control();break;
         case 4:Bucket_Turning();break;
         case 5:Arrow_PickUp();break;
         case 6:Arrow_HandOver();break;
@@ -404,20 +406,12 @@ void Remote_Control(void)
     if(Robo_Base.Speed_X != 0 || Robo_Base.Speed_Y != 0) Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
 }
 
-//void MiniPC_Control(void)
-//{
-//         if(RC_Ctl.rc.ch0 >= 1024 + X_OFFSET) Robo_Base.Speed_X = -(RC_Ctl.rc.ch0 - 1024 - X_OFFSET) * 1.0 / (660 - X_OFFSET);
-//    else if(RC_Ctl.rc.ch0 <= 1024 - X_OFFSET) Robo_Base.Speed_X = -(RC_Ctl.rc.ch0 - 1024 + X_OFFSET) * 1.0 / (660 - X_OFFSET);
-//    else Robo_Base.Speed_X = 0;
-//         if(RC_Ctl.rc.ch1 >= 1024 + Y_OFFSET) Robo_Base.Speed_Y = (RC_Ctl.rc.ch1 - 1024 - Y_OFFSET) * 1.0 / (660 - Y_OFFSET);
-//    else if(RC_Ctl.rc.ch1 <= 1024 - Y_OFFSET) Robo_Base.Speed_Y = (RC_Ctl.rc.ch1 - 1024 + Y_OFFSET) * 1.0 / (660 - Y_OFFSET);
-//    else Robo_Base.Speed_Y = 0;
-//        if(RC_Ctl.rc.ch2 >= 1024 + Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 - Z_OFFSET) * 2.0 / (660 - Z_OFFSET);
-//    else if(RC_Ctl.rc.ch2 <= 1024 - Z_OFFSET) Robo_Base.Speed_Rotate = -(RC_Ctl.rc.ch2 - 1024 + Z_OFFSET) * 2.0 / (660 - Z_OFFSET);
-//	else Robo_Base.Speed_Rotate = 0;
-//    
-//    if(Robo_Base.Speed_X != 0 || Robo_Base.Speed_Y != 0) Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
-//}
+void MiniPC_Control(void)
+{
+    Robo_Base.Speed_X = -((int16_t)((Robo_Base.Can2.Rx[0]<<8) | Robo_Base.Can2.Rx[1])) / 500.0f;
+    Robo_Base.Speed_Y = ((int16_t)((Robo_Base.Can2.Rx[2]<<8) | Robo_Base.Can2.Rx[3])) / 500.0f;
+    if(Robo_Base.Speed_X != 0 || Robo_Base.Speed_Y != 0) Robo_Base.Angle = atan2(Robo_Base.Speed_X, Robo_Base.Speed_Y);
+}
     
 void Bucket_Turning(void)
 {
