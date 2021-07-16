@@ -1,5 +1,6 @@
 new_rtos_dr\usart_analysis.o: ..\Src\usart_analysis.c
 new_rtos_dr\usart_analysis.o: ../Inc/usart_analysis.h
+new_rtos_dr\usart_analysis.o: ../Inc/usart.h
 new_rtos_dr\usart_analysis.o: ../Inc/main.h
 new_rtos_dr\usart_analysis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 new_rtos_dr\usart_analysis.o: ../Inc/stm32f4xx_hal_conf.h
@@ -34,7 +35,6 @@ new_rtos_dr\usart_analysis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_
 new_rtos_dr\usart_analysis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 new_rtos_dr\usart_analysis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 new_rtos_dr\usart_analysis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-new_rtos_dr\usart_analysis.o: ../Inc/usart.h
 new_rtos_dr\usart_analysis.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 new_rtos_dr\usart_analysis.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\string.h
 new_rtos_dr\usart_analysis.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdio.h

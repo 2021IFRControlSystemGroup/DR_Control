@@ -2,7 +2,6 @@
 #define __UART_ANALYSIS_H__
 
 //---------ͷτݾѼڬҿؖ----------//
-#include "main.h"
 #include "usart.h"
 #include <stdlib.h>
 #include <string.h>

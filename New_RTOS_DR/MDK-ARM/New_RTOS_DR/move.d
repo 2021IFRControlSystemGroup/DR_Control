@@ -1,5 +1,7 @@
 new_rtos_dr\move.o: ..\Src\move.c
 new_rtos_dr\move.o: ../Inc/move.h
+new_rtos_dr\move.o: ../Inc/robo_base.h
+new_rtos_dr\move.o: ../Inc/motor_system.h
 new_rtos_dr\move.o: ../Inc/main.h
 new_rtos_dr\move.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 new_rtos_dr\move.o: ../Inc/stm32f4xx_hal_conf.h
@@ -34,8 +36,6 @@ new_rtos_dr\move.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 new_rtos_dr\move.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 new_rtos_dr\move.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 new_rtos_dr\move.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-new_rtos_dr\move.o: ../Inc/robo_base.h
-new_rtos_dr\move.o: ../Inc/motor_system.h
 new_rtos_dr\move.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\math.h
 new_rtos_dr\move.o: ../Inc/can_function.h
 new_rtos_dr\move.o: ../Inc/can.h
@@ -47,3 +47,5 @@ new_rtos_dr\move.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 new_rtos_dr\move.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\string.h
 new_rtos_dr\move.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\stdio.h
 new_rtos_dr\move.o: ../Inc/iwdg.h
+new_rtos_dr\move.o: E:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\DSP\Include\arm_math.h
+new_rtos_dr\move.o: ../Drivers/CMSIS/Include/core_cm4.h

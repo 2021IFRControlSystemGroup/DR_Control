@@ -53,6 +53,7 @@ new_rtos_dr\main.o: ../Inc/iwdg.h
 new_rtos_dr\main.o: ../Inc/tim.h
 new_rtos_dr\main.o: ../Inc/usart.h
 new_rtos_dr\main.o: ../Inc/gpio.h
+new_rtos_dr\main.o: ../Inc/move.h
 new_rtos_dr\main.o: ../Inc/robo_base.h
 new_rtos_dr\main.o: ../Inc/motor_system.h
 new_rtos_dr\main.o: E:\Software\MDK_Keil5\ARM\ARMCC\Bin\..\include\math.h

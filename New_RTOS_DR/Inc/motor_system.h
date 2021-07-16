@@ -9,7 +9,7 @@
 //---------------------------------//
 
 //---------#define部分-------------//
-#define PI (2 * acos(0))																	//PI圆周率的宏定义
+extern float const PI;//PI圆周率的宏定义
 #define HALF_PI (PI / 2)
 #define ToDegree(a) (a / PI * 180)													//弧度转化成角度的宏定义
 #define ToRadian(a) (a / 180 * PI)													//角度转化成弧度的宏定义

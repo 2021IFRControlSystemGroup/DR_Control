@@ -22,14 +22,14 @@ Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
 E:\Source_Code\Github\DR_Control\New_RTOS_DR\MDK-ARM\New_RTOS_DR.uvprojx
-Project File Date:  07/14/2021
+Project File Date:  07/16/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\Software\MDK_Keil5\ARM\ARMCC\Bin'
 Build target 'New_RTOS_DR'
-compiling move.c...
+compiling freertos.c...
 linking...
-Program Size: Code=33176 RO-data=1160 RW-data=700 ZI-data=20092  
+Program Size: Code=26808 RO-data=2848 RW-data=676 ZI-data=20060  
 FromELF: creating hex file...
 "New_RTOS_DR\New_RTOS_DR.axf" - 0 Error(s), 0 Warning(s).
 
@@ -40,6 +40,7 @@ Package Vendor: ARM
                 ARM.CMSIS.5.4.0
                 CMSIS (Cortex Microcontroller Software Interface Standard)
    * Component: CORE Version: 5.1.2
+   * Component: DSP Version: 1.5.2
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.15.0.pack
@@ -49,12 +50,17 @@ Package Vendor: Keil
 <h2>Collection of Component include folders:</h2>
   .\RTE\_New_RTOS_DR
   E:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include
+  E:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\DSP\Include
   E:\Software\MDK_Keil5\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.1.2
-Build Time Elapsed:  00:00:04
+
+   * Component: ARM::CMSIS:DSP:1.5.2
+      Include file:  CMSIS\DSP\Include\arm_math.h
+      Library file:  CMSIS\Lib\ARM\arm_cortexM4lf_math.lib
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

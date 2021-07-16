@@ -333,6 +333,7 @@ void Stop_Move(void)
     Robo_Base.RF._Axis->Input_Vel = 0;
     Robo_Base.RB._Axis->Input_Vel = 0;
 }
+
 void Remote_Control(void)
 {
          if(RC_Ctl.rc.ch0 >= 1024 + X_OFFSET) Robo_Base.Speed_X = -(RC_Ctl.rc.ch0 - 1024 - X_OFFSET) * 1.0 / (660 - X_OFFSET);

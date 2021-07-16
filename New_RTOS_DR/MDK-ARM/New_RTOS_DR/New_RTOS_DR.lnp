@@ -38,6 +38,7 @@
 "new_rtos_dr\stm32f4xx_hal_tim_ex.o"
 "new_rtos_dr\stm32f4xx_hal_uart.o"
 "new_rtos_dr\system_stm32f4xx.o"
+"..\Drivers\CMSIS\Include\arm_cortexM4lf_math.lib"
 "new_rtos_dr\croutine.o"
 "new_rtos_dr\event_groups.o"
 "new_rtos_dr\list.o"
@@ -48,6 +49,7 @@
 "new_rtos_dr\cmsis_os.o"
 "new_rtos_dr\heap_4.o"
 "new_rtos_dr\port.o"
+"E:\Software\MDK_Keil5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib"
 --library_type=microlib --strict --scatter "New_RTOS_DR\New_RTOS_DR.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

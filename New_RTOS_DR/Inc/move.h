@@ -1,7 +1,6 @@
 #ifndef __MOVE_H__
 #define __MOVE_H__
 
-#include "main.h"
 #include "robo_base.h"
 #include "usart_analysis.h"
 
@@ -13,10 +12,8 @@ typedef struct DirectSystem
     uint8_t Tar_Update;
 }DirectSystem;
 
-void Move_Analysis(double Vel_X, double Vel_Y, double Vel_W);
-void Limit_Angle(double Angle);
-void Motor_Angle(MotorGroup* P_Motor,double dA_Tar);
-void Motor_Rotate(MotorGroup* P_Motor, double Rotation_Angle);
+void Move_Analysis(float Vel_X, float Vel_Y, float Vel_W);
+void Motor_Angle(MotorGroup* P_Motor,float dA_Tar);
 void DirectSystem_Init(void);
 #endif
 
